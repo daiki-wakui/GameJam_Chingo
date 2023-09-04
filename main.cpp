@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "Keyboard.h"
+#include "Vector3.h"
 
 #include <memory>
 

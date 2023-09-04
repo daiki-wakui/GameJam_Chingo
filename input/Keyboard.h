@@ -1,9 +1,13 @@
 #pragma once
 #include "DxLib.h"
+#include "Vector3.h"
+#include "Vector2.h"
 
 class Keyboard
 {
 private:
+
+	Vector2 test;
 
 	// 最新のキーボード情報用
 	char keys[256] = { 0 };
