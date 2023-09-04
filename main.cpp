@@ -1,6 +1,6 @@
 #include "DxLib.h"
 #include "Keyboard.h"
-#include "Vector3.h"
+#include "Player.h"
 
 #include <memory>
 
@@ -47,6 +47,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	//keyboradクラスの生成
 	std::unique_ptr<Keyboard> keyboard_ = std::make_unique<Keyboard>();
+	//playerクラス初期化
+	std::unique_ptr<Player> player = std::make_unique<Player>();
+	player->Initialize();
 
 	// ゲームループ
 	while (true) {
@@ -58,8 +61,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
+		player->Update();
 
 		// 描画処理
+		player->Draw();
 
 		//---------  ここまでにプログラムを記述  ---------//
 		// (ダブルバッファ)裏面
