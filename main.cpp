@@ -1,4 +1,7 @@
 #include "DxLib.h"
+#include "Keyboard.h"
+
+#include <memory>
 
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "Chingo";
@@ -41,23 +44,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	// ゲームループで使う変数の宣言
 
-
-	// 最新のキーボード情報用
-	char keys[256] = {0};
-
-	// 1ループ(フレーム)前のキーボード情報
-	char oldkeys[256] = {0};
+	//keyboradクラスの生成
+	std::unique_ptr<Keyboard> keyboard_ = std::make_unique<Keyboard>();
 
 	// ゲームループ
 	while (true) {
 
-		// 最新のキーボード情報だったものは1フレーム前のキーボード情報として保存
-		for (int i = 0; i < 256; ++i)
-		{
-			oldkeys[i] = keys[i];
-		}
-		// 最新のキーボード情報を取得
-		GetHitKeyStateAll(keys);
+		keyboard_->Update();
 
 		// 画面クリア
 		ClearDrawScreen();
@@ -66,7 +59,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// 更新処理
 
 		// 描画処理
-
 
 		//---------  ここまでにプログラムを記述  ---------//
 		// (ダブルバッファ)裏面
