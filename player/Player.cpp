@@ -23,6 +23,8 @@ void Player::Update()
 	if (DebugManager::GetInstance()->GetIsDebugMode()) {
 		maxLength_ = MAX_BODY - 1;
 	}
+	DrawFormatString(0,60,GetColor(255,255,255),"bodyMaxLength = %d",maxLength_);
+	DrawFormatString(0, 80, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 
 	//ƒ}ƒEƒX‚ÌêŠæ“¾
 	GetMousePoint(&mouseX_, &mouseY_);
