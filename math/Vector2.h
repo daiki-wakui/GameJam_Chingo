@@ -35,3 +35,7 @@ const Vector2 operator-(const Vector2& v1, const Vector2& v2);
 const Vector2 operator*(const Vector2& v, float s);
 const Vector2 operator*(float s, const Vector2& v);
 const Vector2 operator/(const Vector2& v, float s);
+
+void DrawCircle(Vector2 pos,int r,unsigned int color);
+void DrawLine(Vector2 start,Vector2 end,unsigned int color);
+void DrawBox(Vector2 start,Vector2 end,unsigned int color);
