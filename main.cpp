@@ -116,7 +116,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		if (scene == GAME_SCENE) {
 
 			//’n–Ê
-			DrawBox(0, 790, 1280, 900, GetColor(255, 255, 255), true);
+			DrawGraph(0, 0, backImage, true);
+			DrawGraph(0, 0, floorImage, true);
+
+
 			gameScene->Draw();
 		}
 
