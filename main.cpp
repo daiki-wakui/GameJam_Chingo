@@ -2,7 +2,18 @@
 #include "Keyboard.h"
 #include "Player.h"
 
+#include "TitleScene.h"
+#include "GameScene.h"
+#include "ClearScene.h"
+
 #include <memory>
+
+enum MyEnum
+{
+	TITLE_SCENE,
+	GAME_SCENE,
+	CLEAR_SCENE
+};
 
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "Chingo";
@@ -47,9 +58,17 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	//keyboradクラスの生成
 	std::unique_ptr<Keyboard> keyboard_ = std::make_unique<Keyboard>();
-	//playerクラス初期化
-	std::unique_ptr<Player> player = std::make_unique<Player>();
-	player->Initialize();
+
+	//シーンの生成と初期化
+	std::unique_ptr<TitleScene> titleScene = std::make_unique<TitleScene>();
+	std::unique_ptr<GameScene> gameScene = std::make_unique<GameScene>();
+	std::unique_ptr<ClearScene> clearScene = std::make_unique<ClearScene>();
+
+	titleScene->Initialize();
+	gameScene->Initialize();
+	clearScene->Initialize();
+
+	int scene = TITLE_SCENE;
 
 	// ゲームループ
 	while (true) {
@@ -61,10 +80,40 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
-		player->Update();
+		if (scene == TITLE_SCENE) {
+			titleScene->Update();
+
+			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				scene = GAME_SCENE;
+			}
+		}
+		else if (scene == GAME_SCENE) {
+			gameScene->Update();
+
+			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				scene = CLEAR_SCENE;
+			}
+		}
+		else if (scene == CLEAR_SCENE) {
+			clearScene->Update();
+
+			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				scene = TITLE_SCENE;
+			}
+		}
 
 		// 描画処理
-		player->Draw();
+		if (scene == TITLE_SCENE) {
+			titleScene->Draw();
+		}
+
+		if (scene == GAME_SCENE) {
+			gameScene->Draw();
+		}
+
+		if (scene == CLEAR_SCENE) {
+			clearScene->Draw();
+		}
 
 		//---------  ここまでにプログラムを記述  ---------//
 		// (ダブルバッファ)裏面
