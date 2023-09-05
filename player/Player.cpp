@@ -23,7 +23,8 @@ void Player::Update()
 void Player::Draw()
 {
 	//地面
-	DrawBox(0, 790, 1280, 900, GetColor(255, 255, 255), true);
+	//DrawBox(0, 790, 1280, 900, GetColor(255, 255, 255), true);
+
 	//チンアナゴ
 	int a = 0;
 	for (int i = 0; i < length_; i++) {

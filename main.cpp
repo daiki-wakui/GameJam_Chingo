@@ -52,7 +52,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// 画像などのリソースデータの変数宣言と読み込み
-
+	int backImage = LoadGraph("back.png");
+	int floorImage = LoadGraph("floor.png");
+	int titleImage = LoadGraph("title.png");
 
 	// ゲームループで使う変数の宣言
 
@@ -104,10 +106,17 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// 描画処理
 		if (scene == TITLE_SCENE) {
+			DrawGraph(0, 0, backImage, true);
+			DrawGraph(0, 0, floorImage, true);
+			DrawGraph(0, 0, titleImage, true);
+
 			titleScene->Draw();
 		}
 
 		if (scene == GAME_SCENE) {
+
+			//地面
+			DrawBox(0, 790, 1280, 900, GetColor(255, 255, 255), true);
 			gameScene->Draw();
 		}
 
