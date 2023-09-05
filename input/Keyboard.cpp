@@ -1,11 +1,10 @@
 #include "Keyboard.h"
 
-Keyboard::Keyboard()
+Keyboard* Keyboard::GetInstance()
 {
-}
+	static Keyboard instance;
 
-Keyboard::~Keyboard()
-{
+	return &instance;
 }
 
 void Keyboard::Update()

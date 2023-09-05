@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "Keyboard.h"
 #include "Player.h"
+#include "DebugManager.h"
 
 #include "TitleScene.h"
 #include "GameScene.h"
@@ -59,16 +60,18 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// ゲームループで使う変数の宣言
 
 	//keyboradクラスの生成
-	std::unique_ptr<Keyboard> keyboard_ = std::make_unique<Keyboard>();
+	Keyboard* keyboard_ = Keyboard::GetInstance();
 
 	//シーンの生成と初期化
 	std::unique_ptr<TitleScene> titleScene = std::make_unique<TitleScene>();
 	std::unique_ptr<GameScene> gameScene = std::make_unique<GameScene>();
 	std::unique_ptr<ClearScene> clearScene = std::make_unique<ClearScene>();
+	DebugManager* debug = DebugManager::GetInstance();
 
 	titleScene->Initialize();
 	gameScene->Initialize();
 	clearScene->Initialize();
+	debug->Initialize();
 
 	int scene = TITLE_SCENE;
 
@@ -91,6 +94,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		}
 		else if (scene == GAME_SCENE) {
 			gameScene->Update();
+			debug->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
 				scene = CLEAR_SCENE;
@@ -118,6 +122,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			//地面
 			DrawBox(0, 790, 1280, 900, GetColor(255, 255, 255), true);
 			gameScene->Draw();
+			debug->Draw();
 		}
 
 		if (scene == CLEAR_SCENE) {
