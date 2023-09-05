@@ -11,6 +11,7 @@ private:
 	static const int MAX_BODY = 255; //体の最大数
 	static const int NUM_NECK = 5;	 //首から上の数
 	static const int SPEED_NECK = 5; //首の最大回転スピード
+	static const int BODY_THICKNESS = 30; //体の太さ
 
 	Vector2 pos_[MAX_BODY];//顏の位置
 	Vector2 neckWay_;//首の角度

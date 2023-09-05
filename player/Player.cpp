@@ -83,12 +83,9 @@ void Player::Update()
 
 void Player::Draw()
 {
-	//地面
-	//DrawBox(0, 790, 1280, 900, GetColor(255, 255, 255), true);
-
 	//チンアナゴ
 	for (int i = 0; i < activeLength_; i++) {
-		DrawCircle(pos_[i], 20, GetColor(255 - (i * 2), 255, 255));
+		DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255 - (i * 2), 255, 255));
 	}
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
 }
