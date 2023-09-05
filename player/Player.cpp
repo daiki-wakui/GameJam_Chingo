@@ -21,7 +21,7 @@ void Player::Update()
 {
 	//デバッグ処理
 	if (DebugManager::GetInstance()->GetIsDebugMode()) {
-		maxLength_ = 1000;
+		maxLength_ = MAX_BODY - 1;
 	}
 
 	//マウスの場所取得
