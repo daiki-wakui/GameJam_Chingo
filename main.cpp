@@ -1,7 +1,7 @@
 #include "DxLib.h"
 #include "Keyboard.h"
-#include "Player.h"
 #include "DebugManager.h"
+#include "EnemyManager.h"
 
 #include "TitleScene.h"
 #include "GameScene.h"
@@ -67,11 +67,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	std::unique_ptr<GameScene> gameScene = std::make_unique<GameScene>();
 	std::unique_ptr<ClearScene> clearScene = std::make_unique<ClearScene>();
 	DebugManager* debug = DebugManager::GetInstance();
+	EnemyManager* enemyM = EnemyManager::GetInstance();
 
 	titleScene->Initialize();
 	gameScene->Initialize();
 	clearScene->Initialize();
 	debug->Initialize();
+	enemyM->Initialize();
 
 	int scene = TITLE_SCENE;
 
@@ -95,6 +97,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		else if (scene == GAME_SCENE) {
 			gameScene->Update();
 			debug->Update();
+			enemyM->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
 				scene = CLEAR_SCENE;
@@ -123,6 +126,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			DrawBox(0, 790, 1280, 900, GetColor(255, 255, 255), true);
 			gameScene->Draw();
 			debug->Draw();
+			enemyM->Draw();
 		}
 
 		if (scene == CLEAR_SCENE) {

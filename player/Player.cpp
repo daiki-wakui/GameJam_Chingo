@@ -5,6 +5,13 @@
 
 const float PI = 3.1415f;
 
+Player* Player::GetInstance()
+{
+	static Player instance;
+
+	return &instance;
+}
+
 void Player::Initialize()
 {
 	originPos_ = { 640,800 };

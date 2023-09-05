@@ -2,10 +2,33 @@
 #include "MathManager.h"
 
 class Player {
+private:
+	Player() = default;
+	~Player() = default;
+public:
+	//コピーコンストラクタ無効
+	Player(const Player& obj) = delete;
+	//代入演算子を無効
+	Player& operator=(const Player& obj) = delete;
+
+	static Player* GetInstance();
+
 public:
 	void Initialize();
 	void Update();
 	void Draw();
+
+	int GetActiveBody() {
+		return activeLength_;
+	}
+	
+	Vector2 GetPos(int i) {
+		return pos_[i];
+	}
+
+	void AddBodyLength() {
+		maxLength_ += 20;
+	}
 
 private:
 	static const int MAX_BODY = 1000; //体の最大数

@@ -1,15 +1,11 @@
 #pragma once
 #include "DxLib.h"
-#include "Player.h"
 #include <memory>
 
 class TitleScene
 {
 private:
 
-	//playerƒNƒ‰ƒX‰Šú‰»
-	std::unique_ptr<Player> player = std::make_unique<Player>();
-	
 
 public:
 
