@@ -111,7 +111,7 @@ void Player::Draw()
 {
 	//ƒ`ƒ“ƒAƒiƒS
 	for (int i = 0; i < activeLength_; i++) {
-		DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255 - (i * 2), 255, 255));
+		DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
 	}
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
 }
