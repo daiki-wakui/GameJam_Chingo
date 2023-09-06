@@ -56,7 +56,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	int backImage = LoadGraph("GameAssets/Sprite/back.png");
 	int groundImage = LoadGraph("GameAssets/Sprite/floor.png");
 	int titleImage = LoadGraph("GameAssets/Sprite/title.png");
-
+	
 	// ゲームループで使う変数の宣言
 
 	//keyboradクラスの生成
