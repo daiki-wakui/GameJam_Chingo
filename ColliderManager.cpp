@@ -1,6 +1,7 @@
 #include "ColliderManager.h"
 #include "Player.h"
 #include "EnemyManager.h"
+#include "LevelManager.h"
 
 ColliderManager* ColliderManager::GetInstance()
 {
@@ -13,6 +14,7 @@ void ColliderManager::Update()
 {
 	Player* player = Player::GetInstance();
 	EnemyManager* enemyM = EnemyManager::GetInstance();
+	LevelManager* expM = LevelManager::GetInstance();
 
 	for (int ene = 0; ene < enemyM->GetEnemyNum();ene++) {
 		Vector2 E = enemyM->GetEnemyPos(ene);
@@ -25,6 +27,7 @@ void ColliderManager::Update()
 			if (CircleCol(E, 5, P, 30)) {
 				player->AddBodyLength();
 				enemyM->SetEnemyIsDead(ene);
+				expM->AddExp(10);
 			}
 		}
 	}
