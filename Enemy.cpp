@@ -19,6 +19,8 @@ void Enemy::Draw()
 {
 	if (!isDead_) {
 		DrawCircle(pos_, r_, GetColor(255, 100, 100));
+		//DrawGraph(pos_.x, pos_.y, planktonImage, true);
+		DrawExtendGraph(0 + pos_.x, 0 + pos_.y, 64 + pos_.x, 64 + pos_.y, planktonImage, true);
 	}
 	else if(deadTimer_ > 0){
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, deadTimer_);

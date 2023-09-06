@@ -32,6 +32,11 @@ float Vector2::cross(const Vector2& v) const {
 	return (x * v.y) - (y * v.x);
 }
 
+const Vector2 Vector2::lerp(const Vector2& start, const Vector2& end, const float t)
+{
+	return start * (1.0f - t) + end * t;
+}
+
 Vector2 Vector2::operator+() const {
 	return *this;
 }

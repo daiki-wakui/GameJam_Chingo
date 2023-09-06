@@ -1,5 +1,6 @@
 #include "TitleScene.h"
 #include "Player.h"
+#include "Easing.h"
 #include <random>
 
 void TitleScene::Initialize()
@@ -13,11 +14,15 @@ void TitleScene::Initialize()
 		std::uniform_real_distribution<float> x(-128, 1280);
 		std::uniform_real_distribution<float> y(900, 1800);
 
-		std::uniform_real_distribution<float> randomSize(32, 128);
+		std::uniform_real_distribution<float> randomSize(32, 256);
 
 		bubblePos[i].x = x(engine);
 		bubblePos[i].y = y(engine);
 		size[i] = randomSize(engine);
+
+		start[i] = bubblePos[i];
+		end[i].x = bubblePos[i].x;
+		end[i].y = bubblePos[i].y - 2000;
 	}
 }
 
@@ -33,8 +38,20 @@ void TitleScene::Update()
 	emitterRightBotoom.x = mouseX_ + 128;
 	emitterRightBotoom.y = mouseY_ + 128;
 
-	for (int i = 0; i < BUBBLE_SUM; i++) {
-		bubblePos[i].y -= 20;
+	//シーン切り替えエフェクト
+	if (isChangeStart) {
+		timer++;
+
+		for (int i = 0; i < BUBBLE_SUM; i++) {
+			bubblePos[i] = bubblePos[i].lerp(start[i], end[i], Easing::EaseIn(timer, maxTimer));
+			size[i] -= 1.5f;
+			size[i] = max(size[i], 0);
+		}
+	}
+	
+	//シーン切り替え
+	if (timer >= maxTimer) {
+		isChange = true;
 	}
 }
 
@@ -43,8 +60,7 @@ void TitleScene::Draw()
 	Player::GetInstance()->Draw();
 
 //	DrawBox(emitterLeftTop.x, emitterLeftTop.y, emitterRightBotoom.x, emitterRightBotoom.y, GetColor(255, 0, 0), false);
-	
-	//DrawGraph(0, 0, bubbleImage, true);
+
 	for (int i = 0; i < BUBBLE_SUM; i++) {
 		
 		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);

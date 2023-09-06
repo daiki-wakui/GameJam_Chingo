@@ -22,8 +22,21 @@ private:
 	Vector2 emitterRightBotoom;
 	int mouseX_, mouseY_;
 
+	Vector2 start[BUBBLE_SUM];
+	Vector2 end[BUBBLE_SUM];
+
+	float timer;
+	float maxTimer = 100;
+
+	bool isChangeStart = false;
+	bool isChange = false;
 
 public:
+
+	bool GetIsSceneChange() { return isChange; }
+
+	bool GetIsChangeStart(){ return isChangeStart; }
+	void SetIsSceneChange(bool change) { isChangeStart = change; }
 
 	void Initialize();
 	void Update();

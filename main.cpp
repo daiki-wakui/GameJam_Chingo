@@ -91,6 +91,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			titleScene->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				titleScene->SetIsSceneChange(true);
+			}
+
+			if (titleScene->GetIsSceneChange()) {
 				scene = GAME_SCENE;
 			}
 		}
