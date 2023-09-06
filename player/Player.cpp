@@ -22,6 +22,8 @@ void Player::Initialize()
 	maxLength_ = START_BODY_LENGTH;
 	activeLength_ = NUM_NECK;
 	oldNeckWay_ = 180;//^ã‚ª180
+
+	isReturn_ = false;
 }
 
 void Player::Update()
@@ -76,7 +78,7 @@ void Player::Update()
 	}
 
 	//L‚Î‚µk‚İ
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isReturn_) {
 		if (maxLength_ > activeLength_) {
 			activeLength_++;
 
@@ -86,6 +88,7 @@ void Player::Update()
 		}
 	}
 	else if (activeLength_ > NUM_NECK) {
+		isReturn_ = true;
 		//‚‘¬k‚İ
 		for (int j = 0; j < 3; j++) {
 			activeLength_--;
@@ -99,7 +102,9 @@ void Player::Update()
 		}
 	}
 
-
+	if (activeLength_ <= NUM_NECK) {
+		isReturn_ = false;
+	}
 }
 
 void Player::Draw()
