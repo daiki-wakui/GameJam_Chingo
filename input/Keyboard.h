@@ -6,6 +6,18 @@
 class Keyboard
 {
 private:
+	Keyboard() = default;
+	~Keyboard() = default;
+public:
+	//コピーコンストラクタ無効
+	Keyboard(const Keyboard& obj) = delete;
+	//代入演算子を無効
+	Keyboard& operator=(const Keyboard& obj) = delete;
+
+	static Keyboard* GetInstance();
+
+
+private:
 
 	Vector2 test;
 
@@ -16,9 +28,6 @@ private:
 	char oldkeys[256] = { 0 };
 
 public:
-
-	Keyboard();
-	~Keyboard();
 
 	void Update();
 

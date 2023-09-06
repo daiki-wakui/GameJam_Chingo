@@ -1,8 +1,16 @@
 #include "Player.h"
 #include "DxLib.h"
 #include <math.h>
+#include "DebugManager.h"
 
 const float PI = 3.1415f;
+
+Player* Player::GetInstance()
+{
+	static Player instance;
+
+	return &instance;
+}
 
 void Player::Initialize()
 {
@@ -11,13 +19,20 @@ void Player::Initialize()
 		pos_[i] = originPos_;
 	}
 
-	maxLength_ = 100;
+	maxLength_ = START_BODY_LENGTH;
 	activeLength_ = NUM_NECK;
-	oldNeckWay_ = 180;
+	oldNeckWay_ = 180;//真上が180
 }
 
 void Player::Update()
 {
+	//デバッグ処理
+	if (DebugManager::GetInstance()->GetIsDebugMode()) {
+		maxLength_ = MAX_BODY - 1;
+	}
+	DrawFormatString(0, 60, GetColor(255, 255, 255), "bodyMaxLength = %d", maxLength_);
+	DrawFormatString(0, 80, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
+
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
 
@@ -34,7 +49,7 @@ void Player::Update()
 	if (mouseAngle_ <= 0) {
 		mouseAngle_ += 360;
 	}
-	DrawFormatString(0,0,GetColor(255,255,255),"angle = %d",mouseAngle_);
+
 	//0と360を繋ぐ処理
 	if (oldNeckWay_ + 180 < mouseAngle_) {
 		oldNeckWay_ += 360;
@@ -52,7 +67,6 @@ void Player::Update()
 	}
 	//次フレーム用に記録
 	oldNeckWay_ = mouseAngle_;
-	DrawFormatString(0, 20, GetColor(255, 255, 255), "neckAngle = %d", mouseAngle_);
 	neckWay_ = { sinf(PI / 180 * mouseAngle_ * -1),cosf(PI / 180 * mouseAngle_ * -1) };
 	neckWay_ *= 10;
 
@@ -72,9 +86,16 @@ void Player::Update()
 		}
 	}
 	else if (activeLength_ > NUM_NECK) {
-		activeLength_--;
-		for (int i = NUM_NECK - 1; i < activeLength_ + 1; i++) {
-			pos_[i] = pos_[i + 1];
+		//高速縮み
+		for (int j = 0; j < 3; j++) {
+			activeLength_--;
+			for (int i = NUM_NECK - 1; i < activeLength_ + 1; i++) {
+				pos_[i] = pos_[i + 1];
+			}
+			//これ以上縮まない時の例外処理
+			if (activeLength_ < NUM_NECK + 1) {
+				break;
+			}
 		}
 	}
 
