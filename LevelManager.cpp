@@ -40,3 +40,10 @@ void LevelManager::Draw()
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
 }
 
+void LevelManager::IncludeExp()
+{
+	nowExp_ += haveExp_;
+	haveExp_ = 0;
+	Update();
+}
+

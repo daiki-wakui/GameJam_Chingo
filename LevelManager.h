@@ -20,9 +20,10 @@ public:
 		haveExp_ += num;
 	}
 
-	void IncludeExp() {
-		nowExp_ += haveExp_;
-		haveExp_ = 0;
+	void IncludeExp();
+
+	int GetLevel() {
+		return nowLevel_;
 	}
 
 private:

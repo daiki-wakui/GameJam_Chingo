@@ -3,6 +3,7 @@
 #include <math.h>
 #include "DebugManager.h"
 #include "LevelManager.h"
+#include "exBody/ExBodyManager.h"
 
 const float PI = 3.1415f;
 
@@ -25,6 +26,8 @@ void Player::Initialize()
 	oldNeckWay_ = 180;//^ã‚ª180
 
 	isReturn_ = false;
+
+	ExBodyManager::GetInstance()->Initialize();
 }
 
 void Player::Update()
@@ -103,9 +106,15 @@ void Player::Update()
 		}
 	}
 
+	//k‚İØ‚Á‚Ä‚¢‚éó‘Ô
 	if (activeLength_ <= NUM_NECK) {
 		isReturn_ = false;
 		LevelManager::GetInstance()->IncludeExp();
+
+		originPos_.y = 800 - (LevelManager::GetInstance()->GetLevel() - 1) * 100;
+		for (int i = NUM_NECK; i < MAX_BODY; i++) {
+			pos_[i] = originPos_;
+		}
 	}
 }
 
@@ -116,4 +125,6 @@ void Player::Draw()
 		DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
 	}
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
+
+	ExBodyManager::GetInstance()->Draw();
 }

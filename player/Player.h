@@ -26,6 +26,10 @@ public:
 		return pos_[i];
 	}
 
+	Vector2 GetOriginPos() {
+		return originPos_;
+	}
+
 	void AddBodyLength() {
 		maxLength_+= 2;
 	}
