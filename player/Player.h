@@ -27,7 +27,7 @@ public:
 	}
 
 	void AddBodyLength() {
-		maxLength_ += 20;
+		maxLength_+= 2;
 	}
 
 private:

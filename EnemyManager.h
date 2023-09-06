@@ -33,7 +33,7 @@ public:
 	}
 
 private:
-	static const int MAX_ENEMY = 5;
+	static const int MAX_ENEMY = 100;
 
 	Enemy enemy_[MAX_ENEMY];
 };

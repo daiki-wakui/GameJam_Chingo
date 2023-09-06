@@ -86,9 +86,14 @@ void Player::Update()
 		}
 	}
 	else if (activeLength_ > NUM_NECK) {
-		activeLength_--;
-		for (int i = NUM_NECK - 1; i < activeLength_ + 1; i++) {
-			pos_[i] = pos_[i + 1];
+		for (int j = 0; j < 3; j++) {
+			activeLength_--;
+			for (int i = NUM_NECK - 1; i < activeLength_ + 1; i++) {
+				pos_[i] = pos_[i + 1];
+			}
+			if (activeLength_ < NUM_NECK + 1) {
+				break;
+			}
 		}
 	}
 

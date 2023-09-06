@@ -22,4 +22,5 @@ private:
 	Vector2 pos_;
 	int r_;
 	bool isDead_;
+	int deadTimer_;
 };
