@@ -48,4 +48,6 @@ private:
 	int activeLength_;
 
 	int mouseAngle_;//マウスの角度
+
+	bool isReturn_;
 };
