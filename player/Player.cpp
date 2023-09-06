@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include <math.h>
 #include "DebugManager.h"
+#include "LevelManager.h"
 
 const float PI = 3.1415f;
 
@@ -104,6 +105,7 @@ void Player::Update()
 
 	if (activeLength_ <= NUM_NECK) {
 		isReturn_ = false;
+		LevelManager::GetInstance()->IncludeExp();
 	}
 }
 

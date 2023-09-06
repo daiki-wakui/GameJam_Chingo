@@ -132,6 +132,7 @@
     <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="input\Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="input\Keyboard.h" />
     <ClInclude Include="math\MathManager.h" />
