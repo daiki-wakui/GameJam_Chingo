@@ -42,7 +42,7 @@ void TitleScene::Draw()
 {
 	Player::GetInstance()->Draw();
 
-	DrawBox(emitterLeftTop.x, emitterLeftTop.y, emitterRightBotoom.x, emitterRightBotoom.y, GetColor(255, 0, 0), false);
+//	DrawBox(emitterLeftTop.x, emitterLeftTop.y, emitterRightBotoom.x, emitterRightBotoom.y, GetColor(255, 0, 0), false);
 	
 	//DrawGraph(0, 0, bubbleImage, true);
 	for (int i = 0; i < BUBBLE_SUM; i++) {
