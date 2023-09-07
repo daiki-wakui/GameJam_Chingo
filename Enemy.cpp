@@ -11,7 +11,7 @@ void Enemy::Initialize(Vector2 pos)
 
 	std::random_device seed_gen;
 	std::mt19937_64 engine(seed_gen());
-	std::uniform_real_distribution<float> rand(0, 60);
+	std::uniform_real_distribution<float> rand(-10, 40);
 
 	addFrame_ = rand(engine);
 }
@@ -24,7 +24,7 @@ void Enemy::Update()
 
 	frame_++;
 
-	pos_.y = sinf(3.14f * (frame_ + addFrame_) * 38.0f) + pos_.y;
+	pos_.y = 0.34f * sinf(2 * 3.14f * (frame_ + addFrame_) / 200) + pos_.y;
 }
 
 void Enemy::Draw()
