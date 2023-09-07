@@ -53,10 +53,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// 画像などのリソースデータの変数宣言と読み込み
-	int backImage = LoadGraph("back.png");
-	int floorImage = LoadGraph("floor.png");
-	int titleImage = LoadGraph("title.png");
-
+	int backImage = LoadGraph("GameAssets/Sprite/back.png");
+	int groundImage = LoadGraph("GameAssets/Sprite/floor.png");
+	int titleImage = LoadGraph("GameAssets/Sprite/title.png");
+	
 	// ゲームループで使う変数の宣言
 
 	//keyboradクラスの生成
@@ -91,6 +91,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			titleScene->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				titleScene->SetIsSceneChange(true);
+			}
+
+			if (titleScene->GetIsSceneChange()) {
 				scene = GAME_SCENE;
 			}
 		}
@@ -113,8 +117,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// 描画処理
 		if (scene == TITLE_SCENE) {
-			DrawGraph(0, 0, backImage, true);
-			DrawGraph(0, 0, floorImage, true);
+			DrawGraph(0, -180, backImage, true);
+			//DrawGraph(0, 0, groundImage, true);
 			DrawGraph(0, 0, titleImage, true);
 
 			titleScene->Draw();
@@ -123,8 +127,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		if (scene == GAME_SCENE) {
 
 			//地面
-			DrawGraph(0, 0, backImage, true);
-			DrawGraph(0, 0, floorImage, true);
+			DrawGraph(0, -180, backImage, true);
+			//DrawGraph(0, 0, groundImage, true);
 
 
 			gameScene->Draw();

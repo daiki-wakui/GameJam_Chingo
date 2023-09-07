@@ -17,6 +17,10 @@ public:
 	float dot(const Vector2& v) const;
 	float cross(const Vector2& v) const;
 
+	//線形補間
+	const Vector2 lerp(const Vector2& start, const Vector2& end, const float t);
+
+
 	//単功演算子オーバーロード
 	Vector2 operator+() const;
 	Vector2 operator-() const;
