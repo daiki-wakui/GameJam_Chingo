@@ -26,14 +26,20 @@ void Player::Initialize()
 	oldNeckWay_ = 180;//真上が180
 
 	isReturn_ = false;
+	oldLevel_ = 1;
 
 	ExBodyManager::GetInstance()->Initialize();
 }
 
 void Player::Update()
 {
+	//インスタンス呼び出し
+	DebugManager* debugM = DebugManager::GetInstance();
+	LevelManager* levelM = LevelManager::GetInstance();
+	ExBodyManager* exM = ExBodyManager::GetInstance();
+
 	//デバッグ処理
-	if (DebugManager::GetInstance()->GetIsDebugMode()) {
+	if (debugM->GetIsDebugMode()) {
 		maxLength_ = MAX_BODY - 1;
 	}
 	DrawFormatString(0, 60, GetColor(255, 255, 255), "bodyMaxLength = %d", maxLength_);
@@ -108,13 +114,16 @@ void Player::Update()
 
 	//縮み切っている状態
 	if (activeLength_ <= NUM_NECK) {
-		isReturn_ = false;
-		LevelManager::GetInstance()->IncludeExp();
-
-		originPos_.y = 800 - (LevelManager::GetInstance()->GetLevel() - 1) * 100;
-		for (int i = NUM_NECK; i < MAX_BODY; i++) {
-			pos_[i] = originPos_;
+		levelM->IncludeExp();
+		//縮みきったタイミング
+		if (isReturn_) {
+			if (oldLevel_ != levelM->GetLevel()) {
+				oldLevel_ = levelM->GetLevel();
+				exM->AddBody(levelM->GetLevel() - 1);
+			}
 		}
+
+		isReturn_ = false;
 	}
 }
 

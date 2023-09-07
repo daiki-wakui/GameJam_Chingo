@@ -24,10 +24,32 @@ void ExBodyManager::Update()
 
 void ExBodyManager::Draw()
 {
-	Vector2 originPos = Player::GetInstance()->GetOriginPos();
-
 	for (int i = 0; i < LevelManager::GetInstance()->GetLevel() - 1;i++) {
-		DrawBox(originPos.x - BODY_WIDTH / 2,originPos.y + BODY_HEIGHT * i,originPos.x + BODY_WIDTH / 2,originPos.y + (BODY_HEIGHT * (i + 1)),GetColor(255,0 + i * 100,0),true);
-		DrawCircle(originPos,30,GetColor(255,0,0));
+		if (Player::GetInstance()->GetActiveBody() > (i + 1) * 10) {
+			BodyDraw(i);
+		}
 	}
+}
+
+void ExBodyManager::BodyDraw(int i)
+{
+	switch (bodyType_[i])
+	{
+	case MOD1:
+		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(255, 0, 0));
+		break;
+	case MOD2:
+		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
+		break;
+	case MOD3:
+		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
+		break;
+	default:
+		break;
+	}
+}
+
+void ExBodyManager::AddBody(int num)
+{
+	bodyType_[LevelManager::GetInstance()->GetLevel() - 2] = num;
 }

@@ -3,6 +3,9 @@
 enum BodyType
 {
 	NONE,
+	MOD1,
+	MOD2,
+	MOD3,
 };
 
 class ExBodyManager {
@@ -20,6 +23,10 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+
+	void BodyDraw(int i);
+
+	void AddBody(int num);
 private:
 	const int BODY_WIDTH = 60;
 	const int BODY_HEIGHT = 100;

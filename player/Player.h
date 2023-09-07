@@ -54,4 +54,6 @@ private:
 	int mouseAngle_;//マウスの角度
 
 	bool isReturn_;
+
+	int oldLevel_;
 };
