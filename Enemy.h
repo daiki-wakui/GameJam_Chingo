@@ -1,5 +1,6 @@
 #pragma once
 #include "MathManager.h"
+#include "DxLib.h"
 
 class Enemy {
 public:
@@ -19,6 +20,8 @@ public:
 	}
 
 private:
+	int planktonImage = LoadGraph("GameAssets/Sprite/Enemy_Plankton_01.png");
+
 	Vector2 pos_;
 	int r_;
 	bool isDead_;

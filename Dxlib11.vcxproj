@@ -130,6 +130,7 @@
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="DebugManager.cpp" />
+    <ClCompile Include="Easing.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="DebugManager.h" />
+    <ClInclude Include="Easing.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="LevelManager.h" />
