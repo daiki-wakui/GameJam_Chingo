@@ -27,10 +27,22 @@ public:
 	void BodyDraw(int i);
 
 	void AddBody(int num);
+
+	bool GetIsSelect() {
+		return isSelect_;
+	}
+	void SetIsSelect(bool is) {
+		isSelect_ = is;
+	}
+
 private:
 	const int BODY_WIDTH = 60;
 	const int BODY_HEIGHT = 100;
 	static const int MAX_BODY = 3;
 	
 	int bodyType_[MAX_BODY];
+
+	//‘Ì‘I‘ð‰æ–Ê
+	bool isSelect_;
+	int choice_[3];
 };

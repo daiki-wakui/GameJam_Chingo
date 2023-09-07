@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "ColliderManager.h"
 #include "LevelManager.h"
+#include "exBody/ExBodyManager.h"
 
 void GameScene::Initialize()
 {
@@ -11,6 +12,12 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
+	if (ExBodyManager::GetInstance()->GetIsSelect()) {
+		Player::GetInstance()->Update();
+		ExBodyManager::GetInstance()->Update();
+		return;
+	}
+
 	Player::GetInstance()->Update();
 	ColliderManager::GetInstance()->Update();
 	LevelManager::GetInstance()->Update();
