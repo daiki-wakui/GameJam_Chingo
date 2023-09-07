@@ -43,6 +43,7 @@ private:
 	static const int START_BODY_LENGTH = 100; //スタート時の体の最大長さ
 
 	Vector2 pos_[MAX_BODY];//顏の位置
+	int angle_[MAX_BODY];//角度
 	Vector2 neckWay_;//首の角度
 	int oldNeckWay_;//1フレ前の角度
 	Vector2 originPos_;//チンアナゴの出る位置

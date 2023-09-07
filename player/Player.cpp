@@ -125,6 +125,15 @@ void Player::Update()
 
 		isReturn_ = false;
 	}
+
+	//ŠeA‘Ì‚ÌŠp“x
+	for (int i = 1; i < activeLength_;i++) {
+		Vector2 frontBody = pos_[i - 1] - pos_[i];
+		angle_[i] = atan2(frontBody.cross({ 0,-1 }), -frontBody.dot({ 0,-1 })) / PI * 180;
+		if (angle_[i] <= 0) {
+			angle_[i] += 360;
+		}
+	}
 }
 
 void Player::Draw()
@@ -136,4 +145,8 @@ void Player::Draw()
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
 
 	ExBodyManager::GetInstance()->Draw();
+
+	for (int i = 1; i < activeLength_; i++) {
+		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
+	}
 }
