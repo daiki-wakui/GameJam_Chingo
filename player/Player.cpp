@@ -3,6 +3,7 @@
 #include <math.h>
 #include "DebugManager.h"
 #include "LevelManager.h"
+#include "exBody/ExBodyManager.h"
 
 const float PI = 3.1415f;
 
@@ -25,12 +26,20 @@ void Player::Initialize()
 	oldNeckWay_ = 180;//真上が180
 
 	isReturn_ = false;
+	oldLevel_ = 1;
+
+	ExBodyManager::GetInstance()->Initialize();
 }
 
 void Player::Update()
 {
+	//インスタンス呼び出し
+	DebugManager* debugM = DebugManager::GetInstance();
+	LevelManager* levelM = LevelManager::GetInstance();
+	ExBodyManager* exM = ExBodyManager::GetInstance();
+
 	//デバッグ処理
-	if (DebugManager::GetInstance()->GetIsDebugMode()) {
+	if (debugM->GetIsDebugMode()) {
 		maxLength_ = MAX_BODY - 1;
 	}
 	DrawFormatString(0, 60, GetColor(255, 255, 255), "bodyMaxLength = %d", maxLength_);
@@ -103,9 +112,27 @@ void Player::Update()
 		}
 	}
 
+	//縮み切っている状態
 	if (activeLength_ <= NUM_NECK) {
+		levelM->IncludeExp();
+		//縮みきったタイミング
+		if (isReturn_) {
+			if (oldLevel_ != levelM->GetLevel()) {
+				oldLevel_ = levelM->GetLevel();
+				exM->AddBody(levelM->GetLevel() - 1);
+			}
+		}
+
 		isReturn_ = false;
-		LevelManager::GetInstance()->IncludeExp();
+	}
+
+	//各、体の角度
+	for (int i = 1; i < activeLength_;i++) {
+		Vector2 frontBody = pos_[i - 1] - pos_[i];
+		angle_[i] = atan2(frontBody.cross({ 0,-1 }), -frontBody.dot({ 0,-1 })) / PI * 180;
+		if (angle_[i] <= 0) {
+			angle_[i] += 360;
+		}
 	}
 }
 
@@ -116,4 +143,10 @@ void Player::Draw()
 		DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
 	}
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
+
+	ExBodyManager::GetInstance()->Draw();
+
+	for (int i = 1; i < activeLength_; i++) {
+		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
+	}
 }

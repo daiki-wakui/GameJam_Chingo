@@ -133,6 +133,7 @@
     <ClCompile Include="Easing.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="exBody\ExBodyManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="input\Keyboard.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Easing.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="exBody\ExBodyManager.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="input\Keyboard.h" />
