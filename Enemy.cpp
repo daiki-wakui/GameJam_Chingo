@@ -24,7 +24,7 @@ void Enemy::Update()
 
 	frame_++;
 
-	pos_.y = 0.5f * sinf(2 * 3.14f * (frame_ + addFrame_) / 200) + pos_.y;
+	pos_.y = 0.17f * sinf(2 * 3.14f * (frame_ + addFrame_) / 200) + pos_.y;
 }
 
 void Enemy::Draw()
