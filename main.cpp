@@ -117,8 +117,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// •`‰æˆ—
 		if (scene == TITLE_SCENE) {
-			DrawGraph(0, 0, backImage, true);
-			DrawGraph(0, 0, groundImage, true);
+			DrawGraph(0, -180, backImage, true);
+			//DrawGraph(0, 0, groundImage, true);
 			DrawGraph(0, 0, titleImage, true);
 
 			titleScene->Draw();
@@ -127,8 +127,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		if (scene == GAME_SCENE) {
 
 			//’n–Ê
-			DrawGraph(0, 0, backImage, true);
-			DrawGraph(0, 0, groundImage, true);
+			DrawGraph(0, -180, backImage, true);
+			//DrawGraph(0, 0, groundImage, true);
 
 
 			gameScene->Draw();
