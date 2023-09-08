@@ -43,8 +43,6 @@ void Player::Update()
 	if (debugM->GetIsDebugMode()) {
 		maxLength_ = MAX_BODY - 1;
 	}
-	DrawFormatString(0, 60, GetColor(255, 255, 255), "bodyMaxLength = %d", maxLength_);
-	DrawFormatString(0, 80, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
@@ -125,6 +123,7 @@ void Player::Update()
 		}
 
 		isReturn_ = false;
+		levelM->GetMax();
 	}
 
 	//各、体の角度
@@ -152,4 +151,7 @@ void Player::Draw()
 	for (int i = 1; i < activeLength_; i++) {
 		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
 	}
+
+	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxLength_);
+	DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 }

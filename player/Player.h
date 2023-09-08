@@ -31,15 +31,19 @@ public:
 	}
 
 	void AddBodyLength() {
-		maxLength_+= 2;
+		maxLength_+= 15;
 	}
 
 	int GetAngle(int i) {
 		return angle_[i];
 	}
 
+	void SetMaxLength(int num) {
+		maxLength_ = num;
+	}
+
 private:
-	static const int MAX_BODY = 1000; //体の最大数
+	static const int MAX_BODY = 10000; //体の最大数
 	static const int NUM_NECK = 5;	 //首から上の数
 	static const int SPEED_NECK = 5; //首の最大回転スピード
 	static const int BODY_THICKNESS = 30; //体の太さ
