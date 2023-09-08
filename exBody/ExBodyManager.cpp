@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "LevelManager.h"
 #include "Player.h"
+#include "ScrollManager.h"
 
 ExBodyManager* ExBodyManager::GetInstance()
 {
@@ -74,7 +75,7 @@ void ExBodyManager::BodyDraw(int i)
 
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * 10).x,
-			Player::GetInstance()->GetPos((i + 1) * 10).y,
+			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
 			384, 256, 0.45f, 0.45f, angle, muscularImage, true);
 		break;
 	case MOD2:
