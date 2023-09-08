@@ -41,4 +41,9 @@ private:
 
 	int nowExpGaugeXLeft_[3] = { 40,40,40 };
 	int nowExpGaugeXRight_[3];
+
+	int GaugeLength = 1200;
+	int restGrauge[3] = {};
+
+	int ExpBank_[3] = {};
 };
