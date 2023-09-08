@@ -3,7 +3,7 @@
 enum BodyType
 {
 	NONE,
-	MOD1,
+	MUSCLE,
 	MOD2,
 	MOD3,
 };
@@ -13,9 +13,9 @@ private:
 	ExBodyManager() = default;
 	~ExBodyManager() = default;
 public:
-	//コピーコンストラクタ無効
+	//繧ｳ繝斐�ｼ繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ辟｡蜉ｹ
 	ExBodyManager(const ExBodyManager& obj) = delete;
-	//代入演算子を無効
+	//莉｣蜈･貍皮ｮ怜ｭ舌ｒ辟｡蜉ｹ
 	ExBodyManager& operator=(const ExBodyManager& obj) = delete;
 
 	static ExBodyManager* GetInstance();
@@ -35,6 +35,8 @@ public:
 		isSelect_ = is;
 	}
 
+	float GetBodyAngle(int i);
+  
 private:
 	const int BODY_WIDTH = 60;
 	const int BODY_HEIGHT = 100;
@@ -42,7 +44,9 @@ private:
 	
 	int bodyType_[MAX_BODY];
 
-	//体選択画面
+	//菴馴∈謚樒判髱｢
 	bool isSelect_;
 	int choice_[3];
+
+	int muscularImage;
 };

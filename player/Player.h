@@ -34,6 +34,10 @@ public:
 		maxLength_+= 2;
 	}
 
+	int GetAngle(int i) {
+		return angle_[i];
+	}
+
 private:
 	static const int MAX_BODY = 1000; //‘Ì‚ÌÅ‘å”
 	static const int NUM_NECK = 5;	 //ñ‚©‚çã‚Ì”

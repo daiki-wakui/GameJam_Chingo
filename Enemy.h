@@ -7,6 +7,7 @@ public:
 	void Initialize(Vector2 pos);
 	void Update();
 	void Draw();
+	void SetRotation(float rot) { rot_ = rot; }
 
 	Vector2 GetPos() {
 		return pos_;
@@ -26,4 +27,7 @@ private:
 	int r_;
 	bool isDead_;
 	int deadTimer_;
+	float rot_;
+	float frame_;
+	float addFrame_;
 };

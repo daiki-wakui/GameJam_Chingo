@@ -19,6 +19,8 @@ void ExBodyManager::Initialize()
 	for (int i = 0; i < 3; i++) {
 		choice_[i] = 0;
 	}
+
+	muscularImage = LoadGraph("GameAssets/Sprite/Body/muscular.png");
 }
 
 void ExBodyManager::Update()
@@ -63,10 +65,17 @@ void ExBodyManager::Draw()
 
 void ExBodyManager::BodyDraw(int i)
 {
+	float angle = GetBodyAngle(i);
+
 	switch (bodyType_[i])
 	{
-	case MOD1:
+	case MUSCLE:
 		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(255, 0, 0));
+
+		DrawRotaGraph3(
+			Player::GetInstance()->GetPos((i + 1) * 10).x,
+			Player::GetInstance()->GetPos((i + 1) * 10).y,
+			384, 256, 0.45f, 0.45f, angle, muscularImage, true);
 		break;
 	case MOD2:
 		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
@@ -82,4 +91,13 @@ void ExBodyManager::BodyDraw(int i)
 void ExBodyManager::AddBody(int num)
 {
 	bodyType_[LevelManager::GetInstance()->GetLevel() - 2] = num;
+}
+
+float ExBodyManager::GetBodyAngle(int i)
+{
+	float temp = 3.141592f / 180.0f * Player::GetInstance()->GetAngle((i + 1) * 10);
+
+	temp -= 3.14192f;
+
+	return temp;
 }
