@@ -69,6 +69,7 @@ private:
 	bool isReturn_;
 
 	bool isBackShakeing_;
+	int shrinkDistance_;
 
 	int oldLevel_;
 };
