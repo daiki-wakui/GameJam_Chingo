@@ -33,9 +33,11 @@ void ExBodyManager::Draw()
 
 void ExBodyManager::BodyDraw(int i)
 {
+	float angle = GetBodyAngle(i);
+
 	switch (bodyType_[i])
 	{
-	case MOD1:
+	case MUSCLE:
 		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(255, 0, 0));
 		break;
 	case MOD2:
@@ -52,4 +54,13 @@ void ExBodyManager::BodyDraw(int i)
 void ExBodyManager::AddBody(int num)
 {
 	bodyType_[LevelManager::GetInstance()->GetLevel() - 2] = num;
+}
+
+float ExBodyManager::GetBodyAngle(int i)
+{
+	float temp = 3.141592f / 180.0f * Player::GetInstance()->GetAngle((i + 1) * 10);
+
+	temp -= 3.14192f;
+
+	return temp;
 }

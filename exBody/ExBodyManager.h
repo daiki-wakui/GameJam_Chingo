@@ -3,7 +3,7 @@
 enum BodyType
 {
 	NONE,
-	MOD1,
+	MUSCLE,
 	MOD2,
 	MOD3,
 };
@@ -27,6 +27,8 @@ public:
 	void BodyDraw(int i);
 
 	void AddBody(int num);
+
+	float GetBodyAngle(int i);
 private:
 	const int BODY_WIDTH = 60;
 	const int BODY_HEIGHT = 100;
