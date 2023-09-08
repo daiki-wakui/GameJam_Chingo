@@ -38,6 +38,16 @@ void TitleScene::Update()
 	emitterRightBotoom.x = mouseX_ + 128;
 	emitterRightBotoom.y = mouseY_ + 128;
 
+	if (mouseY_ > gameStartUIRight.x && mouseY_ < gameStartUIRight.y) {
+		if (mouseX_ > gameStartUILeft.x && mouseX_ <= gameStartUILeft.y) {
+			
+			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+				isChangeStart = true;
+			}
+		}
+	}
+	
+
 	//シーン切り替えエフェクト
 	if (isChangeStart) {
 		timer++;
@@ -58,6 +68,9 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	Player::GetInstance()->Draw();
+
+	DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
+	DrawGraph(gameStartUILeft.x-65, gameStartUIRight.x+20, gameStartImage, true);
 
 //	DrawBox(emitterLeftTop.x, emitterLeftTop.y, emitterRightBotoom.x, emitterRightBotoom.y, GetColor(255, 0, 0), false);
 

@@ -75,7 +75,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	debug->Initialize();
 	enemyM->Initialize();
 
-	int scene = GAME_SCENE;
+	int scene = TITLE_SCENE;
 
 	// ƒQ[ƒ€ƒ‹[ƒv
 	while (true) {
