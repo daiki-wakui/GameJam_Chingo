@@ -22,9 +22,9 @@ void Player::Initialize()
 		pos_[i] = originPos_;
 	}
 
-	maxLength_ = START_BODY_LENGTH;
+	maxHunger_ = START_BODY_LENGTH;
 	activeLength_ = NUM_NECK;
-	oldNeckWay_ = 180;//^ã‚ª180
+	oldNeckWay_ = 180;//çœŸä¸ŠãŒ180
 
 	isReturn_ = false;
 	oldLevel_ = 1;
@@ -34,43 +34,41 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	//ƒCƒ“ƒXƒ^ƒ“ƒXŒÄ‚Ño‚µ
+	//ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å‘¼ã³å‡ºã—
 	DebugManager* debugM = DebugManager::GetInstance();
 	LevelManager* levelM = LevelManager::GetInstance();
 	ExBodyManager* exM = ExBodyManager::GetInstance();
 
-	//ƒfƒoƒbƒOˆ—
+	//ãƒ‡ãƒãƒƒã‚°å‡¦ç†
 	if (debugM->GetIsDebugMode()) {
-		maxLength_ = MAX_BODY - 1;
+		maxHunger_ = MAX_BODY - 1;
 	}
-	DrawFormatString(0, 60, GetColor(255, 255, 255), "bodyMaxLength = %d", maxLength_);
-	DrawFormatString(0, 80, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 
-	//ƒ}ƒEƒX‚ÌêŠæ“¾
+	//ãƒã‚¦ã‚¹ã®å ´æ‰€å–å¾—
 	GetMousePoint(&mouseX_, &mouseY_);
 
-	//ƒ}ƒEƒX‚Ì•ûŒüŒvZ
+	//ãƒã‚¦ã‚¹ã®æ–¹å‘è¨ˆç®—
 	Vector2 mouseWay;
 	mouseWay.x = mouseX_ - pos_[NUM_NECK].x;
 	mouseWay.y = mouseY_ - ScrollManager::GetInstance()->GetScroll() - pos_[NUM_NECK].y;
-	//’PˆÊ‰»
+	//å˜ä½åŒ–
 	mouseWay.normalize();
 
-	//Šp“x‚ğŒvZ
+	//è§’åº¦ã‚’è¨ˆç®—
 	mouseAngle_ = atan2(mouseWay.cross({ 0,-1 }), -mouseWay.dot({ 0,-1 })) / PI * 180;
-	//0~360’²®
+	//0~360èª¿æ•´
 	if (mouseAngle_ <= 0) {
 		mouseAngle_ += 360;
 	}
 
-	//0‚Æ360‚ğŒq‚®ˆ—
+	//0ã¨360ã‚’ç¹‹ãå‡¦ç†
 	if (oldNeckWay_ + 180 < mouseAngle_) {
 		oldNeckWay_ += 360;
 	}
 	if (oldNeckWay_ - 180 > mouseAngle_) {
 		oldNeckWay_ -= 360;
 	}
-	//ñU‚è‘¬“x’²®
+	//é¦–æŒ¯ã‚Šé€Ÿåº¦èª¿æ•´
 	if (oldNeckWay_ + SPEED_NECK < mouseAngle_) {
 		mouseAngle_ = oldNeckWay_ + SPEED_NECK;
 	}
@@ -78,19 +76,19 @@ void Player::Update()
 
 		mouseAngle_ = oldNeckWay_ - SPEED_NECK;
 	}
-	//ŸƒtƒŒ[ƒ€—p‚É‹L˜^
+	//æ¬¡ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨ã«è¨˜éŒ²
 	oldNeckWay_ = mouseAngle_;
 	neckWay_ = { sinf(PI / 180 * mouseAngle_ * -1),cosf(PI / 180 * mouseAngle_ * -1) };
 	neckWay_ *= 10;
 
-	//ñ‚©‚çã‚Ì•”•ª
+	//é¦–ã‹ã‚‰ä¸Šã®éƒ¨åˆ†
 	for (int i = NUM_NECK; i >= 0; i--) {
 		pos_[i] = pos_[NUM_NECK] + neckWay_ * ((i - 5) * -1);
 	}
 
-	//L‚Î‚µk‚İ
+	//ä¼¸ã°ã—ç¸®ã¿
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isReturn_) {
-		if (maxLength_ > activeLength_) {
+		if (maxHunger_ > activeLength_) {
 			shrinkDistance_++;
 			activeLength_++;
 
@@ -101,23 +99,23 @@ void Player::Update()
 	}
 	else if (activeLength_ > NUM_NECK) {
 		isReturn_ = true;
-		//‚‘¬k‚İ
+		//é«˜é€Ÿç¸®ã¿
 		for (int j = 0; j < 3; j++) {
 			activeLength_--;
 			for (int i = NUM_NECK - 1; i < activeLength_ + 1; i++) {
 				pos_[i] = pos_[i + 1];
 			}
-			//‚±‚êˆÈãk‚Ü‚È‚¢‚Ì—áŠOˆ—
+			//ã“ã‚Œä»¥ä¸Šç¸®ã¾ãªã„æ™‚ã®ä¾‹å¤–å‡¦ç†
 			if (activeLength_ < NUM_NECK + 1) {
 				break;
 			}
 		}
 	}
 
-	//k‚İØ‚Á‚Ä‚¢‚éó‘Ô
+	//ç¸®ã¿åˆ‡ã£ã¦ã„ã‚‹çŠ¶æ…‹
 	if (activeLength_ <= NUM_NECK) {
 		levelM->IncludeExp();
-		//k‚İ‚«‚Á‚½ƒ^ƒCƒ~ƒ“ƒO
+		//ç¸®ã¿ãã£ãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°
 		if (isReturn_) {
 			if (oldLevel_ != levelM->GetLevel()) {
 				oldLevel_ = levelM->GetLevel();
@@ -132,9 +130,10 @@ void Player::Update()
 
 		shrinkDistance_ = 0;
 		isReturn_ = false;
+		levelM->GetMax();
 	}
 
-	//ŠeA‘Ì‚ÌŠp“x
+	//å„ã€ä½“ã®è§’åº¦
 	for (int i = 1; i < activeLength_;i++) {
 		Vector2 frontBody = pos_[i - 1] - pos_[i];
 		angle_[i] = atan2(frontBody.cross({ 0,-1 }), -frontBody.dot({ 0,-1 })) / PI * 180;
@@ -148,7 +147,7 @@ void Player::Update()
 
 void Player::Draw()
 {
-	//ƒ`ƒ“ƒAƒiƒS
+	//ãƒãƒ³ã‚¢ãƒŠã‚´
 	for (int i = 0; i < activeLength_; i++) {
 		DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
 	}
@@ -160,5 +159,7 @@ void Player::Draw()
 		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
 	}
 
+	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
+	DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 	//DrawFormatString(200, 80, GetColor(255, 255, 255), "nowLength = %d", shrinkDistance_);
 }

@@ -15,7 +15,7 @@ void EnemyManager::Initialize()
 
 	for (int i = 0; i < MAX_ENEMY; i++) {
 		std::uniform_real_distribution<float> x(0, 1280);
-		std::uniform_real_distribution<float> y(0, 500);
+		std::uniform_real_distribution<float> y(-3000, 500);
 		std::uniform_real_distribution<float> rot(30, 300);
 
 		enemy_[i].Initialize({ x(engine),y(engine) });

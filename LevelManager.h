@@ -30,6 +30,8 @@ public:
 		return nowExp_ + haveExp_;
 	}
 
+	void GetMax();
+
 private:
 
 	int levelUpImage;
@@ -37,6 +39,11 @@ private:
 	const int EXP_LV1 = 100;
 	const int EXP_LV2 = 500;
 	const int EXP_LV3 = 1200;
+
+	const int HANG_LV1 = 100;
+	const int HANG_LV2 = 120;
+	const int HANG_LV3 = 150;
+	const int HANG_LV4 = 200;
 
 	int nowExp_;
 	int nextExp_;

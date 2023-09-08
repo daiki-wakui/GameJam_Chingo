@@ -1,5 +1,6 @@
 #include "LevelManager.h"
 #include "DxLib.h"
+#include "Player.h"
 
 LevelManager* LevelManager::GetInstance()
 {
@@ -20,6 +21,9 @@ void LevelManager::Initialize()
 
 void LevelManager::Update()
 {
+	Player* player = Player::GetInstance();
+
+	//ƒŒƒxƒ‹ŠÇ—
 	if (nowExp_ >= EXP_LV3) {
 		nowLevel_ = 4;
 		nextExp_ = 0;
@@ -133,5 +137,23 @@ void LevelManager::IncludeExp()
 
 	haveExp_ = 0;
 	Update();
+}
+
+void LevelManager::GetMax()
+{
+	Player* player = Player::GetInstance();
+
+	if (nowExp_ >= EXP_LV3) {
+		player->SetMaxLength(HANG_LV4);
+	}
+	else if (nowExp_ >= EXP_LV2) {
+		player->SetMaxLength(HANG_LV3);
+	}
+	else if (nowExp_ >= EXP_LV1) {
+		player->SetMaxLength(HANG_LV2);
+	}
+	else {
+		player->SetMaxLength(HANG_LV1);
+	}
 }
 

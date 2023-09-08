@@ -31,7 +31,7 @@ public:
 	}
 
 	void AddBodyLength() {
-		maxLength_+= 2;
+		maxHunger_+= 15;
 	}
 
 	bool GetIsShakeing() {
@@ -46,8 +46,12 @@ public:
 		return angle_[i];
 	}
 
+	void SetMaxLength(int num) {
+		maxHunger_ = num;
+	}
+
 private:
-	static const int MAX_BODY = 1000; //体の最大数
+	static const int MAX_BODY = 10000; //体の最大数
 	static const int NUM_NECK = 5;	 //首から上の数
 	static const int SPEED_NECK = 5; //首の最大回転スピード
 	static const int BODY_THICKNESS = 30; //体の太さ
@@ -61,7 +65,7 @@ private:
 	Vector2 originPos_;//チンアナゴの出る位置
 	int mouseX_, mouseY_;
 
-	int maxLength_;
+	int maxHunger_;
 	int activeLength_;
 
 	int mouseAngle_;//マウスの角度
