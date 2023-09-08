@@ -1,6 +1,7 @@
 #include "Vector2.h"
 #include <cmath>	//sqrt
 #include "DxLib.h"
+#include "ScrollManager.h"
 
 Vector2::Vector2()
 	:x(0), y(0)
@@ -99,15 +100,15 @@ const Vector2 operator/(const Vector2& v, float s) {
 
 void DrawCircle(Vector2 pos, int r, unsigned int color)
 {
-	DrawCircle((int)pos.x, (int)pos.y,r,color);
+	DrawCircle((int)pos.x, (int)pos.y + ScrollManager::GetInstance()->GetScroll(), r, color);
 }
 
 void DrawLine(Vector2 start, Vector2 end, unsigned int color)
 {
-	DrawLine((int)start.x, (int)start.y, (int)end.x, (int)end.y,color);
+	DrawLine((int)start.x, (int)start.y + ScrollManager::GetInstance()->GetScroll(), (int)end.x, (int)end.y + ScrollManager::GetInstance()->GetScroll(),color);
 }
 
 void DrawBox(Vector2 start, Vector2 end, unsigned int color)
 {
-	DrawBox((int)start.x, (int)start.y, (int)end.x, (int)end.y, color,true);
+	DrawBox((int)start.x, (int)start.y + ScrollManager::GetInstance()->GetScroll(), (int)end.x, (int)end.y + ScrollManager::GetInstance()->GetScroll(), color,true);
 }
