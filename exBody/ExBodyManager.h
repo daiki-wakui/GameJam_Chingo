@@ -13,9 +13,9 @@ private:
 	ExBodyManager() = default;
 	~ExBodyManager() = default;
 public:
-	//コピーコンストラクタ無効
+	//繧ｳ繝斐�ｼ繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ辟｡蜉ｹ
 	ExBodyManager(const ExBodyManager& obj) = delete;
-	//代入演算子を無効
+	//莉｣蜈･貍皮ｮ怜ｭ舌ｒ辟｡蜉ｹ
 	ExBodyManager& operator=(const ExBodyManager& obj) = delete;
 
 	static ExBodyManager* GetInstance();
@@ -28,13 +28,25 @@ public:
 
 	void AddBody(int num);
 
+	bool GetIsSelect() {
+		return isSelect_;
+	}
+	void SetIsSelect(bool is) {
+		isSelect_ = is;
+	}
+
 	float GetBodyAngle(int i);
+  
 private:
 	const int BODY_WIDTH = 60;
 	const int BODY_HEIGHT = 100;
 	static const int MAX_BODY = 3;
 	
 	int bodyType_[MAX_BODY];
+
+	//菴馴∈謚樒判髱｢
+	bool isSelect_;
+	int choice_[3];
 
 	int muscularImage;
 };

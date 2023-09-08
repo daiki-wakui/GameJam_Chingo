@@ -26,6 +26,10 @@ public:
 		return nowLevel_;
 	}
 
+	int GetNowAndHaveExp() {
+		return nowExp_ + haveExp_;
+	}
+
 private:
 	const int EXP_LV1 = 100;
 	const int EXP_LV2 = 500;
