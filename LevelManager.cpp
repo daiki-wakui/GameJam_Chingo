@@ -14,6 +14,8 @@ void LevelManager::Initialize()
 	nextExp_ = EXP_LV1;
 	nowExp_ = 0;
 	haveExp_ = 0;
+
+	levelUpImage = LoadGraph("GameAssets/Sprite/levelUp.png");
 }
 
 void LevelManager::Update()
@@ -80,6 +82,11 @@ void LevelManager::Draw()
 	
 	//ƒQ[ƒW‚Ì˜g
 	DrawBox(40, 830, 1240, 880, GetColor(255, 255, 255), false);
+
+	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100 || nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
+		DrawExtendGraph(1100, 700, 128 + 1100, 128 + 700, levelUpImage, true);
+	}
+	
 
 	DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);

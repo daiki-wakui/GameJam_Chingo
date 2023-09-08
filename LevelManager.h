@@ -31,6 +31,9 @@ public:
 	}
 
 private:
+
+	int levelUpImage;
+
 	const int EXP_LV1 = 100;
 	const int EXP_LV2 = 500;
 	const int EXP_LV3 = 1200;
