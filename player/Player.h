@@ -31,7 +31,7 @@ public:
 	}
 
 	void AddBodyLength() {
-		maxLength_+= 15;
+		maxHunger_+= 15;
 	}
 
 	int GetAngle(int i) {
@@ -39,7 +39,7 @@ public:
 	}
 
 	void SetMaxLength(int num) {
-		maxLength_ = num;
+		maxHunger_ = num;
 	}
 
 private:
@@ -57,7 +57,7 @@ private:
 	Vector2 originPos_;//チンアナゴの出る位置
 	int mouseX_, mouseY_;
 
-	int maxLength_;
+	int maxHunger_;
 	int activeLength_;
 
 	int mouseAngle_;//マウスの角度

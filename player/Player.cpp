@@ -22,7 +22,7 @@ void Player::Initialize()
 		pos_[i] = originPos_;
 	}
 
-	maxLength_ = START_BODY_LENGTH;
+	maxHunger_ = START_BODY_LENGTH;
 	activeLength_ = NUM_NECK;
 	oldNeckWay_ = 180;//真上が180
 
@@ -41,7 +41,7 @@ void Player::Update()
 
 	//デバッグ処理
 	if (debugM->GetIsDebugMode()) {
-		maxLength_ = MAX_BODY - 1;
+		maxHunger_ = MAX_BODY - 1;
 	}
 
 	//マウスの場所取得
@@ -88,7 +88,7 @@ void Player::Update()
 
 	//伸ばし縮み
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isReturn_) {
-		if (maxLength_ > activeLength_) {
+		if (maxHunger_ > activeLength_) {
 			activeLength_++;
 
 			for (int i = activeLength_ - 1; i >= NUM_NECK - 1; i--) {
@@ -152,6 +152,6 @@ void Player::Draw()
 		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
 	}
 
-	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxLength_);
+	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 }
