@@ -49,5 +49,5 @@ private:
 	int GaugeLength = 1200;
 	int restGrauge[3] = {};
 
-	int ExpBank_[3] = {};
+	int level3Exp_;
 };
