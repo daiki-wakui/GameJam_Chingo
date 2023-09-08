@@ -84,7 +84,7 @@ void LevelManager::Draw()
 	DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
-	DrawFormatString(0, 140, GetColor(255, 255, 255), "1Exp_ = %d 2 %d  3 %d", restGrauge[0],restGrauge[1],restGrauge[2]);
+	//DrawFormatString(0, 140, GetColor(255, 255, 255), "1Exp_ = %d 2 %d  3 %d", restGrauge[0],restGrauge[1],restGrauge[2]);
 }
 
 void LevelManager::IncludeExp()
