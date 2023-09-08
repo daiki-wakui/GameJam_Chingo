@@ -35,4 +35,6 @@ private:
 	static const int MAX_BODY = 3;
 	
 	int bodyType_[MAX_BODY];
+
+	int muscularImage;
 };
