@@ -143,6 +143,7 @@
     <ClCompile Include="math\Vector4.cpp" />
     <ClCompile Include="player\Player.cpp" />
     <ClCompile Include="ScrollManager.cpp" />
+    <ClCompile Include="Shake.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="math\Vector4.h" />
     <ClInclude Include="player\Player.h" />
     <ClInclude Include="ScrollManager.h" />
+    <ClInclude Include="Shake.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

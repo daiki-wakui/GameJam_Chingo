@@ -34,6 +34,14 @@ public:
 		maxHunger_+= 15;
 	}
 
+	bool GetIsShakeing() {
+		return isBackShakeing_;
+	}
+
+	void SetIsShakeing(bool shakeing) {
+		isBackShakeing_ = shakeing;
+	}
+
 	int GetAngle(int i) {
 		return angle_[i];
 	}
@@ -63,6 +71,9 @@ private:
 	int mouseAngle_;//マウスの角度
 
 	bool isReturn_;
+
+	bool isBackShakeing_;
+	int shrinkDistance_;
 
 	int oldLevel_;
 };
