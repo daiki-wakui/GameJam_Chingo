@@ -154,9 +154,10 @@ void Player::Draw()
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
 
 	ExBodyManager::GetInstance()->Draw();
-	DrawFormatString(200, 80, GetColor(255, 255, 255), "nowLength = %d", shrinkDistance_);
 
 	for (int i = 1; i < activeLength_; i++) {
 		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
 	}
+
+	//DrawFormatString(200, 80, GetColor(255, 255, 255), "nowLength = %d", shrinkDistance_);
 }
