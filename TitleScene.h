@@ -10,6 +10,7 @@ class TitleScene
 private:
 
 	int bubbleImage = LoadGraph("GameAssets/Sprite/bubble.png");
+	int gameStartImage = LoadGraph("GameAssets/Sprite/gameStart.png");
 
 	Keyboard* keyboard = Keyboard::GetInstance();
 
@@ -30,6 +31,9 @@ private:
 
 	bool isChangeStart = false;
 	bool isChange = false;
+
+	Vector2 gameStartUILeft = { 520 ,250 + 520 };
+	Vector2 gameStartUIRight = { 530 ,100 + 530 };
 
 public:
 
