@@ -32,7 +32,7 @@ void ExBodyManager::Update()
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
 			if (mouseY > 300 && mouseY < 700) {
 				if (mouseX > 40 && mouseX <= 440) {
-					AddBody(MOD1);
+					AddBody(MUSCLE);
 					isSelect_ = false;
 				}
 				if (mouseX > 440 && mouseX <= 840) {

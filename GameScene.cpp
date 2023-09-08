@@ -13,7 +13,6 @@ void GameScene::Initialize()
 void GameScene::Update()
 {
 	if (ExBodyManager::GetInstance()->GetIsSelect()) {
-		Player::GetInstance()->Update();
 		ExBodyManager::GetInstance()->Update();
 		return;
 	}
