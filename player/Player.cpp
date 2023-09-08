@@ -90,6 +90,7 @@ void Player::Update()
 	//L‚Î‚µk‚Ý
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isReturn_) {
 		if (maxLength_ > activeLength_) {
+			shrinkDistance_++;
 			activeLength_++;
 
 			for (int i = activeLength_ - 1; i >= NUM_NECK - 1; i--) {
@@ -122,9 +123,13 @@ void Player::Update()
 				exM->SetIsSelect(true);
 			}
 
-			isBackShakeing_ = true;
+			if (shrinkDistance_ >= 30) {
+				isBackShakeing_ = true;
+			}
+			
 		}
 
+		shrinkDistance_ = 0;
 		isReturn_ = false;
 	}
 
@@ -149,6 +154,7 @@ void Player::Draw()
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
 
 	ExBodyManager::GetInstance()->Draw();
+	DrawFormatString(200, 80, GetColor(255, 255, 255), "nowLength = %d", shrinkDistance_);
 
 	for (int i = 1; i < activeLength_; i++) {
 		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
