@@ -4,6 +4,7 @@
 #include "DebugManager.h"
 #include "LevelManager.h"
 #include "exBody/ExBodyManager.h"
+#include "ScrollManager.h"
 
 const float PI = 3.1415f;
 
@@ -51,7 +52,7 @@ void Player::Update()
 	//マウスの方向計算
 	Vector2 mouseWay;
 	mouseWay.x = mouseX_ - pos_[NUM_NECK].x;
-	mouseWay.y = mouseY_ - pos_[NUM_NECK].y;
+	mouseWay.y = mouseY_ - ScrollManager::GetInstance()->GetScroll() - pos_[NUM_NECK].y;
 	//単位化
 	mouseWay.normalize();
 

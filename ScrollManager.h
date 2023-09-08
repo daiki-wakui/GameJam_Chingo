@@ -16,5 +16,5 @@ public:
 	float GetScroll();
 
 public:
-	float originPos_ = 600;
+	float originPos_ = 200;
 };

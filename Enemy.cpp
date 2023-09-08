@@ -2,6 +2,7 @@
 #include "Dxlib.h"
 #include <math.h>
 #include <random>
+#include "ScrollManager.h"
 
 void Enemy::Initialize(Vector2 pos)
 {
@@ -32,7 +33,7 @@ void Enemy::Draw()
 	if (!isDead_) {
 		//DrawGraph(pos_.x - 64, pos_.y - 64, planktonImage, true);
 		
-		DrawRotaGraph3(pos_.x, pos_.y, 64, 64, 0.5f, 0.5f, rot_, planktonImage, true);
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 64, 64, 0.5f, 0.5f, rot_, planktonImage, true);
 
 		//DrawExtendGraph(pos_.x - 32, pos_.y - 32, 64 + (pos_.x-32), 64 + (pos_.y-32), planktonImage, true);
 		DrawCircle(pos_, r_, GetColor(255, 100, 100));

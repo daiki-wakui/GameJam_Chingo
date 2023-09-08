@@ -1,4 +1,5 @@
 #include "ScrollManager.h"
+#include "Player.h"
 
 ScrollManager* ScrollManager::GetInstance()
 {
@@ -9,5 +10,9 @@ ScrollManager* ScrollManager::GetInstance()
 
 float ScrollManager::GetScroll()
 {
-	return 0.0f;
+	float playerPos = Player::GetInstance()->GetPos(0).y;
+	if (originPos_ < playerPos) {
+		return 0.0f;
+	}
+	return originPos_ - playerPos;
 }
