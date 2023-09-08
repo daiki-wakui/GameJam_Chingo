@@ -121,6 +121,8 @@ void Player::Update()
 				oldLevel_ = levelM->GetLevel();
 				exM->SetIsSelect(true);
 			}
+
+			isBackShakeing_ = true;
 		}
 
 		isReturn_ = false;

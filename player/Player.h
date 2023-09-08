@@ -34,6 +34,14 @@ public:
 		maxLength_+= 2;
 	}
 
+	bool GetIsShakeing() {
+		return isBackShakeing_;
+	}
+
+	void SetIsShakeing(bool shakeing) {
+		isBackShakeing_ = shakeing;
+	}
+
 private:
 	static const int MAX_BODY = 1000; //体の最大数
 	static const int NUM_NECK = 5;	 //首から上の数
@@ -55,6 +63,8 @@ private:
 	int mouseAngle_;//マウスの角度
 
 	bool isReturn_;
+
+	bool isBackShakeing_;
 
 	int oldLevel_;
 };

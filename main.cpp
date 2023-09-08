@@ -75,7 +75,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	debug->Initialize();
 	enemyM->Initialize();
 
-	int scene = TITLE_SCENE;
+	int scene = GAME_SCENE;
 
 	// ゲームループ
 	while (true) {
@@ -125,13 +125,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		}
 
 		if (scene == GAME_SCENE) {
-
-			//地面
-			DrawGraph(0, -180, backImage, true);
-			//DrawGraph(0, 0, groundImage, true);
-
-			enemyM->Draw();
 			gameScene->Draw();
+			enemyM->Draw();
 			debug->Draw();
 			
 		}
