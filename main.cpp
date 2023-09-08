@@ -130,10 +130,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			DrawGraph(0, -180, backImage, true);
 			//DrawGraph(0, 0, groundImage, true);
 
-
+			enemyM->Draw();
 			gameScene->Draw();
 			debug->Draw();
-			enemyM->Draw();
+			
 		}
 
 		if (scene == CLEAR_SCENE) {

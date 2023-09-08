@@ -39,4 +39,15 @@ private:
 	int nextExp_;
 	int nowLevel_;
 	int haveExp_;
+
+	int haveExpGaugeXLeft_[3] = { 40,40,40 };
+	int haveExpGaugeXRight_[3];
+
+	int nowExpGaugeXLeft_[3] = { 40,40,40 };
+	int nowExpGaugeXRight_[3];
+
+	int GaugeLength = 1200;
+	int restGrauge[3] = {};
+
+	int level3Exp_;
 };
