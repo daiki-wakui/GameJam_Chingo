@@ -119,7 +119,7 @@ void Player::Update()
 		if (isReturn_) {
 			if (oldLevel_ != levelM->GetLevel()) {
 				oldLevel_ = levelM->GetLevel();
-				exM->AddBody(levelM->GetLevel() - 1);
+				exM->SetIsSelect(true);
 			}
 		}
 
@@ -134,6 +134,8 @@ void Player::Update()
 			angle_[i] += 360;
 		}
 	}
+
+	exM->Update();
 }
 
 void Player::Draw()
