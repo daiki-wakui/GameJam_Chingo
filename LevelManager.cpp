@@ -15,6 +15,11 @@ void LevelManager::Initialize()
 	nowExp_ = 0;
 	haveExp_ = 0;
 
+	for (int i = 0; i < 3; i++) {
+		haveExpGaugeXRight_[i] = 0;
+		nowExpGaugeXRight_[i] = 0;
+	}
+
 	levelImage[0] = LoadGraph("GameAssets/Sprite/level1.png");
 	levelImage[1] = LoadGraph("GameAssets/Sprite/level2.png");
 	levelImage[2] = LoadGraph("GameAssets/Sprite/level3.png");
