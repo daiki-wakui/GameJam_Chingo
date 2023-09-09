@@ -37,10 +37,12 @@ void TitleScene::Update()
 
 	}*/
 
-	if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{500,600}, 32)) {
-		int i = 0;
-		i++;
+	for (int i = 0; i < 3; i++) {
+		if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{ gameStartUI.x + (100 * i), gameStartUI.y }, 48)) {
+			isChangeStart = true;
+		}
 	}
+	
 
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
@@ -50,14 +52,14 @@ void TitleScene::Update()
 	emitterRightBotoom.x = mouseX_ + 128;
 	emitterRightBotoom.y = mouseY_ + 128;
 
-	if (mouseY_ > gameStartUIRight.x && mouseY_ < gameStartUIRight.y) {
-		if (mouseX_ > gameStartUILeft.x && mouseX_ <= gameStartUILeft.y) {
-			
-			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
-				isChangeStart = true;
-			}
-		}
-	}
+	//if (mouseY_ > gameStartUIRight.x && mouseY_ < gameStartUIRight.y) {
+	//	if (mouseX_ > gameStartUILeft.x && mouseX_ <= gameStartUILeft.y) {
+	//		
+	//		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+	//			isChangeStart = true;
+	//		}
+	//	}
+	//}
 	
 
 	//シーン切り替えエフェクト
@@ -81,13 +83,16 @@ void TitleScene::Draw()
 {
 	Player::GetInstance()->Draw(false);
 
-	DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
-	DrawGraph(gameStartUILeft.x-65, gameStartUIRight.x+20, gameStartImage, true);
+	//DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
+	
 
 //	DrawBox(emitterLeftTop.x, emitterLeftTop.y, emitterRightBotoom.x, emitterRightBotoom.y, GetColor(255, 0, 0), false);
 
-	DrawCircle(500, 600, 32, GetColor(255, 255, 255), true);
-
+	for (int i = 0; i < 3; i++) {
+		DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
+	}
+	DrawGraph(gameStartUI.x - 90, gameStartUI.y - 40, gameStartImage, true);
+	
 	for (int i = 0; i < BUBBLE_SUM; i++) {
 		
 		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);

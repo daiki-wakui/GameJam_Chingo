@@ -32,8 +32,7 @@ private:
 	bool isChangeStart = false;
 	bool isChange = false;
 
-	Vector2 gameStartUILeft = { 520 ,250 + 520 };
-	Vector2 gameStartUIRight = { 530 ,100 + 530 };
+	Vector2 gameStartUI = { 550 ,500 };
 
 public:
 
