@@ -1,5 +1,4 @@
 #include "LevelManager.h"
-#include "DxLib.h"
 #include "Player.h"
 
 LevelManager* LevelManager::GetInstance()
@@ -16,7 +15,9 @@ void LevelManager::Initialize()
 	nowExp_ = 0;
 	haveExp_ = 0;
 
-	levelUpImage = LoadGraph("GameAssets/Sprite/levelUp.png");
+	levelImage[0] = LoadGraph("GameAssets/Sprite/level1.png");
+	levelImage[1] = LoadGraph("GameAssets/Sprite/level2.png");
+	levelImage[2] = LoadGraph("GameAssets/Sprite/level3.png");
 }
 
 void LevelManager::Update()
@@ -68,25 +69,41 @@ void LevelManager::Update()
 			haveExpGaugeXRight_[i] = 0;
 		}
 	}
+
+	if (nowLevel_ == 2) {
+		nowExpGaugeXRight_[0] = nowExpGaugeXLeft_[0];
+	}
+	if (nowLevel_ == 3) {
+		nowExpGaugeXRight_[1] = nowExpGaugeXLeft_[1];
+	}
 }
 
 void LevelManager::Draw()
 {
+	//ゲージの枠
+	DrawBox(40, 830, 1240, 880, GetColor(16, 16, 103), true);
+	DrawBox(40, 830, 1240, 880, GetColor(0, 0, 0), false);
+
 	//溜まってるゲージの描画レベル1,2,3
-	DrawBox(nowExpGaugeXLeft_[0], 830, nowExpGaugeXRight_[0] + 40, 880, GetColor(255, 0, 0), true);
-	DrawBox(nowExpGaugeXLeft_[1], 830, nowExpGaugeXRight_[1] + 40, 880, GetColor(0, 255, 0), true);
-	DrawBox(nowExpGaugeXLeft_[2], 830, nowExpGaugeXRight_[2] + 40, 880, GetColor(0, 0, 255), true);
+	DrawBox(nowExpGaugeXLeft_[0], 830, nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
+	DrawBox(nowExpGaugeXLeft_[1], 830, nowExpGaugeXRight_[1] + 40, 880, GetColor(46, 104, 214), true);
+	DrawBox(nowExpGaugeXLeft_[2], 830, nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	//透明ゲージの描画レベル1,2,3
-	DrawBox(haveExpGaugeXLeft_[0] + nowExpGaugeXRight_[0], 830, haveExpGaugeXRight_[0] + nowExpGaugeXRight_[0] + 40, 880, GetColor(255, 0, 0), true);
-	DrawBox(haveExpGaugeXLeft_[1] + nowExpGaugeXRight_[1], 830, haveExpGaugeXRight_[1] + nowExpGaugeXRight_[1] + 40, 880, GetColor(0, 255, 0), true);
-	DrawBox(haveExpGaugeXLeft_[2] + nowExpGaugeXRight_[2], 830, haveExpGaugeXRight_[2] + nowExpGaugeXRight_[2] + 40, 880, GetColor(0, 0, 255), true);
+	DrawBox(haveExpGaugeXLeft_[0] + nowExpGaugeXRight_[0], 830, haveExpGaugeXRight_[0] + nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
+	DrawBox(haveExpGaugeXLeft_[1] + nowExpGaugeXRight_[1], 830, haveExpGaugeXRight_[1] + nowExpGaugeXRight_[1] + 40, 880, GetColor(46, 104, 214), true);
+	DrawBox(haveExpGaugeXLeft_[2] + nowExpGaugeXRight_[2], 830, haveExpGaugeXRight_[2] + nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	
-	//ゲージの枠
-	DrawBox(40, 830, 1240, 880, GetColor(255, 255, 255), false);
+	//現在のレベル表示
+	for (int i = 0; i < 3; i++) {
+		if (nowLevel_ == i + 1) {
+			DrawExtendGraph(1100, 790, 128+1100, 128+790, levelImage[i], true);
+		}
+	}
 
+	//レベルアップ可能表示
 	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100 || nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
 		DrawExtendGraph(1100, 700, 128 + 1100, 128 + 700, levelUpImage, true);
 	}
