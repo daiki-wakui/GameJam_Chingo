@@ -13,6 +13,8 @@ private:
 	int backBottomImage = LoadGraph("GameAssets/Sprite/background_bottom.png");
 	int backMiddleImage = LoadGraph("GameAssets/Sprite/background_middle.png");
 	int backTopImage = LoadGraph("GameAssets/Sprite/background_top.png");
+	int blueImage = LoadGraph("GameAssets/Sprite/blue.png");
+	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
 
 
 	EnemyManager* enemyM = EnemyManager::GetInstance();
