@@ -2,6 +2,7 @@
 #include "ScrollManager.h"
 #include <random>
 #include "DxLib.h"
+#include "EnemyManager.h"
 
 void Plankton::Initialize(Vector2 pos)
 {
@@ -21,9 +22,10 @@ void Plankton::Initialize(Vector2 pos)
 
 void Plankton::Update()
 {
+	EnemyManager::GetInstance()->AddPlanktonNum();
+
 	frame_++;
 	pos_.y = 0.34f * sinf(2 * 3.14f * (frame_ + addFrame_) / 200) + pos_.y;
-
 }
 
 void Plankton::Draw()

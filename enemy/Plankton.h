@@ -1,7 +1,6 @@
 #pragma once
 #include "BaseEnemy.h"
 
-
 class Plankton : public BaseEnemy {
 public:
 	void Initialize(Vector2 pos) override;
@@ -10,7 +9,7 @@ public:
 
 private:
 	const int RADIUS = 5;
-	const int HANG = 10;
+	const int HANG = 15;
 	const int EXP = 10;
 
 	float frame_;

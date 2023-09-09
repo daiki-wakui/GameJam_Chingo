@@ -20,21 +20,6 @@ public:
 	void Update();
 	void Draw();
 
-	int GetEnemyNum() {
-		return MAX_ENEMY;
-	}
-
-	Vector2 GetEnemyPos(int i) {
-		return enemy_[i].GetPos();
-	}
-
-	bool GetEnemyIsDead(int i) {
-		return enemy_[i].GetIsDead();
-	}
-	void SetEnemyIsDead(int i) {
-		enemy_[i].SetIsDead(true);
-	}
-
 	std::list<BaseEnemy*> GetEnemyList() {
 		enemys2_.clear();
 		for (std::unique_ptr<BaseEnemy>& enemy : enemys_) {
@@ -44,14 +29,25 @@ public:
 	}
 
 	//ìGÇÃê∂ê¨
-	void PopPlankton(Vector2 pos, float rot);
-	void PopFish(Vector2 pos);
+	void PopPlankton();
+	void PopFish();
+
+	void AddPlanktonNum() {
+		planktonNum_++;
+	}
+	void AddFishNum() {
+		fishNum_++;
+	}
 
 private:
 	std::list<std::unique_ptr<BaseEnemy>> enemys_;
 	std::list<BaseEnemy*> enemys2_;
 
-	static const int MAX_ENEMY = 100;
+	const int MAX_PLANKTON = 100;
+	int planktonNum_;
 
-	Enemy enemy_[MAX_ENEMY];
+	const int MAX_FISH = 30;
+	const int TIME_FISH_POP = 2 * 60;
+	int fishNum_;
+	int fishPopTimer_;
 };

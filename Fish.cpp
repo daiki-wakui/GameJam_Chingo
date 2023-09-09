@@ -1,5 +1,6 @@
 #include "Fish.h"
 #include "DxLib.h"
+#include "EnemyManager.h"
 
 void Fish::Initialize(Vector2 pos)
 {
@@ -21,6 +22,8 @@ void Fish::Initialize(Vector2 pos)
 
 void Fish::Update()
 {
+	EnemyManager::GetInstance()->AddFishNum();
+
 	if (isWay_) {
 		pos_.x += SPEED_MOVE;
 	}
