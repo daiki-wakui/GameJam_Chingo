@@ -71,7 +71,7 @@ void ExBodyManager::BodyDraw(int i)
 	switch (bodyType_[i])
 	{
 	case MUSCLE:
-		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(255, 0, 0));
+		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(255, 0, 0));
 
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * 10).x,
@@ -79,7 +79,7 @@ void ExBodyManager::BodyDraw(int i)
 			384, 256, 0.45f, 0.45f, angle, muscularImage, true);
 		break;
 	case MAGICIAN:
-		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
+		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
 
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * 10).x,
@@ -87,7 +87,7 @@ void ExBodyManager::BodyDraw(int i)
 			256, 256, 0.45f, 0.45f, angle, magicianImage, true);
 		break;
 	case MOD3:
-		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
+		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
 
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * 10).x,
