@@ -1,5 +1,8 @@
 #pragma once
 #include "Enemy.h"
+#include <list>
+#include "BaseEnemy.h"
+#include <memory>
 
 class EnemyManager {
 private:
@@ -32,7 +35,21 @@ public:
 		enemy_[i].SetIsDead(true);
 	}
 
+	std::list<BaseEnemy*> GetEnemyList() {
+		enemys2_.clear();
+		for (std::unique_ptr<BaseEnemy>& enemy : enemys_) {
+			enemys2_.push_back(enemy.get());
+		}
+		return enemys2_;
+	}
+
+	//ìGÇÃê∂ê¨
+	void PopPlankton(Vector2 pos, float rot);
+
 private:
+	std::list<std::unique_ptr<BaseEnemy>> enemys_;
+	std::list<BaseEnemy*> enemys2_;
+
 	static const int MAX_ENEMY = 100;
 
 	Enemy enemy_[MAX_ENEMY];

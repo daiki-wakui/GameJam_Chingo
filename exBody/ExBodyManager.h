@@ -4,7 +4,7 @@ enum BodyType
 {
 	NONE,
 	MUSCLE,
-	MOD2,
+	MAGICIAN,
 	MOD3,
 };
 
