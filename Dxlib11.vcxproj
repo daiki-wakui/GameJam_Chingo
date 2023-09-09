@@ -136,6 +136,7 @@
     <ClCompile Include="enemy\BaseEnemy.cpp" />
     <ClCompile Include="enemy\Plankton.cpp" />
     <ClCompile Include="exBody\ExBodyManager.cpp" />
+    <ClCompile Include="Fish.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="input\Keyboard.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="enemy\BaseEnemy.h" />
     <ClInclude Include="enemy\Plankton.h" />
     <ClInclude Include="exBody\ExBodyManager.h" />
+    <ClInclude Include="Fish.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="input\Keyboard.h" />
