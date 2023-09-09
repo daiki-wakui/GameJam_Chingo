@@ -37,7 +37,7 @@ void ExBodyManager::Update()
 					isSelect_ = false;
 				}
 				if (mouseX > 440 && mouseX <= 840) {
-					AddBody(MOD2);
+					AddBody(MAGICIAN);
 					isSelect_ = false;
 				}
 				if (mouseX > 840 && mouseX <= 1240) {
@@ -59,8 +59,11 @@ void ExBodyManager::Draw()
 
 	if (isSelect_) {
 		DrawBox(40, 300, 440, 700, GetColor(255, 0, 0), true);
+		DrawFormatString(40, 300,GetColor(255,255,255),"マッスル");
 		DrawBox(440, 300, 840, 700, GetColor(0, 255, 0), true);
+		DrawFormatString(440, 300, GetColor(255, 255, 255), "マジシャン");
 		DrawBox(840, 300, 1240, 700, GetColor(0, 0, 255), true);
+		DrawFormatString(840, 300, GetColor(255, 255, 255), "案3");
 	}
 }
 
@@ -78,7 +81,7 @@ void ExBodyManager::BodyDraw(int i)
 			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
 			384, 256, 0.45f, 0.45f, angle, muscularImage, true);
 		break;
-	case MOD2:
+	case MAGICIAN:
 		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
 		break;
 	case MOD3:
