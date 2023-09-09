@@ -12,6 +12,11 @@ private:
 	int bubbleImage = LoadGraph("GameAssets/Sprite/bubble.png");
 	int gameStartImage = LoadGraph("GameAssets/Sprite/gameStart.png");
 	int fukidasiImage = LoadGraph("GameAssets/Sprite/fukidasi.png");
+	int blueImage = LoadGraph("GameAssets/Sprite/blue.png");
+	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
+	int titleImage = LoadGraph("GameAssets/Sprite/title.png");
+
+
 	int mouseImage[2];
 	
 

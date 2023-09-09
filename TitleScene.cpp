@@ -81,6 +81,14 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
+	for (int i = 0; i < BUBBLE_SUM; i++) {
+		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);
+	}
+
+	DrawGraph(0, 0, blueImage, true);
+	DrawGraph(0, 0, vignetImage, true);
+	DrawGraph(0, 0, titleImage, true);
+
 	Player::GetInstance()->Draw(false);
 
 	//DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
@@ -99,9 +107,7 @@ void TitleScene::Draw()
 		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[1], true);
 	}
 	
-	for (int i = 0; i < BUBBLE_SUM; i++) {
-		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);
-	}
+	
 	
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 }

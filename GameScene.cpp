@@ -75,6 +75,8 @@ void GameScene::Draw()
 	DrawGraph(0, -1080 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
 	DrawGraph(0, -1080*2 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
 	DrawGraph(0, -1080*3 + ScrollManager::GetInstance()->GetScroll(), backTopImage, true);
+	DrawGraph(0, 0, blueImage, true);
+	DrawGraph(0, 0, vignetImage, true);
 	enemyM->Draw();
 	Player::GetInstance()->Draw();
 	LevelManager::GetInstance()->Draw();

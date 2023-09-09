@@ -55,10 +55,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// 画像などのリソースデータの変数宣言と読み込み
 	int backImage = LoadGraph("GameAssets/Sprite/back.png");
 	int groundImage = LoadGraph("GameAssets/Sprite/floor.png");
-	int titleImage = LoadGraph("GameAssets/Sprite/title.png");
-	int blueImage = LoadGraph("GameAssets/Sprite/blue.png");
-	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
-
+	
+	
 	// ゲームループで使う変数の宣言
 
 	//keyboradクラスの生成
@@ -119,12 +117,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		if (scene == TITLE_SCENE) {
 			DrawGraph(0, -180, backImage, true);
 			//DrawGraph(0, 0, groundImage, true);
-			DrawGraph(0, 0, titleImage, true);
+		//	DrawGraph(0, 0, titleImage, true);
 			
 			titleScene->Draw();
 
-			DrawGraph(0, 0, blueImage, true);
-			DrawGraph(0, 0, vignetImage, true);
+			//DrawGraph(0, 0, blueImage, true);
+		//	DrawGraph(0, 0, vignetImage, true);
 
 		}
 
@@ -133,8 +131,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			gameScene->Draw();
 			
 			
-			DrawGraph(0, 0, blueImage, true);
-			DrawGraph(0, 0, vignetImage, true);
+		//	DrawGraph(0, 0, blueImage, true);
+		//	DrawGraph(0, 0, vignetImage, true);
 			debug->Draw();
 		}
 
