@@ -112,3 +112,13 @@ void DrawBox(Vector2 start, Vector2 end, unsigned int color)
 {
 	DrawBox((int)start.x, (int)start.y + ScrollManager::GetInstance()->GetScroll(), (int)end.x, (int)end.y + ScrollManager::GetInstance()->GetScroll(), color,true);
 }
+
+void DrawCircleNotScroll(Vector2 pos, int r, unsigned int color)
+{
+	DrawCircle((int)pos.x, (int)pos.y, r, color);
+}
+
+void DrawLineNotScroll(Vector2 start, Vector2 end, unsigned int color)
+{
+	DrawLine((int)start.x, (int)start.y, (int)end.x, (int)end.y, color);
+}

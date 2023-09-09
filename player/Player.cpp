@@ -154,18 +154,28 @@ void Player::Update()
 	exM->Update();
 }
 
-void Player::Draw()
+void Player::Draw(bool scroll)
 {
 	//チンアナゴ
 	for (int i = 0; i < activeLength_; i++) {
-		DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+		if (scroll) {
+			DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+		}
+		else {
+			DrawCircleNotScroll(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+		}
 	}
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
 
 	ExBodyManager::GetInstance()->Draw();
 
 	for (int i = 1; i < activeLength_; i++) {
-		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
+		if (scroll) {
+			DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
+		}
+		else {
+			DrawLineNotScroll(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
+		}
 	}
 
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
