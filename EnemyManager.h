@@ -45,6 +45,7 @@ public:
 
 	//ìGÇÃê∂ê¨
 	void PopPlankton(Vector2 pos, float rot);
+	void PopFish(Vector2 pos);
 
 private:
 	std::list<std::unique_ptr<BaseEnemy>> enemys_;

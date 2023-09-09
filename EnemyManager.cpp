@@ -1,6 +1,7 @@
 #include "EnemyManager.h"
 #include <random>
 #include "Plankton.h"
+#include "Fish.h"
 
 using namespace std;
 
@@ -28,9 +29,7 @@ void EnemyManager::Initialize()
 		std::uniform_real_distribution<float> rot(30, 300);
 
 		PopPlankton({ x(engine),y(engine) }, rot(engine));
-
-		//enemy_[i].Initialize({ x(engine),y(engine) });
-		//enemy_[i].SetRotation(rot(engine));
+		PopFish({ x(engine),y(engine) });
 	}
 }
 
@@ -45,10 +44,6 @@ void EnemyManager::Update()
 	for (unique_ptr<BaseEnemy>& enemy : enemys_) {
 		enemy->Update();
 	}
-
-	//for (int i = 0; i < MAX_ENEMY; i++) {
-	//	enemy_[i].Update();
-	//}
 }
 
 void EnemyManager::Draw()
@@ -56,10 +51,6 @@ void EnemyManager::Draw()
 	for (unique_ptr<BaseEnemy>& enemy : enemys_) {
 		enemy->Draw();
 	}
-
-	//for (int i = 0; i < MAX_ENEMY; i++) {
-	//	enemy_[i].Draw();
-	//}
 }
 
 void EnemyManager::PopPlankton(Vector2 pos,float rot)
@@ -67,5 +58,12 @@ void EnemyManager::PopPlankton(Vector2 pos,float rot)
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
 	newEnemy->Initialize(pos);
 	newEnemy->SetRotation(rot);
+	enemys_.push_back(move(newEnemy));
+}
+
+void EnemyManager::PopFish(Vector2 pos)
+{
+	unique_ptr<BaseEnemy> newEnemy = make_unique<Fish>();
+	newEnemy->Initialize(pos);
 	enemys_.push_back(move(newEnemy));
 }

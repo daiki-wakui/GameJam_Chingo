@@ -38,5 +38,8 @@ protected:
 	Vector2 pos_;
 	int r_;
 	float rot_;
+
+	int texture_;
+
 	bool isDead_;
 };

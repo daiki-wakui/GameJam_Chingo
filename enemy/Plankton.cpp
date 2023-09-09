@@ -1,6 +1,7 @@
 #include "Plankton.h"
 #include "ScrollManager.h"
 #include <random>
+#include "DxLib.h"
 
 void Plankton::Initialize(Vector2 pos)
 {
@@ -14,6 +15,8 @@ void Plankton::Initialize(Vector2 pos)
 	std::uniform_real_distribution<float> rand(-10, 40);
 
 	addFrame_ = rand(engine);
+
+	texture_ = LoadGraph("GameAssets/Sprite/Enemy_Plankton_01.png");
 }
 
 void Plankton::Update()
@@ -25,6 +28,6 @@ void Plankton::Update()
 
 void Plankton::Draw()
 {
-	DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 64, 64, 0.5f, 0.5f, rot_, planktonImage, true);
+	DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 64, 64, 0.5f, 0.5f, rot_, texture_, true);
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 }
