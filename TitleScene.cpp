@@ -1,6 +1,7 @@
 #include "TitleScene.h"
 #include "Player.h"
 #include "Easing.h"
+#include "ColliderManager.h"
 #include <random>
 
 void TitleScene::Initialize()
@@ -29,6 +30,17 @@ void TitleScene::Initialize()
 void TitleScene::Update()
 {
 	Player::GetInstance()->Update();
+
+	/*Player* player = Player::GetInstance();
+	for (int p = 0; p < player->GetActiveBody(); p++) {
+		Vector2 P = player->GetPos(p);
+
+	}*/
+
+	if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{500,600}, 32)) {
+		int i = 0;
+		i++;
+	}
 
 	//ƒ}ƒEƒX‚ÌêŠŽæ“¾
 	GetMousePoint(&mouseX_, &mouseY_);
@@ -67,12 +79,14 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
-	Player::GetInstance()->Draw();
+	Player::GetInstance()->Draw(false);
 
 	DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
 	DrawGraph(gameStartUILeft.x-65, gameStartUIRight.x+20, gameStartImage, true);
 
 //	DrawBox(emitterLeftTop.x, emitterLeftTop.y, emitterRightBotoom.x, emitterRightBotoom.y, GetColor(255, 0, 0), false);
+
+	DrawCircle(500, 600, 32, GetColor(255, 255, 255), true);
 
 	for (int i = 0; i < BUBBLE_SUM; i++) {
 		

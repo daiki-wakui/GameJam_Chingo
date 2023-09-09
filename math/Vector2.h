@@ -43,3 +43,6 @@ const Vector2 operator/(const Vector2& v, float s);
 void DrawCircle(Vector2 pos,int r,unsigned int color);
 void DrawLine(Vector2 start,Vector2 end,unsigned int color);
 void DrawBox(Vector2 start,Vector2 end,unsigned int color);
+
+void DrawCircleNotScroll(Vector2 pos, int r, unsigned int color);
+void DrawLineNotScroll(Vector2 start, Vector2 end, unsigned int color);

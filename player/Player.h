@@ -16,7 +16,7 @@ public:
 public:
 	void Initialize();
 	void Update();
-	void Draw();
+	void Draw(bool scroll = true);
 
 	int GetActiveBody() {
 		return activeLength_;
