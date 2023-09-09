@@ -129,7 +129,7 @@ void Player::Update()
 		if (isReturn_) {
 			if (oldLevel_ != levelM->GetLevel()) {
 				oldLevel_ = levelM->GetLevel();
-				exM->SetIsSelect(true);
+				exM->SetIsSelect();
 			}
 
 			if (shrinkDistance_ >= 30) {

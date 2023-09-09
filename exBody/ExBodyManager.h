@@ -6,7 +6,9 @@ enum BodyType
 	NONE,
 	MUSCLE,
 	MAGICIAN,
-	MOD3,
+	JET,
+	GAMING,
+	END_BODY_TYPE,
 };
 
 class ExBodyManager {
@@ -26,15 +28,15 @@ public:
 	void Draw();
 
 	void BodyDraw(int i);
+	void SelectRand();
+	void SelectDraw();
 
 	void AddBody(int num);
 
 	bool GetIsSelect() {
 		return isSelect_;
 	}
-	void SetIsSelect(bool is) {
-		isSelect_ = is;
-	}
+	void SetIsSelect();
 
 	float GetBodyAngle(int i);
   
