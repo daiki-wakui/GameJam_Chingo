@@ -30,6 +30,9 @@ void Player::Initialize()
 	isReturn_ = false;
 	oldLevel_ = 1;
 
+	shrinkDistance_ = 0;
+	isBackShakeing_ = false;
+
 	ExBodyManager::GetInstance()->Initialize();
 }
 

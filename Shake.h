@@ -16,5 +16,7 @@ public:
 
 	//ƒƒ“ƒoŠÖ”éŒ¾
 	void Effect();
+
+	void Reset();
 };
 

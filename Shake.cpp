@@ -40,3 +40,11 @@ void Shake::Effect() {
 		randY = 0;
 	}
 }
+
+void Shake::Reset()
+{
+	randX = 0;
+	randY = 0;
+	isShakeing = 0;
+	timer = 0;
+}

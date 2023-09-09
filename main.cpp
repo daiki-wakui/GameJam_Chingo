@@ -56,7 +56,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	int backImage = LoadGraph("GameAssets/Sprite/back.png");
 	int groundImage = LoadGraph("GameAssets/Sprite/floor.png");
 	int titleImage = LoadGraph("GameAssets/Sprite/title.png");
-	
+	int blueImage = LoadGraph("GameAssets/Sprite/blue.png");
+	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
+
 	// ゲームループで使う変数の宣言
 
 	//keyboradクラスの生成
@@ -93,6 +95,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 
 			if (titleScene->GetIsSceneChange()) {
+				gameScene->Initialize();
 				scene = GAME_SCENE;
 			}
 		}
@@ -117,16 +120,22 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			DrawGraph(0, -180, backImage, true);
 			//DrawGraph(0, 0, groundImage, true);
 			DrawGraph(0, 0, titleImage, true);
-
+			
 			titleScene->Draw();
+
+			DrawGraph(0, 0, blueImage, true);
+			DrawGraph(0, 0, vignetImage, true);
+
 		}
 
 		if (scene == GAME_SCENE) {
 			
 			gameScene->Draw();
 			
-			debug->Draw();
 			
+			DrawGraph(0, 0, blueImage, true);
+			DrawGraph(0, 0, vignetImage, true);
+			debug->Draw();
 		}
 
 		if (scene == CLEAR_SCENE) {
