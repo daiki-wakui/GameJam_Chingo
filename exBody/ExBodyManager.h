@@ -1,4 +1,5 @@
 #pragma once
+#include "DxLib.h"
 
 enum BodyType
 {
@@ -48,5 +49,8 @@ private:
 	bool isSelect_;
 	int choice_[3];
 
-	int muscularImage;
+	int muscularImage = LoadGraph("GameAssets/Sprite/Body/muscular.png");
+	int magicianImage = LoadGraph("GameAssets/Sprite/Body/magician.png");
+	int jetImage = LoadGraph("GameAssets/Sprite/Body/jet.png");
+
 };

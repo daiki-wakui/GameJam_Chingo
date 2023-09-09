@@ -1,5 +1,4 @@
 #include "ExBodyManager.h"
-#include "DxLib.h"
 #include "LevelManager.h"
 #include "Player.h"
 #include "ScrollManager.h"
@@ -20,8 +19,6 @@ void ExBodyManager::Initialize()
 	for (int i = 0; i < 3; i++) {
 		choice_[i] = 0;
 	}
-
-	muscularImage = LoadGraph("GameAssets/Sprite/Body/muscular.png");
 }
 
 void ExBodyManager::Update()
@@ -83,9 +80,19 @@ void ExBodyManager::BodyDraw(int i)
 		break;
 	case MAGICIAN:
 		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
+
+		DrawRotaGraph3(
+			Player::GetInstance()->GetPos((i + 1) * 10).x,
+			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
+			256, 256, 0.45f, 0.45f, angle, magicianImage, true);
 		break;
 	case MOD3:
 		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
+
+		DrawRotaGraph3(
+			Player::GetInstance()->GetPos((i + 1) * 10).x,
+			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
+			256, 256, 0.45f, 0.45f, angle, jetImage, true);
 		break;
 	default:
 		break;
