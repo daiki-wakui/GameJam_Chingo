@@ -2,6 +2,7 @@
 #include <random>
 #include "Plankton.h"
 #include "Fish.h"
+#include "Dolphin.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ void EnemyManager::Initialize()
 	}
 
 	fishPopTimer_ = TIME_FISH_POP;
+	dolphinNum_ = TIME_DOLPHIN_POP;
 
 	for (int i = 0; i < MAX_PLANKTON; i++) {
 		PopPlankton();
@@ -38,6 +40,7 @@ void EnemyManager::Update()
 	//”Šm”F
 	planktonNum_ = 0;
 	fishNum_ = 0;
+	dolphinNum_ = 0;
 	for (unique_ptr<BaseEnemy>& enemy : enemys_) {
 		enemy->Update();
 	}
@@ -45,6 +48,12 @@ void EnemyManager::Update()
 	if (MAX_FISH > fishNum_) {
 		if (--fishPopTimer_ <= 0) {
 			PopFish();
+		}
+	}
+
+	if (MAX_DOLPHIN > dolphinNum_) {
+		if (--dolphinNum_ <= 0) {
+			PopDolphin();
 		}
 	}
 }
@@ -83,6 +92,22 @@ void EnemyManager::PopFish()
 	std::uniform_real_distribution<float> y(-3000, 0);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Fish>();
+	newEnemy->Initialize({ x(engine),y(engine) });
+	enemys_.push_back(move(newEnemy));
+
+	fishPopTimer_ = TIME_FISH_POP;
+}
+
+void EnemyManager::PopDolphin()
+{
+	//ƒ‰ƒ“ƒ_ƒ€
+	std::random_device seed_gen;
+	std::mt19937_64 engine(seed_gen());
+
+	std::uniform_real_distribution<float> x(0, 1280);
+	std::uniform_real_distribution<float> y(-3000, 0);
+
+	unique_ptr<BaseEnemy> newEnemy = make_unique<Dolphin>();
 	newEnemy->Initialize({ x(engine),y(engine) });
 	enemys_.push_back(move(newEnemy));
 
