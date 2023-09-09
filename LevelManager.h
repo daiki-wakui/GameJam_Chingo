@@ -1,4 +1,5 @@
 #pragma once
+#include "DxLib.h"
 
 class LevelManager {
 private:
@@ -34,7 +35,9 @@ public:
 
 private:
 
-	int levelUpImage;
+	int levelUpImage = LoadGraph("GameAssets/Sprite/levelUp.png");
+
+	int levelImage[3];
 
 	const int EXP_LV1 = 100;
 	const int EXP_LV2 = 500;
