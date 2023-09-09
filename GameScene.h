@@ -10,7 +10,10 @@ class GameScene
 {
 private:
 
-	int backImage = LoadGraph("GameAssets/Sprite/back.png");
+	int backBottomImage = LoadGraph("GameAssets/Sprite/background_bottom.png");
+	int backMiddleImage = LoadGraph("GameAssets/Sprite/background_middle.png");
+	int backTopImage = LoadGraph("GameAssets/Sprite/background_top.png");
+
 
 	EnemyManager* enemyM = EnemyManager::GetInstance();
 
