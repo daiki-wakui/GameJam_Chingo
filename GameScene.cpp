@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "ScrollManager.h"
+#include "Keyboard.h"
 
 void GameScene::Initialize()
 {
@@ -25,6 +26,10 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
+	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R)) {
+		Initialize();
+	}
+
 	enemyM->Update();
 
 

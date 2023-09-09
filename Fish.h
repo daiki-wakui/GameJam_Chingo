@@ -8,11 +8,11 @@ public:
 	void Draw() override;
 
 private:
-	const int RADIUS = 10;
-	const int HANG = 10;
-	const int EXP = 10;
+	const int RADIUS = 15;
+	const int HANG = 30;
+	const int EXP = 30;
 
-	const float SPEED_MOVE = 0.5f;
+	const float SPEED_MOVE = 1.5f;
 
 	bool isWay_;
 };
