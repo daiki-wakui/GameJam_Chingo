@@ -33,6 +33,8 @@ public:
 
 	void GetMax();
 
+	void Debug();
+
 private:
 
 	int levelUpImage = LoadGraph("GameAssets/Sprite/levelUp.png");

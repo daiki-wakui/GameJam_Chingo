@@ -130,6 +130,7 @@
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="DebugManager.cpp" />
+    <ClCompile Include="Dolphin.cpp" />
     <ClCompile Include="Easing.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="DebugManager.h" />
+    <ClInclude Include="Dolphin.h" />
     <ClInclude Include="Easing.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />

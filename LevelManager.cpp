@@ -174,3 +174,16 @@ void LevelManager::GetMax()
 	}
 }
 
+void LevelManager::Debug()
+{
+	if (nowLevel_ == 1) {
+		nowExp_ += EXP_LV1;
+	}
+	else if (nowLevel_ == 2) {
+		nowExp_ += EXP_LV2;
+	}
+	else if (nowLevel_ == 3) {
+		nowExp_ += EXP_LV3;
+	}
+}
+

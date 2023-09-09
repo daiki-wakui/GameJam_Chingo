@@ -31,12 +31,16 @@ public:
 	//ìGÇÃê∂ê¨
 	void PopPlankton();
 	void PopFish();
+	void PopDolphin();
 
 	void AddPlanktonNum() {
 		planktonNum_++;
 	}
 	void AddFishNum() {
 		fishNum_++;
+	}
+	void AddDolphinNum() {
+		dolphinNum_++;
 	}
 
 private:
@@ -50,4 +54,9 @@ private:
 	const int TIME_FISH_POP = 2 * 60;
 	int fishNum_;
 	int fishPopTimer_;
+
+	const int MAX_DOLPHIN = 15;
+	const int TIME_DOLPHIN_POP = 5 * 60;
+	int dolphinNum_;
+	int dolphinPopTimer_;
 };

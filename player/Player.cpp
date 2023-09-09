@@ -5,6 +5,7 @@
 #include "LevelManager.h"
 #include "exBody/ExBodyManager.h"
 #include "ScrollManager.h"
+#include "Keyboard.h"
 
 const float PI = 3.1415f;
 
@@ -114,6 +115,12 @@ void Player::Update()
 
 	//縮み切っている状態
 	if (activeLength_ <= NUM_NECK) {
+		//デバッグ用強制レベルアップ
+		if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_L)) {
+			levelM->Debug();
+			isReturn_ = true;
+		}
+
 		levelM->IncludeExp();
 		//縮みきったタイミング
 		if (isReturn_) {
@@ -131,6 +138,8 @@ void Player::Update()
 		shrinkDistance_ = 0;
 		isReturn_ = false;
 		levelM->GetMax();
+
+
 	}
 
 	//各、体の角度
