@@ -151,6 +151,16 @@ void Player::Update()
 		}
 	}
 
+	//左右をつなげる処理
+	for (int i = 0; i < NUM_NECK + 1;i++) {
+		if (pos_[i].x < 0) {
+			pos_[i].x += 1280;
+		}
+		else if(pos_[i].x > 1280){
+			pos_[i].x -= 1280;
+		}
+	}
+
 	exM->Update();
 }
 
@@ -160,6 +170,12 @@ void Player::Draw(bool scroll)
 	for (int i = 0; i < activeLength_; i++) {
 		if (scroll) {
 			DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+			if (pos_[i].x < BODY_THICKNESS) {
+				DrawCircle({ pos_[i].x + 1280,pos_[i].y}, BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+			}
+			if (pos_[i].x > 1280 - BODY_THICKNESS) {
+				DrawCircle({ pos_[i].x - 1280,pos_[i].y }, BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+			}
 		}
 		else {
 			DrawCircleNotScroll(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
