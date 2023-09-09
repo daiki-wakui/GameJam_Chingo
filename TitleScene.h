@@ -11,6 +11,9 @@ private:
 
 	int bubbleImage = LoadGraph("GameAssets/Sprite/bubble.png");
 	int gameStartImage = LoadGraph("GameAssets/Sprite/gameStart.png");
+	int fukidasiImage = LoadGraph("GameAssets/Sprite/fukidasi.png");
+	int mouseImage[2];
+	
 
 	Keyboard* keyboard = Keyboard::GetInstance();
 
@@ -32,8 +35,12 @@ private:
 	bool isChangeStart = false;
 	bool isChange = false;
 
-	Vector2 gameStartUILeft = { 520 ,250 + 520 };
-	Vector2 gameStartUIRight = { 530 ,100 + 530 };
+	Vector2 gameStartUI = { 550 ,500 };
+	Vector2 mouseUI = { 550 ,500 };
+	float startUIRot_ = 0;
+	float startUISize_ = 180;
+	float frame_[2];
+	int state_;
 
 public:
 

@@ -25,40 +25,39 @@ void TitleScene::Initialize()
 		end[i].x = bubblePos[i].x;
 		end[i].y = bubblePos[i].y - 2000;
 	}
+
+	mouseImage[0] = LoadGraph("GameAssets/Sprite/mouseUI.png");
+	mouseImage[1] = LoadGraph("GameAssets/Sprite/mouseUI2.png");
 }
 
 void TitleScene::Update()
 {
 	Player::GetInstance()->Update();
 
-	/*Player* player = Player::GetInstance();
-	for (int p = 0; p < player->GetActiveBody(); p++) {
-		Vector2 P = player->GetPos(p);
-
-	}*/
-
-	if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{500,600}, 32)) {
-		int i = 0;
-		i++;
+	for (int i = 0; i < 3; i++) {
+		if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{ gameStartUI.x + (100 * i), gameStartUI.y }, 48)) {
+			isChangeStart = true;
+		}
 	}
 
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
 
-	emitterLeftTop.x = mouseX_ - 128;
-	emitterLeftTop.y = mouseY_ - 128;
-	emitterRightBotoom.x = mouseX_ + 128;
-	emitterRightBotoom.y = mouseY_ + 128;
+	frame_[0]++;
+	frame_[1]++;
 
-	if (mouseY_ > gameStartUIRight.x && mouseY_ < gameStartUIRight.y) {
-		if (mouseX_ > gameStartUILeft.x && mouseX_ <= gameStartUILeft.y) {
-			
-			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
-				isChangeStart = true;
-			}
+	if (frame_[1] >= 60) {
+		if (state_ == 0) {
+			state_ = 1;
 		}
+		else {
+			state_ = 0;
+		}
+		frame_[1] = 0;
 	}
-	
+
+	//startUISize_ *= (1.0f + cosf(timer / (float)scalespd_) * 0.1f);
+	startUISize_ = 0.5f * sinf(2 * 3.14f * frame_[0] / 200) + startUISize_;
 
 	//シーン切り替えエフェクト
 	if (isChangeStart) {
@@ -69,6 +68,9 @@ void TitleScene::Update()
 			size[i] -= 1.5f;
 			size[i] = max(size[i], 0);
 		}
+
+		gameStartUI.y -= 60;
+		startUIRot_++;
 	}
 	
 	//シーン切り替え
@@ -81,17 +83,24 @@ void TitleScene::Draw()
 {
 	Player::GetInstance()->Draw(false);
 
-	DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
-	DrawGraph(gameStartUILeft.x-65, gameStartUIRight.x+20, gameStartImage, true);
+	//DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
 
-//	DrawBox(emitterLeftTop.x, emitterLeftTop.y, emitterRightBotoom.x, emitterRightBotoom.y, GetColor(255, 0, 0), false);
+	for (int i = 0; i < 3; i++) {
+		//DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
+	}
 
-	DrawCircle(500, 600, 32, GetColor(255, 255, 255), true);
-
+	DrawRotaGraph(gameStartUI.x + 90, gameStartUI.y, 1, startUIRot_, gameStartImage, true);
+	
+	DrawRotaGraph3(mouseUI.x + 20, mouseUI.y-10, -startUISize_ ,-startUISize_ , 0.5, 0.5, 0, fukidasiImage, true);
+	if (state_) {
+		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[0], true);
+	}
+	else {
+		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[1], true);
+	}
+	
 	for (int i = 0; i < BUBBLE_SUM; i++) {
-		
 		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);
-
 	}
 	
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
