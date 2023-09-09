@@ -22,6 +22,7 @@ void GameScene::Initialize()
 		effectPosRight_[i].x = -60;
 		effectPosRight_[i].y = 0;
 	}
+	shake->Reset();
 }
 
 void GameScene::Update()
