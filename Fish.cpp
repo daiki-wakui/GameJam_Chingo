@@ -1,6 +1,7 @@
 #include "Fish.h"
 #include "DxLib.h"
 #include "EnemyManager.h"
+#include "ScrollManager.h"
 
 void Fish::Initialize(Vector2 pos)
 {
@@ -18,6 +19,8 @@ void Fish::Initialize(Vector2 pos)
 	r_ = RADIUS;
 	healHang_ = HANG;
 	exp_ = EXP;
+
+	texture_ = LoadGraph("GameAssets/Sprite/enemy_fish.png");
 }
 
 void Fish::Update()
@@ -38,5 +41,11 @@ void Fish::Update()
 
 void Fish::Draw()
 {
+	if (isWay_) {
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.2f, 0.2f, 0, texture_, true,true);
+	}
+	else {
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.2f, 0.2f, 0, texture_, true);
+	}
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 }

@@ -15,4 +15,6 @@ private:
 	const float SPEED_MOVE = 1.5f;
 
 	bool isWay_;
+
+	int texture_;
 };
