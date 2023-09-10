@@ -30,6 +30,7 @@ public:
 
 	//ìGÇÃê∂ê¨
 	void PopPlankton();
+	void RePopPlankton();
 	void PopFish();
 	void PopDolphin();
 
