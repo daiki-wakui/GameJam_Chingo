@@ -79,6 +79,9 @@ void GameScene::Draw()
 	DrawGraph(0, 0, vignetImage, true);
 	enemyM->Draw();
 	Player::GetInstance()->Draw();
+	
+	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
+
 	LevelManager::GetInstance()->Draw();
 
 	for (int i = 0; i < effectNumber_; i++) {
