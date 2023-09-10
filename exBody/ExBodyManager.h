@@ -30,6 +30,7 @@ public:
 	void BodyDraw(int i);
 	void SelectRand();
 	void SelectDraw();
+	void ResultDraw();
 
 	void AddBody(int num);
 

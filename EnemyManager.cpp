@@ -44,6 +44,7 @@ void EnemyManager::Update()
 	planktonNum_ = 0;
 	fishNum_ = 0;
 	dolphinNum_ = 0;
+	whaleNum_ = 0;
 	for (unique_ptr<BaseEnemy>& enemy : enemys_) {
 		enemy->Update();
 	}
@@ -65,6 +66,11 @@ void EnemyManager::Update()
 		if (--dolphinNum_ <= 0) {
 			PopDolphin();
 		}
+	}
+
+	//クジラが死んだらクリア！
+	if (whaleNum_ <= 0) {
+
 	}
 }
 

@@ -54,6 +54,10 @@ public:
 
 	unsigned int GetBodyColor(int i);
 
+	int GetNumNeck() {
+		return NUM_NECK;
+	}
+
 private:
 	int eyeTexure_;
 

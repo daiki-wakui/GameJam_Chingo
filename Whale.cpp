@@ -25,7 +25,7 @@ void Whale::Initialize(Vector2 pos)
 
 void Whale::Update()
 {
-	EnemyManager::GetInstance()->AddFishNum();
+	EnemyManager::GetInstance()->AddWhaleNum();
 
 	if (isWay_) {
 		pos_.x += SPEED_MOVE;

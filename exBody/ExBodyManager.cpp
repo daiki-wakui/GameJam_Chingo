@@ -168,6 +168,41 @@ void ExBodyManager::SelectDraw()
 	}
 }
 
+void ExBodyManager::ResultDraw()
+{
+	for (int i = 0; i < 3; i++) {
+		Vector2 tempPos;
+		//選択肢のポジション
+		if (i == 0) {
+			tempPos = { 540,400 };
+		}
+		else if (i == 1) {
+			tempPos = { 640,400 };
+		}
+		else {
+			tempPos = { 740,400 };
+		}
+
+		if (bodyType_[i] == 1) {
+			//MUSCLE
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
+		}
+		else if (bodyType_[i] == 2) {
+			//MAGICIAN
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
+		}
+		else if (bodyType_[i] == 3) {
+			//JET
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
+		}
+		else if (bodyType_[i] == 4) {
+			//GAMING
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
+		}
+	}
+	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
+}
+
 void ExBodyManager::AddBody(int num)
 {
 	bodyType_[LevelManager::GetInstance()->GetLevel() - 2] = num;
