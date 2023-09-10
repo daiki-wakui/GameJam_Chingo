@@ -31,15 +31,15 @@ void ExBodyManager::Update()
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
 			if (mouseY > 300 && mouseY < 700) {
 				if (mouseX > 40 && mouseX <= 440) {
-					AddBody(MUSCLE);
+					AddBody(choice_[0]+1);
 					isSelect_ = false;
 				}
 				if (mouseX > 440 && mouseX <= 840) {
-					AddBody(MAGICIAN);
+					AddBody(choice_[1]+1);
 					isSelect_ = false;
 				}
 				if (mouseX > 840 && mouseX <= 1240) {
-					AddBody(JET);
+					AddBody(choice_[2]+1);
 					isSelect_ = false;
 				}
 			}
