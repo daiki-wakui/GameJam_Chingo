@@ -135,7 +135,7 @@ void Player::Update()
 			if (shrinkDistance_ >= 30) {
 				isBackShakeing_ = true;
 			}
-			
+
 		}
 
 		shrinkDistance_ = 0;
@@ -146,7 +146,7 @@ void Player::Update()
 	}
 
 	//各、体の角度
-	for (int i = 1; i < activeLength_;i++) {
+	for (int i = 1; i < activeLength_; i++) {
 		Vector2 frontBody = pos_[i - 1] - pos_[i];
 		angle_[i] = atan2(frontBody.cross({ 0,-1 }), -frontBody.dot({ 0,-1 })) / PI * 180;
 		if (angle_[i] <= 0) {
@@ -155,11 +155,11 @@ void Player::Update()
 	}
 
 	//左右をつなげる処理
-	for (int i = 0; i < NUM_NECK + 1;i++) {
+	for (int i = 0; i < NUM_NECK + 1; i++) {
 		if (pos_[i].x < 0) {
 			pos_[i].x += 1280;
 		}
-		else if(pos_[i].x > 1280){
+		else if (pos_[i].x > 1280) {
 			pos_[i].x -= 1280;
 		}
 	}
@@ -174,7 +174,7 @@ void Player::Draw(bool scroll)
 		if (scroll) {
 			DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
 			if (pos_[i].x < BODY_THICKNESS) {
-				DrawCircle({ pos_[i].x + 1280,pos_[i].y}, BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+				DrawCircle({ pos_[i].x + 1280,pos_[i].y }, BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
 			}
 			if (pos_[i].x > 1280 - BODY_THICKNESS) {
 				DrawCircle({ pos_[i].x - 1280,pos_[i].y }, BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
@@ -200,4 +200,12 @@ void Player::Draw(bool scroll)
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 	//DrawFormatString(200, 80, GetColor(255, 255, 255), "nowLength = %d", shrinkDistance_);
+}
+
+bool Player::GetIsExtend()
+{
+	if (activeLength_ <= NUM_NECK) {
+		return true;
+	}
+	return false;
 }

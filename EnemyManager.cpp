@@ -1,8 +1,10 @@
 #include "EnemyManager.h"
 #include <random>
 #include "Plankton.h"
+#include "Player.h"
 #include "Fish.h"
 #include "Dolphin.h"
+
 
 using namespace std;
 
@@ -45,6 +47,13 @@ void EnemyManager::Update()
 		enemy->Update();
 	}
 
+	//プレイヤーが戻った時にリポップ
+	if (Player::GetInstance()->GetIsExtend()) {
+		for (int i = planktonNum_; i < MAX_PLANKTON; i++) {
+			RePopPlankton();
+		}
+	}
+
 	if (MAX_FISH > fishNum_) {
 		if (--fishPopTimer_ <= 0) {
 			PopFish();
@@ -78,6 +87,23 @@ void EnemyManager::PopPlankton()
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
 	newEnemy->Initialize({x(engine),y(engine)});
+	newEnemy->SetRotation(rot(engine));
+	enemys_.push_back(move(newEnemy));
+}
+
+void EnemyManager::RePopPlankton()
+{
+	//ランダム
+	std::random_device seed_gen;
+	std::mt19937_64 engine(seed_gen());
+
+	std::uniform_real_distribution<float> x(0, 1280);
+	std::uniform_real_distribution<float> y(-2000, 0);
+	std::uniform_real_distribution<float> rot(30, 300);
+
+
+	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
+	newEnemy->Initialize({ x(engine),y(engine) });
 	newEnemy->SetRotation(rot(engine));
 	enemys_.push_back(move(newEnemy));
 }

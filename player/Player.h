@@ -50,6 +50,8 @@ public:
 		maxHunger_ = num;
 	}
 
+	bool GetIsExtend();
+
 private:
 	static const int MAX_BODY = 10000; //‘Ì‚ÌÅ‘å”
 	static const int NUM_NECK = 5;	 //ñ‚©‚çã‚Ì”
