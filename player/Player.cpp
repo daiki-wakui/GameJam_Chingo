@@ -32,6 +32,7 @@ void Player::Initialize()
 
 	shrinkDistance_ = 0;
 	isBackShakeing_ = false;
+	thickness_ = START_BODY_THICKNESS;
 
 	ExBodyManager::GetInstance()->Initialize();
 
@@ -179,16 +180,16 @@ void Player::Draw(bool scroll)
 	//チンアナゴ
 	for (int i = 0; i < activeLength_; i++) {
 		if (scroll) {
-			DrawCircle(pos_[i], BODY_THICKNESS, GetBodyColor(i));
-			if (pos_[i].x < BODY_THICKNESS) {
-				DrawCircle({ pos_[i].x + 1280,pos_[i].y }, BODY_THICKNESS, GetBodyColor(i));
+			DrawCircle(pos_[i], thickness_, GetBodyColor(i));
+			if (pos_[i].x < thickness_) {
+				DrawCircle({ pos_[i].x + 1280,pos_[i].y }, thickness_, GetBodyColor(i));
 			}
-			if (pos_[i].x > 1280 - BODY_THICKNESS) {
-				DrawCircle({ pos_[i].x - 1280,pos_[i].y }, BODY_THICKNESS, GetBodyColor(i));
+			if (pos_[i].x > 1280 - thickness_) {
+				DrawCircle({ pos_[i].x - 1280,pos_[i].y }, thickness_, GetBodyColor(i));
 			}
 		}
 		else {
-			DrawCircleNotScroll(pos_[i], BODY_THICKNESS, GetBodyColor(i));
+			DrawCircleNotScroll(pos_[i], thickness_, GetBodyColor(i));
 		}
 	}
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));

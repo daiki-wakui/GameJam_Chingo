@@ -58,15 +58,22 @@ public:
 		return NUM_NECK;
 	}
 
+	void SetThickness(int num) {
+		thickness_ = num;
+	}
+	int GetThickness() {
+		return thickness_;
+	}
+
 private:
 	int eyeTexure_;
 
 	static const int MAX_BODY = 10000; //体の最大数
-	static const int NUM_NECK = 5;	 //首から上の数
-	static const int SPEED_NECK = 5; //首の最大回転スピード
-	static const int BODY_THICKNESS = 30; //体の太さ
+	const int NUM_NECK = 5;	 //首から上の数
+	const int SPEED_NECK = 5; //首の最大回転スピード
 
-	static const int START_BODY_LENGTH = 100; //スタート時の体の最大長さ
+	const int START_BODY_LENGTH = 100; //スタート時の体の最大長さ
+	const int START_BODY_THICKNESS = 30;
 
 	Vector2 pos_[MAX_BODY];//顏の位置
 	int angle_[MAX_BODY];//角度
@@ -86,4 +93,6 @@ private:
 	int shrinkDistance_;
 
 	int oldLevel_;
+
+	int thickness_;
 };
