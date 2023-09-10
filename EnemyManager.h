@@ -33,6 +33,7 @@ public:
 	void RePopPlankton();
 	void PopFish();
 	void PopDolphin();
+	void PopWhale();
 
 	void AddPlanktonNum() {
 		planktonNum_++;
