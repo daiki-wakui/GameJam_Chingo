@@ -50,7 +50,7 @@ void ExBodyManager::Update()
 void ExBodyManager::Draw()
 {
 	for (int i = 0; i < LevelManager::GetInstance()->GetLevel() - 1; i++) {
-		if (Player::GetInstance()->GetActiveBody() > (i + 1) * 10) {
+		if (Player::GetInstance()->GetActiveBody() > (i + 1) * EX_BODY_SPACE) {
 			BodyDraw(i);
 		}
 	}
@@ -73,32 +73,32 @@ void ExBodyManager::BodyDraw(int i)
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(255, 0, 0));
 
 		DrawRotaGraph3(
-			Player::GetInstance()->GetPos((i + 1) * 10).x,
-			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			384, 256, 0.45f, 0.45f, angle, muscularImage, true);
 		break;
 	case MAGICIAN:
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
 
 		DrawRotaGraph3(
-			Player::GetInstance()->GetPos((i + 1) * 10).x,
-			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			256, 256, 0.45f, 0.45f, angle, magicianImage, true);
 		break;
 	case JET:
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
 
 		DrawRotaGraph3(
-			Player::GetInstance()->GetPos((i + 1) * 10).x,
-			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			256, 256, 0.45f, 0.45f, angle, jetImage, true);
 		break;
 	case GAMING:
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
 
 		DrawRotaGraph3(
-			Player::GetInstance()->GetPos((i + 1) * 10).x,
-			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			256, 256, 0.45f, 0.45f, angle, gamingImage, true);
 		break;
 	default:
@@ -216,7 +216,7 @@ void ExBodyManager::SetIsSelect()
 
 float ExBodyManager::GetBodyAngle(int i)
 {
-	float temp = 3.141592f / 180.0f * Player::GetInstance()->GetAngle((i + 1) * 10);
+	float temp = 3.141592f / 180.0f * Player::GetInstance()->GetAngle((i + 1) * EX_BODY_SPACE);
 
 	temp -= 3.14192f;
 
