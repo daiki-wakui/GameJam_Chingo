@@ -149,6 +149,7 @@
     <ClCompile Include="ScrollManager.cpp" />
     <ClCompile Include="Shake.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="Whale.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClearScene.h" />
@@ -173,6 +174,7 @@
     <ClInclude Include="ScrollManager.h" />
     <ClInclude Include="Shake.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="Whale.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
