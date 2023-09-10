@@ -52,6 +52,8 @@ public:
 
 	bool GetIsExtend();
 
+	unsigned int GetBodyColor(int i);
+
 private:
 	int eyeTexure_;
 
