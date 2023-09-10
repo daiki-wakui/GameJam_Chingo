@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Fish.h"
 #include "Dolphin.h"
-
+#include "Whale.h"
 
 using namespace std;
 
@@ -28,6 +28,7 @@ void EnemyManager::Initialize()
 	for (int i = 0; i < MAX_PLANKTON; i++) {
 		PopPlankton();
 	}
+	PopWhale();
 }
 
 void EnemyManager::Update()
@@ -138,4 +139,17 @@ void EnemyManager::PopDolphin()
 	enemys_.push_back(move(newEnemy));
 
 	fishPopTimer_ = TIME_FISH_POP;
+}
+
+void EnemyManager::PopWhale()
+{
+	//ƒ‰ƒ“ƒ_ƒ€
+	std::random_device seed_gen;
+	std::mt19937_64 engine(seed_gen());
+
+	std::uniform_real_distribution<float> x(0, 1280);
+
+	unique_ptr<BaseEnemy> newEnemy = make_unique<Whale>();
+	newEnemy->Initialize({ x(engine),-3000 });
+	enemys_.push_back(move(newEnemy));
 }
