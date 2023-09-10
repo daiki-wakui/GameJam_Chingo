@@ -40,11 +40,15 @@ public:
 	void SetIsSelect();
 
 	float GetBodyAngle(int i);
+	int GetBodyType(int num) {
+		return bodyType_[num];
+	}
   
 private:
 	const int BODY_WIDTH = 60;
 	const int BODY_HEIGHT = 100;
 	static const int MAX_BODY = 3;
+	const int EX_BODY_SPACE = 10;
 	
 	int bodyType_[MAX_BODY];
 

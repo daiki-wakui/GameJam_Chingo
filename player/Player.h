@@ -72,6 +72,7 @@ private:
 	const int NUM_NECK = 5;	 //首から上の数
 	const int SPEED_NECK = 5; //首の最大回転スピード
 
+
 	const int START_BODY_LENGTH = 100; //スタート時の体の最大長さ
 	const int START_BODY_THICKNESS = 30;
 
