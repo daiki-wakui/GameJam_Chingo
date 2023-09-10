@@ -174,16 +174,16 @@ void Player::Draw(bool scroll)
 	//チンアナゴ
 	for (int i = 0; i < activeLength_; i++) {
 		if (scroll) {
-			DrawCircle(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+			DrawCircle(pos_[i], BODY_THICKNESS, GetBodyColor(i));
 			if (pos_[i].x < BODY_THICKNESS) {
-				DrawCircle({ pos_[i].x + 1280,pos_[i].y }, BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+				DrawCircle({ pos_[i].x + 1280,pos_[i].y }, BODY_THICKNESS, GetBodyColor(i));
 			}
 			if (pos_[i].x > 1280 - BODY_THICKNESS) {
-				DrawCircle({ pos_[i].x - 1280,pos_[i].y }, BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+				DrawCircle({ pos_[i].x - 1280,pos_[i].y }, BODY_THICKNESS, GetBodyColor(i));
 			}
 		}
 		else {
-			DrawCircleNotScroll(pos_[i], BODY_THICKNESS, GetColor(255, 255, 255 - (i * 2)));
+			DrawCircleNotScroll(pos_[i], BODY_THICKNESS, GetBodyColor(i));
 		}
 	}
 	DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
@@ -216,4 +216,15 @@ bool Player::GetIsExtend()
 		return true;
 	}
 	return false;
+}
+
+unsigned int Player::GetBodyColor(int i)
+{
+	int num = i % 200;
+	num -= 100;
+	if (num < 0) {
+		num *= -1;
+	}
+
+	return GetColor(255,255, num * 2);
 }
