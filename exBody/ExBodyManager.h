@@ -54,5 +54,6 @@ private:
 	int muscularImage = LoadGraph("GameAssets/Sprite/Body/muscular.png");
 	int magicianImage = LoadGraph("GameAssets/Sprite/Body/magician.png");
 	int jetImage = LoadGraph("GameAssets/Sprite/Body/jet.png");
+	int gamingImage = LoadGraph("GameAssets/Sprite/Body/gamers.png");
 
 };

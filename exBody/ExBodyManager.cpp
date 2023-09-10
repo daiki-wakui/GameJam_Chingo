@@ -99,7 +99,7 @@ void ExBodyManager::BodyDraw(int i)
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * 10).x,
 			Player::GetInstance()->GetPos((i + 1) * 10).y + ScrollManager::GetInstance()->GetScroll(),
-			256, 256, 0.45f, 0.45f, angle, jetImage, true);
+			256, 256, 0.45f, 0.45f, angle, gamingImage, true);
 		break;
 	default:
 		break;
