@@ -40,6 +40,7 @@ private:
 	bool isChangeStart = false;
 	bool isChange = false;
 
+	Vector2 titleUI = { 0,0 };
 	Vector2 gameStartUI = { 550 ,500 };
 	Vector2 mouseUI = { 550 ,500 };
 	float startUIRot_ = 0;

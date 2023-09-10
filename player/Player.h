@@ -53,6 +53,8 @@ public:
 	bool GetIsExtend();
 
 private:
+	int eyeTexure_;
+
 	static const int MAX_BODY = 10000; //体の最大数
 	static const int NUM_NECK = 5;	 //首から上の数
 	static const int SPEED_NECK = 5; //首の最大回転スピード

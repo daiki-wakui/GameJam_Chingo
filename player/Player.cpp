@@ -34,6 +34,8 @@ void Player::Initialize()
 	isBackShakeing_ = false;
 
 	ExBodyManager::GetInstance()->Initialize();
+
+	eyeTexure_ = LoadGraph("GameAssets/Sprite/Body/mainBody_eyes.png");
 }
 
 void Player::Update()
@@ -197,6 +199,12 @@ void Player::Draw(bool scroll)
 		}
 	}
 
+	if (scroll) {
+		DrawRotaGraph3(GetPos(0).x, GetPos(0).y + ScrollManager::GetInstance()->GetScroll(), 128, 128, 0.25, 0.25, angle_[0], eyeTexure_, true);
+	}
+	else {
+		DrawRotaGraph3(GetPos(0).x, GetPos(0).y, 128, 128, 0.25, 0.25, angle_[0], eyeTexure_, true);
+	}
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 	//DrawFormatString(200, 80, GetColor(255, 255, 255), "nowLength = %d", shrinkDistance_);

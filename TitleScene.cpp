@@ -69,6 +69,7 @@ void TitleScene::Update()
 			size[i] = max(size[i], 0);
 		}
 
+		titleUI.y -= 30;
 		gameStartUI.y -= 60;
 		startUIRot_++;
 	}
@@ -87,7 +88,9 @@ void TitleScene::Draw()
 
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
-	DrawGraph(0, 0, titleImage, true);
+	//DrawGraph(titleUI.x, titleUI.y, titleImage, true);
+	DrawRotaGraph(titleUI.x+1280/2, titleUI.y+900/2, 1, startUIRot_, titleImage, true);
+
 
 	Player::GetInstance()->Draw(false);
 
