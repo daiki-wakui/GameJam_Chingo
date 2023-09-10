@@ -16,6 +16,9 @@ private:
 	int blueImage = LoadGraph("GameAssets/Sprite/blue.png");
 	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
 	int moleImage = LoadGraph("GameAssets/Sprite/mole2.png");
+	int testImage[2];
+	
+	int test2Image = LoadGraph("GameAssets/Sprite/2.png");
 
 
 	EnemyManager* enemyM = EnemyManager::GetInstance();
@@ -32,6 +35,9 @@ private:
 	int effectNumber_ = 30;
 	bool isEffectSet_ = false;
 	int effectColorChange_ = 0;
+
+	int scrollX[2] = { 0,1275 };
+
 
 public:
 	void LevelUpEffectSet();

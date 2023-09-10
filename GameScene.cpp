@@ -23,6 +23,7 @@ void GameScene::Initialize()
 		effectPosRight_[i].y = 0;
 	}
 	shake->Reset();
+	LoadDivGraph("GameAssets/Sprite/1.png", 2, 2, 1, 1280, 900, testImage);
 }
 
 void GameScene::Update()
@@ -44,7 +45,18 @@ void GameScene::Update()
 
 		LevelUpEffect();
 
+		scrollX[0] -= 128;
+		scrollX[1] -= 128;
+
+		if (scrollX[0] <= -1280) {
+			scrollX[0] = 1280;
+		}
+
+		if (scrollX[1] <= -1280) {
+			scrollX[1] = 1280;
+		}
 		return;
+
 	}
 	isEffectSet_ = false;
 
@@ -66,6 +78,8 @@ void GameScene::Update()
 	shake->Effect();
 
 	LevelUpEffect();
+
+	
 }
 
 void GameScene::Draw()
@@ -84,6 +98,12 @@ void GameScene::Draw()
 
 	LevelManager::GetInstance()->Draw();
 
+	if (ExBodyManager::GetInstance()->GetIsSelect()) {
+		DrawGraph(scrollX[0], 0, testImage[0], true);
+		DrawGraph(scrollX[1], 0, testImage[1], true);
+
+	}
+	
 	for (int i = 0; i < effectNumber_; i++) {
 		//for•¶‚ª‹ô”‚Ì‚Æ‚«Ô
 		if (effectColorChange_ % 2 == 0) {
