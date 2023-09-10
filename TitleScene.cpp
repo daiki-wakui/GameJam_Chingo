@@ -82,12 +82,16 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
+	DrawGraph(-40, -180, backBottomImage, true);
+
+
 	for (int i = 0; i < BUBBLE_SUM; i++) {
 		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);
 	}
 
 	DrawRotaGraph(titleUI.x+1280/2, titleUI.y+900/2, 1, startUIRot_, titleImage, true);
 
+	
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
 
