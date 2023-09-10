@@ -15,6 +15,7 @@ private:
 	int blueImage = LoadGraph("GameAssets/Sprite/blue.png");
 	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
 	int titleImage = LoadGraph("GameAssets/Sprite/title.png");
+	int moleImage = LoadGraph("GameAssets/Sprite/mole2.png");
 
 
 	int mouseImage[2];

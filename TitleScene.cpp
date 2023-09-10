@@ -86,19 +86,19 @@ void TitleScene::Draw()
 		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);
 	}
 
-	DrawGraph(0, 0, blueImage, true);
-	DrawGraph(0, 0, vignetImage, true);
-	//DrawGraph(titleUI.x, titleUI.y, titleImage, true);
 	DrawRotaGraph(titleUI.x+1280/2, titleUI.y+900/2, 1, startUIRot_, titleImage, true);
 
+	DrawGraph(0, 0, blueImage, true);
+	DrawGraph(0, 0, vignetImage, true);
 
 	Player::GetInstance()->Draw(false);
 
-	//DrawBox(gameStartUILeft.x, gameStartUIRight.x, gameStartUILeft.y, gameStartUIRight.y, GetColor(255, 255, 255), true);
+	DrawGraph(555, 700, moleImage, true);
 
-	for (int i = 0; i < 3; i++) {
-		//DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
-	}
+
+	//for (int i = 0; i < 3; i++) {
+	//	//DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
+	//}
 
 	DrawRotaGraph(gameStartUI.x + 90, gameStartUI.y, 1, startUIRot_, gameStartImage, true);
 	
@@ -109,8 +109,6 @@ void TitleScene::Draw()
 	else {
 		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[1], true);
 	}
-	
-	
 	
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 }
