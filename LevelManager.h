@@ -50,6 +50,11 @@ private:
 	const int HANG_LV3 = 150;
 	const int HANG_LV4 = 200;
 
+	const int START_BODY_THICKNESS = 30; //‘Ì‚Ì‘¾‚³
+	const int BODY_THICKNESS_LV2 = 40;
+	const int BODY_THICKNESS_LV3 = 50;
+	const int BODY_THICKNESS_LV4 = 60;
+
 	int nowExp_;
 	int nextExp_;
 	int nowLevel_;

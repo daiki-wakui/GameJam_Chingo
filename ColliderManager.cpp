@@ -22,7 +22,7 @@ void ColliderManager::Update()
 	for (BaseEnemy* enemy : enemyM->GetEnemyList()) {
 		for (int p = 0; p < player->GetNumNeck(); p++) {
 			Vector2 P = player->GetPos(p);
-			if (CircleCol(enemy->GetPos(), enemy->GetR(), P, 30)) {
+			if (CircleCol(enemy->GetPos(), enemy->GetR(), P, player->GetThickness())) {
 				player->AddBodyLength();
 				enemy->SetIsDead();
 				expM->AddExp(enemy->GetEXP());
