@@ -38,7 +38,6 @@ void EnemyManager::Update()
 		return enemy->GetIsDead();
 	});
 
-
 	//敵全員の処理
 	//数確認
 	planktonNum_ = 0;
@@ -66,11 +65,6 @@ void EnemyManager::Update()
 		if (--dolphinNum_ <= 0) {
 			PopDolphin();
 		}
-	}
-
-	//クジラが死んだらクリア！
-	if (whaleNum_ <= 0) {
-
 	}
 }
 
