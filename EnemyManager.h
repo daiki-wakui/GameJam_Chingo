@@ -48,6 +48,10 @@ public:
 		whaleNum_++;
 	}
 
+	bool GetIsWhaleAlive() {
+		return whaleNum_;
+	}
+
 private:
 	std::list<std::unique_ptr<BaseEnemy>> enemys_;
 	std::list<BaseEnemy*> enemys2_;

@@ -84,6 +84,10 @@ void Player::Update()
 	}
 	//次フレーム用に記録
 	oldNeckWay_ = mouseAngle_;
+	if (GetIsExtend()) {
+		mouseAngle_ = 180;
+		oldNeckWay_ = mouseAngle_;
+	}
 	neckWay_ = { sinf(PI / 180 * mouseAngle_ * -1),cosf(PI / 180 * mouseAngle_ * -1) };
 	neckWay_ *= 10;
 
@@ -102,13 +106,16 @@ void Player::Update()
 				pos_[i + 1] = pos_[i];
 			}
 		}
+		else {
+			isReturn_ = true;
+		}
 	}
 	else if (activeLength_ > NUM_NECK) {
 		isReturn_ = true;
 		//高速縮み
 		for (int j = 0; j < 3; j++) {
 			activeLength_--;
-			for (int i = NUM_NECK - 1; i < activeLength_ + 1; i++) {
+			for (int i = 0; i < activeLength_ + 1; i++) {
 				pos_[i] = pos_[i + 1];
 			}
 			//これ以上縮まない時の例外処理
@@ -119,7 +126,7 @@ void Player::Update()
 	}
 
 	//縮み切っている状態
-	if (activeLength_ <= NUM_NECK) {
+	if (GetIsExtend()) {
 		//デバッグ用強制レベルアップ
 		if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_L)) {
 			levelM->Debug();
@@ -143,8 +150,6 @@ void Player::Update()
 		shrinkDistance_ = 0;
 		isReturn_ = false;
 		levelM->GetMax();
-
-
 	}
 
 	//各、体の角度

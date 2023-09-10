@@ -104,6 +104,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
 				scene = CLEAR_SCENE;
 			}
+			if (!EnemyManager::GetInstance()->GetIsWhaleAlive()) {
+				scene = CLEAR_SCENE;
+			}
 		}
 		else if (scene == CLEAR_SCENE) {
 			clearScene->Update();
