@@ -118,7 +118,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// ï`âÊèàóù
 		if (scene == TITLE_SCENE) {
-			DrawGraph(0, -180, backImage, true);
+			DrawGraph(-40, -180, backImage, true);
 			//DrawGraph(0, 0, groundImage, true);
 		//	DrawGraph(0, 0, titleImage, true);
 			

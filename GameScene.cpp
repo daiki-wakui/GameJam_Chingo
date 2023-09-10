@@ -71,7 +71,7 @@ void GameScene::Update()
 void GameScene::Draw()
 {
 	//’n–Ê
-	DrawGraph(0, -180 + shake->randY + ScrollManager::GetInstance()->GetScroll(), backBottomImage, true);
+	DrawGraph(-40, -180 + shake->randY + ScrollManager::GetInstance()->GetScroll(), backBottomImage, true);
 	DrawGraph(0, -1080 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
 	DrawGraph(0, -1080*2 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
 	DrawGraph(0, -1080*3 + ScrollManager::GetInstance()->GetScroll(), backTopImage, true);
