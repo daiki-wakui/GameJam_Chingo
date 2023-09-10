@@ -1,6 +1,8 @@
 #include "Dolphin.h"
 #include "EnemyManager.h"
 #include <math.h>
+#include "DxLib.h"
+#include "ScrollManager.h"
 
 void Dolphin::Initialize(Vector2 pos)
 {
@@ -19,6 +21,8 @@ void Dolphin::Initialize(Vector2 pos)
 	healHang_ = HANG;
 	exp_ = EXP;
 	originY_ = pos.y;
+
+	texture_ = LoadGraph("GameAssets/Sprite/Enemy_Dolphin.png");
 }
 
 void Dolphin::Update()
@@ -42,5 +46,12 @@ void Dolphin::Update()
 
 void Dolphin::Draw()
 {
+	
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	if (isWay_) {
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.3f, 0.3f, 0, texture_, true, true);
+	}
+	else {
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.3f, 0.3f, 0, texture_, true);
+	}
 }
