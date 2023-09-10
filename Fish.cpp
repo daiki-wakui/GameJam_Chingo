@@ -42,10 +42,10 @@ void Fish::Update()
 void Fish::Draw()
 {
 	if (isWay_) {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.2f, 0.2f, 0, texture_, true,true);
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true,true);
 	}
 	else {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.2f, 0.2f, 0, texture_, true);
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true);
 	}
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 }

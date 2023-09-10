@@ -49,9 +49,9 @@ void Dolphin::Draw()
 	
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 	if (isWay_) {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.3f, 0.3f, 0, texture_, true, true);
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true, true);
 	}
 	else {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.3f, 0.3f, 0, texture_, true);
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true);
 	}
 }
