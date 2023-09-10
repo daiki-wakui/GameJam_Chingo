@@ -44,6 +44,9 @@ public:
 	void AddDolphinNum() {
 		dolphinNum_++;
 	}
+	void AddWhaleNum() {
+		whaleNum_++;
+	}
 
 private:
 	std::list<std::unique_ptr<BaseEnemy>> enemys_;
@@ -61,4 +64,6 @@ private:
 	const int TIME_DOLPHIN_POP = 5 * 60;
 	int dolphinNum_;
 	int dolphinPopTimer_;
+
+	int whaleNum_;
 };
