@@ -56,8 +56,11 @@ private:
 	static const int MAX_BODY = 3;
 	const int EX_BODY_SPACE = 10;
 	const int RESULT_BODY_SPACE = 20;
+	const int TIME_BULLET = 3 * 60;
 	
 	int bodyType_[MAX_BODY];
+
+	int bulletTimer_;
 
 	//体選択画面
 	bool isSelect_;

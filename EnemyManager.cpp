@@ -85,7 +85,6 @@ void EnemyManager::PopPlankton()
 	std::uniform_real_distribution<float> y(-3000, 500);
 	std::uniform_real_distribution<float> rot(30, 300);
 
-
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
 	newEnemy->Initialize({x(engine),y(engine)});
 	newEnemy->SetRotation(rot(engine));
