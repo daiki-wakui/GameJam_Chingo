@@ -1,4 +1,5 @@
 #include "LevelManager.h"
+#include "exBody/ExBodyManager.h"
 #include "Player.h"
 
 LevelManager* LevelManager::GetInstance()
@@ -95,7 +96,10 @@ void LevelManager::Update()
 void LevelManager::Draw()
 {
 	DrawGraph(2, 790, hungerGaugeBackImage, true);
-	if (nowLevel_ == 1) {
+	if (ExBodyManager::GetInstance()->GetIsSelect()) {
+		DrawRectGraph(-3, 792, 0, 0, 1280, 128, hungerGaugeBarImage, true);
+	}
+	else if (nowLevel_ == 1) {
 		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 13.4, 128, hungerGaugeBarImage, true);
 	}
 	else if (nowLevel_ == 2) {
