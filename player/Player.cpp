@@ -95,8 +95,10 @@ void Player::Update()
 	neckWay_ *= BODY_SPACE;
 
 	//首から上の部分
-	for (int i = NUM_NECK; i >= 0; i--) {
-		pos_[i] = pos_[NUM_NECK] + neckWay_ * ((i - 5) * -1);
+	if (!isReturn_) {
+		for (int i = NUM_NECK; i >= 0; i--) {
+			pos_[i] = pos_[NUM_NECK] + neckWay_ * ((i - 5) * -1);
+		}
 	}
 
 	//伸ばし縮み
@@ -211,8 +213,28 @@ void Player::ResultUpdate()
 void Player::Draw(bool scroll)
 {
 	//チンアナゴ
-	if (!(--invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
-		for (int i = 0; i < activeLength_; i++) {
+	for (int i = 0; i < activeLength_; i++) {
+		if (i < NUM_NECK) {
+			if (scroll) {
+				if (!(invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
+					DrawCircle(pos_[i], thickness_, GetBodyColor(i));
+				}
+				if (pos_[i].x < thickness_) {
+					if (!(invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
+						DrawCircle({ pos_[i].x + 1280,pos_[i].y }, thickness_, GetBodyColor(i));
+					}
+				}
+				if (pos_[i].x > 1280 - thickness_) {
+					if (!(invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
+						DrawCircle({ pos_[i].x - 1280,pos_[i].y }, thickness_, GetBodyColor(i));
+					}
+				}
+			}
+			else {
+				DrawCircleNotScroll(pos_[i], thickness_, GetBodyColor(i));
+			}
+		}
+		else {
 			if (scroll) {
 				DrawCircle(pos_[i], thickness_, GetBodyColor(i));
 				if (pos_[i].x < thickness_) {
@@ -226,19 +248,9 @@ void Player::Draw(bool scroll)
 				DrawCircleNotScroll(pos_[i], thickness_, GetBodyColor(i));
 			}
 		}
-		//DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
-
-		ExBodyManager::GetInstance()->Draw();
-
-		//for (int i = 1; i < activeLength_; i++) {
-		//	if (scroll) {
-		//		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
-		//	}
-		//	else {
-		//		DrawLineNotScroll(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
-		//	}
-		//}
-
+	}
+	ExBodyManager::GetInstance()->Draw();
+	if (!(--invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
 		if (scroll) {
 			DrawRotaGraph3(GetPos(0).x, GetPos(0).y + ScrollManager::GetInstance()->GetScroll(), 128, 128, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, eyeTexure_, true);
 		}
@@ -250,7 +262,6 @@ void Player::Draw(bool scroll)
 
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
-	//DrawFormatString(200, 80, GetColor(255, 255, 255), "nowLength = %d", shrinkDistance_);
 }
 
 bool Player::GetIsExtend()
