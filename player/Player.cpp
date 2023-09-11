@@ -33,7 +33,8 @@ void Player::Initialize()
 	shrinkDistance_ = 0;
 	isBackShakeing_ = false;
 	thickness_ = START_BODY_THICKNESS;
-	invTime_ = 0;
+	invTime_ = 0; 
+	bodySpace_ = START_BODY_SPACE;
 
 	ExBodyManager::GetInstance()->Initialize();
 
@@ -92,7 +93,7 @@ void Player::Update()
 	}
 	neckWay_ = { sinf(PI / 180 * mouseAngle_ * -1),cosf(PI / 180 * mouseAngle_ * -1) };
 	neckWay_.normalize();
-	neckWay_ *= BODY_SPACE;
+	neckWay_ *= bodySpace_;
 
 	//首から上の部分
 	if (!isReturn_) {

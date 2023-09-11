@@ -31,15 +31,15 @@ void ExBodyManager::Update()
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isRelease) {
 			if (mouseY > 300 && mouseY < 700) {
 				if (mouseX > 40 && mouseX <= 440) {
-					AddBody(choice_[0]+1);
+					AddBody(choice_[0] + 1);
 					isSelect_ = false;
 				}
 				if (mouseX > 440 && mouseX <= 840) {
-					AddBody(choice_[1]+1);
+					AddBody(choice_[1] + 1);
 					isSelect_ = false;
 				}
 				if (mouseX > 840 && mouseX <= 1240) {
-					AddBody(choice_[2]+1);
+					AddBody(choice_[2] + 1);
 					isSelect_ = false;
 				}
 			}
@@ -135,7 +135,7 @@ void ExBodyManager::SelectRand()
 			break;
 		}
 	}
-	
+
 	while (true)
 	{
 		std::uniform_real_distribution<float> z(0, END_BODY_TYPE - 2 + 0.99999f);
@@ -206,7 +206,7 @@ void ExBodyManager::ResultDraw()
 		if (bodyType_[i] == 1) {
 			//MUSCLE
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ƒ}ƒbƒXƒ‹");
-			DrawRotaGraph3(temptexturePos.x,temptexturePos.y,
+			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 				384, 256, 0.5f, 0.5f, 0, muscularImage, true);
 		}
 		else if (bodyType_[i] == 2) {
@@ -238,6 +238,24 @@ void ExBodyManager::ResultDraw()
 void ExBodyManager::AddBody(int num)
 {
 	bodyType_[LevelManager::GetInstance()->GetLevel() - 2] = num;
+	switch (num)
+	{
+	case MUSCLE:
+
+		break;
+	case MAGICIAN:
+
+		break;
+	case JET:
+		Player::GetInstance()->AddBodySpace(2);
+		break;
+	case GAMING:
+
+		break;
+
+	default:
+		break;
+	}
 }
 
 void ExBodyManager::SetIsSelect()
