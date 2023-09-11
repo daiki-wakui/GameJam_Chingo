@@ -9,11 +9,11 @@ void Dolphin::Initialize(Vector2 pos)
 	BaseEnemy::Initialize(pos);
 
 	if (pos.x < 640) {
-		pos_.x = -10;
+		pos_.x = -200;
 		isWay_ = true;
 	}
 	if (pos.x >= 640) {
-		pos_.x = 1290;
+		pos_.x = 1480;
 		isWay_ = false;
 	}
 
@@ -37,7 +37,7 @@ void Dolphin::Update()
 		pos_.x += -SPEED_MOVE;
 	}
 
-	if (pos_.x > 1300 || pos_.x < -20) {
+	if (pos_.x > 1580 || pos_.x < -300) {
 		isDead_ = true;
 	}
 

@@ -28,7 +28,7 @@ void ExBodyManager::Update()
 		int mouseX, mouseY;
 		GetMousePoint(&mouseX, &mouseY);
 
-		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isRelease) {
 			if (mouseY > 300 && mouseY < 700) {
 				if (mouseX > 40 && mouseX <= 440) {
 					AddBody(choice_[0]+1);
@@ -44,6 +44,13 @@ void ExBodyManager::Update()
 				}
 			}
 		}
+	}
+
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+		isRelease = true;
+	}
+	else {
+		isRelease = false;
 	}
 }
 
