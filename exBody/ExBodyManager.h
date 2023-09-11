@@ -63,4 +63,5 @@ private:
 	int jetImage = LoadGraph("GameAssets/Sprite/Body/jet.png");
 	int gamingImage = LoadGraph("GameAssets/Sprite/Body/gamers.png");
 
+	bool isRelease = true;
 };
