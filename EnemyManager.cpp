@@ -5,6 +5,7 @@
 #include "Fish.h"
 #include "Dolphin.h"
 #include "Whale.h"
+#include "Sakaban.h"
 
 using namespace std;
 
@@ -65,6 +66,10 @@ void EnemyManager::Update()
 		if (--dolphinNum_ <= 0) {
 			PopDolphin();
 		}
+	}
+
+	if (--sakabanPopTimer_ <= 0) {
+		PopSakaban();
 	}
 }
 
@@ -151,4 +156,25 @@ void EnemyManager::PopWhale()
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Whale>();
 	newEnemy->Initialize({ x(engine),-3000 });
 	enemys_.push_back(move(newEnemy));
+}
+
+void EnemyManager::PopSakaban()
+{
+	//ƒ‰ƒ“ƒ_ƒ€
+	std::random_device seed_gen;
+	std::mt19937_64 engine(seed_gen());
+
+	std::uniform_real_distribution<float> rand(0, 5);
+	if (rand(engine) <= 0.9f) {
+
+		std::uniform_real_distribution<float> x(0, 1280);
+		std::uniform_real_distribution<float> y(-3000, 0);
+
+
+		unique_ptr<BaseEnemy> newEnemy = make_unique<Sakaban>();
+		newEnemy->Initialize({ x(engine),y(engine) });
+		enemys_.push_back(move(newEnemy));
+	}
+
+	fishPopTimer_ = TIME_FISH_POP;
 }

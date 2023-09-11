@@ -30,8 +30,12 @@ void ColliderManager::Update()
 				//食える時
 				if (expM->GetLevel() >= enemy->GetLv()) {
 					player->AddBodyLength(enemy->GetHang());
-					enemy->SetIsDead();
 					expM->AddExp(enemy->GetEXP());
+					if (enemy->GetIsCook()) {
+						player->AddBodyLength(enemy->GetHang());
+						expM->AddExp(enemy->GetEXP());
+					}
+					enemy->SetIsDead();
 				}
 				//食えない時
 				else {
@@ -45,8 +49,12 @@ void ColliderManager::Update()
 						//食える時
 						if (expM->GetLevel() >= enemy->GetLv()) {
 							player->AddBodyLength(enemy->GetHang());
-							enemy->SetIsDead();
 							expM->AddExp(enemy->GetEXP());
+							if (enemy->GetIsCook()) {
+								player->AddBodyLength(enemy->GetHang());
+								expM->AddExp(enemy->GetEXP());
+							}
+							enemy->SetIsDead();
 						}
 						//食えない時
 						else {
@@ -63,8 +71,12 @@ void ColliderManager::Update()
 					//食える時
 					if (expM->GetLevel() >= enemy->GetLv()) {
 						player->AddBodyLength(enemy->GetHang());
-						enemy->SetIsDead();
 						expM->AddExp(enemy->GetEXP());
+						if (enemy->GetIsCook()) {
+							player->AddBodyLength(enemy->GetHang());
+							expM->AddExp(enemy->GetEXP());
+						}
+						enemy->SetIsDead();
 					}
 				}
 			}
