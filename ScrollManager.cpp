@@ -14,5 +14,8 @@ float ScrollManager::GetScroll()
 	if (originPos_ < playerPos) {
 		return 0.0f;
 	}
+	if (originPos_ - playerPos > STOP) {
+		return STOP;
+	}
 	return originPos_ - playerPos;
 }
