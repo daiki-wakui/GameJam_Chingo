@@ -23,9 +23,17 @@ void ColliderManager::Update()
 		for (int p = 0; p < player->GetNumNeck(); p++) {
 			Vector2 P = player->GetPos(p);
 			if (CircleCol(enemy->GetPos(), enemy->GetR(), P, player->GetThickness())) {
-				player->AddBodyLength();
-				enemy->SetIsDead();
-				expM->AddExp(enemy->GetEXP());
+				//H‚¦‚éŽž
+				if (expM->GetLevel() >= enemy->GetLv()) {
+					player->AddBodyLength(enemy->GetHang());
+					enemy->SetIsDead();
+					expM->AddExp(enemy->GetEXP());
+				}
+				//H‚¦‚È‚¢Žž
+				else {
+					player->SubBodyLength();
+					player->SetInv();
+				}
 			}
 		}
 	}

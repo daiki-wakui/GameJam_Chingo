@@ -55,6 +55,11 @@ void ExBodyManager::Draw()
 		}
 	}
 
+
+}
+
+void ExBodyManager::LvUpDraw()
+{
 	if (isSelect_) {
 		DrawBox(40, 300, 440, 700, GetColor(255, 0, 0), true);
 		DrawBox(440, 300, 840, 700, GetColor(0, 255, 0), true);

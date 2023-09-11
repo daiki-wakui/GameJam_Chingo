@@ -19,6 +19,7 @@ void Fish::Initialize(Vector2 pos)
 	r_ = RADIUS;
 	healHang_ = HANG;
 	exp_ = EXP;
+	lv_ = LV;
 
 	texture_ = LoadGraph("GameAssets/Sprite/enemy_fish.png");
 }
