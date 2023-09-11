@@ -73,7 +73,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	clearScene->Initialize();
 	debug->Initialize();
 	
-	int scene = GAME_SCENE;
+	int scene = TITLE_SCENE;
 
 	// ƒQ[ƒ€ƒ‹[ƒv
 	while (true) {
@@ -112,6 +112,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			clearScene->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				gameScene->Initialize();
+				titleScene->Initialize();
 				scene = TITLE_SCENE;
 			}
 		}
