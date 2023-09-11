@@ -88,9 +88,15 @@ void LevelManager::Update()
 
 void LevelManager::Draw()
 {
+	//DrawGraph(-Player::GetInstance()->GetActiveBody(), 600, hungerGaugeBarImage, true);
+
+	DrawGraph(2, 790, hungerGaugeBackImage, true);
+	DrawGraph(-3, 792, hungerGaugeBarImage, true);
+	DrawGraph(2, 790, hungerGaugeFrameImage, true);
+
 	//ゲージの枠
-	DrawBox(40, 830, 1240, 880, GetColor(16, 16, 103), true);
-	DrawBox(40, 830, 1240, 880, GetColor(0, 0, 0), false);
+	/*DrawBox(40, 830, 1240, 880, GetColor(16, 16, 103), true);
+	DrawBox(40, 830, 1240, 880, GetColor(0, 0, 0), false);*/
 
 	DrawBox(1200, 20, 1240, 220, GetColor(16, 16, 103), true);
 
@@ -116,7 +122,7 @@ void LevelManager::Draw()
 	//現在のレベル表示
 	for (int i = 0; i < 3; i++) {
 		if (nowLevel_ == i + 1) {
-			DrawExtendGraph(1100, 790, 128+1100, 128+790, levelImage[i], true);
+			//DrawExtendGraph(1100, 790, 128+1100, 128+790, levelImage[i], true);
 		}
 	}
 
