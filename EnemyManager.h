@@ -34,6 +34,7 @@ public:
 	void PopFish();
 	void PopDolphin();
 	void PopWhale();
+	void PopSakaban();
 
 	void AddPlanktonNum() {
 		planktonNum_++;
@@ -70,4 +71,7 @@ private:
 	int dolphinPopTimer_;
 
 	int whaleNum_;
+
+	const int TIME_SAKABAN = 20 * 60;
+	int sakabanPopTimer_;
 };
