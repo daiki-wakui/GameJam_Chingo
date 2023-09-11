@@ -29,6 +29,8 @@ void LevelManager::Update()
 {
 	Player* player = Player::GetInstance();
 
+	hungerLength_ = player->GetMaxLength() - player->GetActiveBody();
+
 	//レベル管理
 	if (nowExp_ >= EXP_LV3) {
 		nowLevel_ = 4;
@@ -84,6 +86,7 @@ void LevelManager::Update()
 	if (nowLevel_ == 3) {
 		nowExpGaugeXRight_[1] = nowExpGaugeXLeft_[1];
 	}
+	
 }
 
 void LevelManager::Draw()
@@ -91,7 +94,7 @@ void LevelManager::Draw()
 	//DrawGraph(-Player::GetInstance()->GetActiveBody(), 600, hungerGaugeBarImage, true);
 
 	DrawGraph(2, 790, hungerGaugeBackImage, true);
-	DrawGraph(-3, 792, hungerGaugeBarImage, true);
+	DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 13.4, 128, hungerGaugeBarImage, true);
 	DrawGraph(2, 790, hungerGaugeFrameImage, true);
 
 	//ゲージの枠
@@ -108,15 +111,15 @@ void LevelManager::Draw()
 	}
 
 	//溜まってるゲージの描画レベル1,2,3
-	DrawBox(nowExpGaugeXLeft_[0], 830, nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
+	/*DrawBox(nowExpGaugeXLeft_[0], 830, nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
 	DrawBox(nowExpGaugeXLeft_[1], 830, nowExpGaugeXRight_[1] + 40, 880, GetColor(46, 104, 214), true);
-	DrawBox(nowExpGaugeXLeft_[2], 830, nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);
+	DrawBox(nowExpGaugeXLeft_[2], 830, nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);*/
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	//透明ゲージの描画レベル1,2,3
-	DrawBox(haveExpGaugeXLeft_[0] + nowExpGaugeXRight_[0], 830, haveExpGaugeXRight_[0] + nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
+	/*DrawBox(haveExpGaugeXLeft_[0] + nowExpGaugeXRight_[0], 830, haveExpGaugeXRight_[0] + nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
 	DrawBox(haveExpGaugeXLeft_[1] + nowExpGaugeXRight_[1], 830, haveExpGaugeXRight_[1] + nowExpGaugeXRight_[1] + 40, 880, GetColor(46, 104, 214), true);
-	DrawBox(haveExpGaugeXLeft_[2] + nowExpGaugeXRight_[2], 830, haveExpGaugeXRight_[2] + nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);
+	DrawBox(haveExpGaugeXLeft_[2] + nowExpGaugeXRight_[2], 830, haveExpGaugeXRight_[2] + nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);*/
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	
 	//現在のレベル表示
@@ -135,6 +138,7 @@ void LevelManager::Draw()
 	DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
+	DrawFormatString(0, 200, GetColor(255, 255, 255), "hungerlen = %d", hungerLength_);
 }
 
 void LevelManager::IncludeExp()

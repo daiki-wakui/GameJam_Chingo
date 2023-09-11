@@ -43,7 +43,6 @@ private:
 	int hungerGaugeFrameImage = LoadGraph("GameAssets/Sprite/UI_gauge_frame.png");
 	int hungerGaugeBarImage = LoadGraph("GameAssets/Sprite/UI_gauge_bar.png");
 
-
 	int levelImage[3];
 
 	const int EXP_LV1 = 100;
@@ -75,4 +74,6 @@ private:
 	int restGrauge[3] = {};
 
 	int level3Exp_;
+	int hungerLength_;
+
 };

@@ -50,6 +50,10 @@ public:
 		return angle_[i];
 	}
 
+	int GetMaxLength() {
+		return maxHunger_;
+	}
+
 	void SetMaxLength(int num) {
 		maxHunger_ = num;
 	}
