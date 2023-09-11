@@ -24,6 +24,8 @@ void Dolphin::Initialize(Vector2 pos)
 	originY_ = pos.y;
 
 	texture_ = LoadGraph("GameAssets/Sprite/Enemy_Dolphin.png");
+
+	colNum_ = MAX_COL;
 }
 
 void Dolphin::Update()
@@ -43,16 +45,28 @@ void Dolphin::Update()
 
 	frame_ += 0.05f;
 	pos_.y = originY_ + sinf(frame_) * 100;
+
+	colPos_[0] = pos_;
+	colPos_[0].x += r_ * 2;
+	colPos_[1] = pos_;
+	colPos_[1].x -= r_ * 2;
 }
 
 void Dolphin::Draw()
 {
-	
-	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 	if (isWay_) {
 		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true, true);
 	}
 	else {
 		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true);
 	}
+
+	DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
+	DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
+}
+
+Vector2 Dolphin::Col(int num)
+{
+	return colPos_[num];
 }

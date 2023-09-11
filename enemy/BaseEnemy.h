@@ -6,6 +6,7 @@ public:
 	virtual void Initialize(Vector2 pos);
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
+	virtual Vector2 Col(int num);
 
 	void SetRotation(float rot) {
 		rot_ = rot;
@@ -33,6 +34,9 @@ public:
 	int GetLv() {
 		return lv_;
 	}
+	int GetColNum() {
+		return colNum_;
+	}
 
 protected:
 	int healHang_ = 1; //プレイヤーが食べた時に空腹度回復する量
@@ -46,4 +50,7 @@ protected:
 	int texture_;
 
 	bool isDead_;
+
+	int colNum_ = 0;
+
 };
