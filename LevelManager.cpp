@@ -95,7 +95,15 @@ void LevelManager::Update()
 void LevelManager::Draw()
 {
 	DrawGraph(2, 790, hungerGaugeBackImage, true);
-	DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 13.4, 128, hungerGaugeBarImage, true);
+	if (nowLevel_ == 1) {
+		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 13.4, 128, hungerGaugeBarImage, true);
+	}
+	else if (nowLevel_ == 2) {
+		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 5.95, 128, hungerGaugeBarImage, true);
+	}
+	else if (nowLevel_ == 3) {
+		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 3.71, 128, hungerGaugeBarImage, true);
+	}
 	DrawGraph(2, 790, hungerGaugeFrameImage, true);
 
 	//ÉQÅ[ÉWÇÃòg
