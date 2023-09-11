@@ -16,8 +16,8 @@ void LevelManager::Initialize()
 	haveExp_ = 0;
 
 	for (int i = 0; i < 3; i++) {
-		haveExpGaugeXRight_[i] = 0;
-		nowExpGaugeXRight_[i] = 0;
+		haveExpGaugeYTop_[i] = 0;
+		nowExpGaugeYTop_[i] = 750;
 	}
 
 	levelImage[0] = LoadGraph("GameAssets/Sprite/level1.png");
@@ -50,91 +50,102 @@ void LevelManager::Update()
 
 	//持ってる餌のゲージ増加(透明)
 	if (nowLevel_ == 1) {
-		haveExpGaugeXRight_[0] = haveExp_ * 12;
+		haveExpGaugeYTop_[0] = haveExp_ * 2;
 	}
 	if (nowLevel_ == 2) {
-		haveExpGaugeXRight_[1] = haveExp_ * 3;
+		haveExpGaugeYTop_[1] = haveExp_ * 0.5;
 	}
 	if (nowLevel_ == 3) {
-		haveExpGaugeXRight_[2] = haveExp_ * 1.7f;
+		haveExpGaugeYTop_[2] = haveExp_ * 0.28;
 	}
 
 	//伸び続けてる間に次のレベルになった時の例外処理
 	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100) {
-		haveExpGaugeXRight_[1] = (GetNowAndHaveExp() - 100) * 3;
-		haveExpGaugeXRight_[0] = 1200 - nowExpGaugeXRight_[0];
+		haveExpGaugeYTop_[1] = (GetNowAndHaveExp() - 100) * 0.5;
 	}
 	if (nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
-		haveExpGaugeXRight_[2] = (GetNowAndHaveExp() - 500);
-		haveExpGaugeXRight_[1] = 1200 - nowExpGaugeXRight_[1];
+		haveExpGaugeYTop_[2] = (GetNowAndHaveExp() - 500) * 0.28;
 	}
-
 	
 	for (int i = 0; i < 3; i++) {
 		//レベルアップまでの残りゲージ
-		restGrauge[i] = GaugeLength - nowExpGaugeXRight_[i];
+		restGrauge[i] = GaugeLength - nowExpGaugeYTop_[i];
 
 		//ゲージが貯まりきったら表示しない
 		if (restGrauge[i] <= 0) {
-			haveExpGaugeXRight_[i] = 0;
+			haveExpGaugeYTop_[i] = 0;
 		}
 	}
 
 	if (nowLevel_ == 2) {
-		nowExpGaugeXRight_[0] = nowExpGaugeXLeft_[0];
+		nowExpGaugeYTop_[0] = 750;
+		haveExpGaugeYTop_[0] = 0;
 	}
 	if (nowLevel_ == 3) {
-		nowExpGaugeXRight_[1] = nowExpGaugeXLeft_[1];
+		nowExpGaugeYTop_[1] = 750;
+		haveExpGaugeYTop_[1] = 0;
+	}
+	if (nowLevel_ == 4) {
+		nowExpGaugeYTop_[2] = 550;
+		haveExpGaugeYTop_[2] = 0;
 	}
 	
 }
 
 void LevelManager::Draw()
 {
-	//DrawGraph(-Player::GetInstance()->GetActiveBody(), 600, hungerGaugeBarImage, true);
-
 	DrawGraph(2, 790, hungerGaugeBackImage, true);
 	DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 13.4, 128, hungerGaugeBarImage, true);
 	DrawGraph(2, 790, hungerGaugeFrameImage, true);
 
 	//ゲージの枠
-	/*DrawBox(40, 830, 1240, 880, GetColor(16, 16, 103), true);
-	DrawBox(40, 830, 1240, 880, GetColor(0, 0, 0), false);*/
 
-	DrawBox(1200, 20, 1240, 220, GetColor(16, 16, 103), true);
+	DrawBox(1200, 550, 1240, 750, GetColor(16, 16, 103), true);
 
 	//現在のレベル表示
 	for (int i = 0; i < 3; i++) {
 		if (nowLevel_ == i + 1) {
-			DrawExtendGraph(1150, 170, 128 + 1150, 128 + 170, levelImage[i], true);
+			DrawExtendGraph(1150, 710, 128 + 1150, 128 + 710, levelImage[i], true);
 		}
 	}
 
 	//溜まってるゲージの描画レベル1,2,3
-	/*DrawBox(nowExpGaugeXLeft_[0], 830, nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
-	DrawBox(nowExpGaugeXLeft_[1], 830, nowExpGaugeXRight_[1] + 40, 880, GetColor(46, 104, 214), true);
-	DrawBox(nowExpGaugeXLeft_[2], 830, nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);*/
+	
+	DrawBox(1200, nowExpGaugeYTop_[0], 1200 + 40, nowExpGaugeYBottom_[0], GetColor(46, 104, 214), true);
+	DrawBox(1200, nowExpGaugeYTop_[1], 1200 + 40, nowExpGaugeYBottom_[1], GetColor(46, 104, 214), true);
+	DrawBox(1200, nowExpGaugeYTop_[2], 1200 + 40, nowExpGaugeYBottom_[2], GetColor(46, 104, 214), true);
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	//透明ゲージの描画レベル1,2,3
-	/*DrawBox(haveExpGaugeXLeft_[0] + nowExpGaugeXRight_[0], 830, haveExpGaugeXRight_[0] + nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
-	DrawBox(haveExpGaugeXLeft_[1] + nowExpGaugeXRight_[1], 830, haveExpGaugeXRight_[1] + nowExpGaugeXRight_[1] + 40, 880, GetColor(46, 104, 214), true);
-	DrawBox(haveExpGaugeXLeft_[2] + nowExpGaugeXRight_[2], 830, haveExpGaugeXRight_[2] + nowExpGaugeXRight_[2] + 40, 880, GetColor(46, 104, 214), true);*/
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	
-	//現在のレベル表示
-	for (int i = 0; i < 3; i++) {
-		if (nowLevel_ == i + 1) {
-			//DrawExtendGraph(1100, 790, 128+1100, 128+790, levelImage[i], true);
-		}
+	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100) {
+		DrawBox(1200, 550, 1240, nowExpGaugeYTop_[0], GetColor(46, 104, 214), true);
 	}
+	else {
+		DrawBox(1200, (nowExpGaugeYTop_[0] - haveExpGaugeYTop_[0]), 1240, nowExpGaugeYTop_[0], GetColor(46, 104, 214), true);
+	}
+
+	if (nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
+		DrawBox(1200, 550, 1240, nowExpGaugeYTop_[1], GetColor(46, 104, 214), true);
+	}
+	else {
+		DrawBox(1200, (nowExpGaugeYTop_[1] - haveExpGaugeYTop_[1]), 1240, nowExpGaugeYTop_[1], GetColor(46, 104, 214), true);
+	}
+
+	if (GetNowAndHaveExp() >= 1200) {
+		DrawBox(1200, 550, 1240, nowExpGaugeYTop_[1], GetColor(46, 104, 214), true);
+	}
+	else {
+		DrawBox(1200, (nowExpGaugeYTop_[2] - haveExpGaugeYTop_[2]), 1240, nowExpGaugeYTop_[2], GetColor(46, 104, 214), true);
+
+	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	//レベルアップ可能表示
 	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100 || nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
-		DrawExtendGraph(1100, 700, 128 + 1100, 128 + 700, levelUpImage, true);
+		DrawExtendGraph(1050, 690, 128 + 1050, 128 + 690, levelUpImage, true);
 	}
 	
-
 	DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
@@ -147,36 +158,27 @@ void LevelManager::IncludeExp()
 
 	//レベル1のゲージ増加
 	if (nowLevel_ == 1) {
-		nowExpGaugeXRight_[0] += haveExp_ * 12;
-		nowExpGaugeXRight_[0] = min(nowExpGaugeXRight_[0], 1200);
+		nowExpGaugeYTop_[0] -= haveExp_ * 2;
 	}
 
 	//レベル2のゲージ増加
 	if (nowLevel_ == 2) {
-		nowExpGaugeXRight_[1] += haveExp_ * 3;
-
-		if (nowExpGaugeXRight_[1] >= 1200) {
-			nowExpGaugeXRight_[1] = 1200;
-		}
+		nowExpGaugeYTop_[1] -= haveExp_ * 0.5;
 	}
 	else if (nowLevel_ == 1 && nowExp_ >= 100) {
-		nowExpGaugeXRight_[1] += (nowExp_ - 100) * 3;
+		nowExpGaugeYTop_[1] -= (nowExp_ - 100) * 0.5;
 	}
 
 	//レベル3のゲージ増加
 	if (nowLevel_ == 3) {
-		nowExpGaugeXRight_[2] += haveExp_ * 1.7f;
-
-		if (nowExpGaugeXRight_[2] >= 1200) {
-			nowExpGaugeXRight_[2] = 1200;
-		}
+		nowExpGaugeYTop_[2] -= haveExp_ * 0.28;
 	}
 	else if (nowLevel_ == 2 && nowExp_ >= 500) {
-		nowExpGaugeXRight_[2] += (nowExp_ - 500);
+		nowExpGaugeYTop_[2] -= (nowExp_ - 500) * 0.28;
 	}
 
 	if (nowLevel_ == 4) {
-		nowExpGaugeXRight_[2] = 1200;
+		nowExpGaugeYTop_[2] = 550;
 	}
 
 	haveExp_ = 0;

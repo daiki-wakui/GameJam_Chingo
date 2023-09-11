@@ -64,11 +64,11 @@ private:
 	int nowLevel_;
 	int haveExp_;
 
-	int haveExpGaugeXLeft_[3] = { 40,40,40 };
-	int haveExpGaugeXRight_[3];
+	int haveExpGaugeYBottom_[3] = { 750,750,750 };
+	int haveExpGaugeYTop_[3];
 
-	int nowExpGaugeXLeft_[3] = { 40,40,40 };
-	int nowExpGaugeXRight_[3];
+	int nowExpGaugeYBottom_[3] = { 750,750,750 };
+	int nowExpGaugeYTop_[3] = { 750,750,750 };
 
 	int GaugeLength = 1200;
 	int restGrauge[3] = {};
