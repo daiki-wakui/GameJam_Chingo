@@ -39,9 +39,9 @@ private:
 
 	int levelUpImage = LoadGraph("GameAssets/Sprite/levelUp.png");
 
-	int hungerGaugeBackImage = LoadGraph("GameAssets/Sprite/UI_gauge_background.png");
-	int hungerGaugeFrameImage = LoadGraph("GameAssets/Sprite/UI_gauge_frame.png");
-	int hungerGaugeBarImage = LoadGraph("GameAssets/Sprite/UI_gauge_bar.png");
+	int hungerGaugeBackImage = LoadGraph("GameAssets/Sprite/UI/UI_gauge_background.png");
+	int hungerGaugeFrameImage = LoadGraph("GameAssets/Sprite/UI/UI_gauge_frame.png");
+	int hungerGaugeBarImage = LoadGraph("GameAssets/Sprite/UI/UI_gauge_bar.png");
 
 	int levelImage[3];
 
