@@ -21,13 +21,9 @@ void Whale::Initialize(Vector2 pos)
 	exp_ = EXP;
 	lv_ = LV;
 
-	texture_ = LoadGraph("GameAssets/Sprite/enemy_fish.png");
+	texture_ = LoadGraph("GameAssets/Sprite/Enemy_Whale.png");
 
 	colNum_ = MAX_COL;
-	colPos_[0] = pos_;
-	colPos_[0].x += r_ + 1;
-	colPos_[1] = pos_;
-	colPos_[1].x -= r_ + 1;
 }
 
 void Whale::Update()
@@ -44,15 +40,24 @@ void Whale::Update()
 	if (pos_.x > 1300 || pos_.x < -20) {
 		isWay_ = (isWay_ + 1) % 2;
 	}
+
+	colPos_[0] = pos_;
+	colPos_[0].x += r_ * 2;
 }
 
 void Whale::Draw()
 {
 	if (isWay_) {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.2f, 0.2f, 0, texture_, true, true);
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true, true);
 	}
 	else {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.2f, 0.2f, 0, texture_, true);
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true);
 	}
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
+}
+
+Vector2 Whale::Col(int num)
+{
+	return colPos_[num];
 }
