@@ -4,6 +4,7 @@
 #include "LevelManager.h"
 #include <memory>
 #include "exBody/ExBodyManager.h"
+#include "BulletManager.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ void ColliderManager::Update()
 	EnemyManager* enemyM = EnemyManager::GetInstance();
 	LevelManager* expM = LevelManager::GetInstance();
 	ExBodyManager* exBodyM = ExBodyManager::GetInstance();
+	BulletManager* bulletM = BulletManager::GetInstance();
 
 	for (BaseEnemy* enemy : enemyM->GetEnemyList()) {
 		for (int p = 0; p < player->GetNumNeck(); p++) {
@@ -67,7 +69,12 @@ void ColliderManager::Update()
 				}
 			}
 		}
-
+		for (PlayerBullet* bullet : bulletM->GetBulletList()) {
+			if (CircleCol(bullet->GetPos(), bullet->GetR(), enemy->GetPos(), enemy->GetR())) {
+				bullet->SetIsDead();
+				enemy->SetIsCook();
+			}
+		}
 	}
 }
 

@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="DebugManager.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="math\Vector2.cpp" />
     <ClCompile Include="math\Vector3.cpp" />
     <ClCompile Include="math\Vector4.cpp" />
+    <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="player\Player.cpp" />
     <ClCompile Include="ScrollManager.cpp" />
     <ClCompile Include="Shake.cpp" />
@@ -152,6 +154,7 @@
     <ClCompile Include="Whale.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="DebugManager.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
+    <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="player\Player.h" />
     <ClInclude Include="ScrollManager.h" />
     <ClInclude Include="Shake.h" />
