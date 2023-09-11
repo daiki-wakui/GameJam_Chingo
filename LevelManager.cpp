@@ -92,6 +92,15 @@ void LevelManager::Draw()
 	DrawBox(40, 830, 1240, 880, GetColor(16, 16, 103), true);
 	DrawBox(40, 830, 1240, 880, GetColor(0, 0, 0), false);
 
+	DrawBox(1200, 20, 1240, 220, GetColor(16, 16, 103), true);
+
+	//現在のレベル表示
+	for (int i = 0; i < 3; i++) {
+		if (nowLevel_ == i + 1) {
+			DrawExtendGraph(1150, 170, 128 + 1150, 128 + 170, levelImage[i], true);
+		}
+	}
+
 	//溜まってるゲージの描画レベル1,2,3
 	DrawBox(nowExpGaugeXLeft_[0], 830, nowExpGaugeXRight_[0] + 40, 880, GetColor(46, 104, 214), true);
 	DrawBox(nowExpGaugeXLeft_[1], 830, nowExpGaugeXRight_[1] + 40, 880, GetColor(46, 104, 214), true);
