@@ -26,6 +26,7 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+	void LvUpDraw();
 
 	void BodyDraw(int i);
 	void SelectRand();

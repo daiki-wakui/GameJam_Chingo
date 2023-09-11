@@ -10,6 +10,7 @@ void Plankton::Initialize(Vector2 pos)
 	r_ = RADIUS;
 	healHang_ = HANG;
 	exp_ = EXP;
+	lv_ = LV;
 
 	std::random_device seed_gen;
 	std::mt19937_64 engine(seed_gen());

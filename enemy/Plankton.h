@@ -11,6 +11,7 @@ private:
 	const int RADIUS = 5;
 	const int HANG = 15;
 	const int EXP = 10;
+	const int LV = 1;
 
 	float frame_;
 	float addFrame_;

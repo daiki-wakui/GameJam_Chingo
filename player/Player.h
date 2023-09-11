@@ -30,8 +30,11 @@ public:
 		return originPos_;
 	}
 
-	void AddBodyLength() {
-		maxHunger_+= 15;
+	void AddBodyLength(int num) {
+		maxHunger_+= num;
+	}
+	void SubBodyLength() {
+		maxHunger_ -= 100;
 	}
 
 	bool GetIsShakeing() {
@@ -65,13 +68,18 @@ public:
 		return thickness_;
 	}
 
+	bool GetInv();
+	void SetInv() {
+		invTime_ = TIME_INVISIBLE;
+	}
+
 private:
 	int eyeTexure_;
 
 	static const int MAX_BODY = 10000; //体の最大数
 	const int NUM_NECK = 5;	 //首から上の数
 	const int SPEED_NECK = 5; //首の最大回転スピード
-
+	const int TIME_INVISIBLE = 3 * 60;//無敵時間
 
 	const int START_BODY_LENGTH = 100; //スタート時の体の最大長さ
 	const int START_BODY_THICKNESS = 30;
@@ -96,4 +104,6 @@ private:
 	int oldLevel_;
 
 	int thickness_;
+
+	int invTime_;
 };

@@ -19,6 +19,7 @@ void Dolphin::Initialize(Vector2 pos)
 
 	r_ = RADIUS;
 	healHang_ = HANG;
+	lv_ = LV;
 	exp_ = EXP;
 	originY_ = pos.y;
 
