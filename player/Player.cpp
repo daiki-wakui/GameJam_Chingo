@@ -91,7 +91,8 @@ void Player::Update()
 		oldNeckWay_ = mouseAngle_;
 	}
 	neckWay_ = { sinf(PI / 180 * mouseAngle_ * -1),cosf(PI / 180 * mouseAngle_ * -1) };
-	neckWay_ *= 10;
+	neckWay_.normalize();
+	neckWay_ *= BODY_SPACE;
 
 	//首から上の部分
 	for (int i = NUM_NECK; i >= 0; i--) {
@@ -176,6 +177,37 @@ void Player::Update()
 	exM->Update();
 }
 
+void Player::ResultUpdate()
+{
+	activeLength_ = 50;
+	originPos_ = { 640,950 };
+
+	//マウスの場所取得
+	GetMousePoint(&mouseX_, &mouseY_);
+
+	//マウスの方向計算
+	Vector2 mouseWay;
+	mouseWay.x = mouseX_ - originPos_.x;
+	mouseWay.y = mouseY_ - originPos_.y;
+	//単位化
+	mouseWay.normalize();
+
+	for (int j = 0; j < 50; j++) {
+		pos_[0] = pos_[1] + mouseWay * 10;
+		for (int i = 50; i >= 0; i--) {
+			pos_[i + 1] = pos_[i];
+		}
+	}
+
+	for (int i = 1; i < activeLength_; i++) {
+		Vector2 frontBody = pos_[i - 1] - pos_[i];
+		angle_[i - 1] = atan2(frontBody.cross({ 0,-1 }), frontBody.dot({ 0,1 })) / PI * 180;
+		if (angle_[i] <= 0) {
+			angle_[i] += 360;
+		}
+	}
+}
+
 void Player::Draw(bool scroll)
 {
 	//チンアナゴ
@@ -194,18 +226,18 @@ void Player::Draw(bool scroll)
 				DrawCircleNotScroll(pos_[i], thickness_, GetBodyColor(i));
 			}
 		}
-		DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
+		//DrawLine(pos_[NUM_NECK], pos_[NUM_NECK] + neckWay_, GetColor(255, 0, 0));
 
 		ExBodyManager::GetInstance()->Draw();
 
-		for (int i = 1; i < activeLength_; i++) {
-			if (scroll) {
-				DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
-			}
-			else {
-				DrawLineNotScroll(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
-			}
-		}
+		//for (int i = 1; i < activeLength_; i++) {
+		//	if (scroll) {
+		//		DrawLine(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
+		//	}
+		//	else {
+		//		DrawLineNotScroll(pos_[i], pos_[i] + Vector2(sinf(PI / 180 * angle_[i] * -1), cosf(PI / 180 * angle_[i] * -1)) * 10, GetColor(100, 100, 100));
+		//	}
+		//}
 
 		if (scroll) {
 			DrawRotaGraph3(GetPos(0).x, GetPos(0).y + ScrollManager::GetInstance()->GetScroll(), 128, 128, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, eyeTexure_, true);
@@ -237,7 +269,7 @@ unsigned int Player::GetBodyColor(int i)
 		num *= -1;
 	}
 
-	return GetColor(255,255, num * 2);
+	return GetColor(255, 255, num * 2);
 }
 
 bool Player::GetInv()
@@ -246,4 +278,11 @@ bool Player::GetInv()
 		return true;
 	}
 	return false;
+}
+
+void Player::ReSetBody()
+{
+	for (int i = 0; i < MAX_BODY; i++) {
+		pos_[i] = originPos_;
+	}
 }
