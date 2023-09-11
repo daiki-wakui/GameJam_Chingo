@@ -241,7 +241,7 @@ void ExBodyManager::AddBody(int num)
 	switch (num)
 	{
 	case MUSCLE:
-
+		Player::GetInstance()->AddHang(100);
 		break;
 	case MAGICIAN:
 

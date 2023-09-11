@@ -35,6 +35,23 @@ void ColliderManager::Update()
 					player->SetInv();
 				}
 			}
+			else {
+				for (int i = 0; i < enemy->GetColNum(); i++) {
+					if (CircleCol(enemy->Col(i), enemy->GetR(), P, player->GetThickness())) {
+						//H‚¦‚éŽž
+						if (expM->GetLevel() >= enemy->GetLv()) {
+							player->AddBodyLength(enemy->GetHang());
+							enemy->SetIsDead();
+							expM->AddExp(enemy->GetEXP());
+						}
+						//H‚¦‚È‚¢Žž
+						else {
+							player->SubBodyLength();
+							player->SetInv();
+						}
+					}
+				}
+			}
 		}
 	}
 }

@@ -22,6 +22,12 @@ void Whale::Initialize(Vector2 pos)
 	lv_ = LV;
 
 	texture_ = LoadGraph("GameAssets/Sprite/enemy_fish.png");
+
+	colNum_ = MAX_COL;
+	colPos_[0] = pos_;
+	colPos_[0].x += r_ + 1;
+	colPos_[1] = pos_;
+	colPos_[1].x -= r_ + 1;
 }
 
 void Whale::Update()

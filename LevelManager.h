@@ -70,4 +70,6 @@ private:
 	int restGrauge[3] = {};
 
 	int level3Exp_;
+
+	int addHang_;
 };

@@ -51,7 +51,7 @@ public:
 	}
 
 	void SetMaxLength(int num) {
-		maxHunger_ = num;
+		maxHunger_ = num + addHang_;
 	}
 
 	bool GetIsExtend();
@@ -82,6 +82,10 @@ public:
 
 	void AddSpeedNeck(int num) {
 		speedNeck_ += num;
+	}
+
+	void AddHang(int num) {
+		addHang_ += num;
 	}
 
 private:
@@ -123,4 +127,5 @@ private:
 	int speedNeck_;
 
 	int addHang_;
+
 };
