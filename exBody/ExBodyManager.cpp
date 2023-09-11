@@ -250,7 +250,7 @@ void ExBodyManager::AddBody(int num)
 		Player::GetInstance()->AddBodySpace(2);
 		break;
 	case GAMING:
-
+		Player::GetInstance()->AddSpeedNeck(2);
 		break;
 
 	default:

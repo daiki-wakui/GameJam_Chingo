@@ -32,5 +32,5 @@ void Plankton::Update()
 void Plankton::Draw()
 {
 	DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.13f, 0.13f, rot_, texture_, true);
-	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 }

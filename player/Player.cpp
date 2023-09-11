@@ -35,6 +35,8 @@ void Player::Initialize()
 	thickness_ = START_BODY_THICKNESS;
 	invTime_ = 0; 
 	bodySpace_ = START_BODY_SPACE;
+	speedNeck_ = START_SPEED_NECK;
+	addHang_ = 0;
 
 	ExBodyManager::GetInstance()->Initialize();
 
@@ -78,12 +80,12 @@ void Player::Update()
 		oldNeckWay_ -= 360;
 	}
 	//首振り速度調整
-	if (oldNeckWay_ + SPEED_NECK < mouseAngle_) {
-		mouseAngle_ = oldNeckWay_ + SPEED_NECK;
+	if (oldNeckWay_ + speedNeck_ < mouseAngle_) {
+		mouseAngle_ = oldNeckWay_ + speedNeck_;
 	}
-	else if (oldNeckWay_ - SPEED_NECK > mouseAngle_) {
+	else if (oldNeckWay_ - speedNeck_ > mouseAngle_) {
 
-		mouseAngle_ = oldNeckWay_ - SPEED_NECK;
+		mouseAngle_ = oldNeckWay_ - speedNeck_;
 	}
 	//次フレーム用に記録
 	oldNeckWay_ = mouseAngle_;
