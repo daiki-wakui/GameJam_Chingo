@@ -26,6 +26,15 @@ void TitleScene::Initialize()
 		end[i].y = bubblePos[i].y - 2000;
 	}
 
+	frame_[0] = 0;
+	frame_[1] = 0;
+	isChangeStart = false;
+	timer = 0;
+	titleUI = { 0,0 };
+	gameStartUI = { 550,500 };
+	startUIRot_ = 0;
+	isChange = false;
+
 	mouseImage[0] = LoadGraph("GameAssets/Sprite/mouseUI.png");
 	mouseImage[1] = LoadGraph("GameAssets/Sprite/mouseUI2.png");
 }
@@ -89,11 +98,12 @@ void TitleScene::Draw()
 		DrawExtendGraph(0 + bubblePos[i].x, 0 + bubblePos[i].y, size[i] + bubblePos[i].x, size[i] + bubblePos[i].y, bubbleImage, true);
 	}
 
-	DrawRotaGraph(titleUI.x+1280/2, titleUI.y+900/2, 1, startUIRot_, titleImage, true);
-
 	
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
+
+	DrawRotaGraph(titleUI.x + 1280 / 2, titleUI.y + 900 / 2, 1, startUIRot_, titleImage, true);
+
 
 	Player::GetInstance()->Draw(false);
 

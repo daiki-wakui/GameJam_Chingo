@@ -28,8 +28,6 @@ private:
 	Vector2 bubblePos[BUBBLE_SUM];
 	float size[BUBBLE_SUM];
 
-	Vector2 emitterLeftTop;
-	Vector2 emitterRightBotoom;
 	int mouseX_, mouseY_;
 
 	Vector2 start[BUBBLE_SUM];

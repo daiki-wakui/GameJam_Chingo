@@ -12,6 +12,7 @@ private:
 	const int HANG = 50;
 	const int EXP = 100;
 	const float SPEED_MOVE = 3.0f;
+	const int LV = 3;
 
 	bool isWay_;
 	float originY_;

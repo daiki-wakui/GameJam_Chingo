@@ -26,6 +26,7 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+	void LvUpDraw();
 
 	void BodyDraw(int i);
 	void SelectRand();
@@ -49,6 +50,7 @@ private:
 	const int BODY_HEIGHT = 100;
 	static const int MAX_BODY = 3;
 	const int EX_BODY_SPACE = 10;
+	const int RESULT_BODY_SPACE = 20;
 	
 	int bodyType_[MAX_BODY];
 

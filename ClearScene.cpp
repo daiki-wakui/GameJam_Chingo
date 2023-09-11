@@ -1,14 +1,17 @@
 #include "ClearScene.h"
 #include "exBody/ExBodyManager.h"
 #include "MathManager.h"
+#include "Player.h"
 
 void ClearScene::Initialize()
 {
+	
 }
 
 void ClearScene::Update()
 {
-
+	Player::GetInstance()->ReSetBody();
+	Player::GetInstance()->ResultUpdate();
 }
 
 void ClearScene::Draw()
@@ -20,8 +23,8 @@ void ClearScene::Draw()
 	DrawGraph(0, 0, vignetImage, true);
 	DrawGraph(0, 0, targetImage, true);
 
-	DrawRotaGraph3(620, 450,
-		256, 256, 1.5, 1.5, 0, chinanaImage, true);
+	//DrawRotaGraph3(620, 450,
+	//	256, 256, 1.5, 1.5, 0, chinanaImage, true);
 
 	ExBodyManager* exM =  ExBodyManager::GetInstance();
 	for (int i = 0; i < 3; i++) {
@@ -46,34 +49,35 @@ void ClearScene::Draw()
 			//MUSCLE
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
 
-			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-				384, 256, 0.5f, 0.5f, 0, muscularImage, true);
+			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
+			//	384, 256, 0.5f, 0.5f, 0, muscularImage, true);
 		}
 		else if (exM->GetBodyType(i) == 2) {
 			//MAGICIAN
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
 
-			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-				256, 256, 0.5f, 0.5f, 0, magicianImage, true);
+			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
+			//	256, 256, 0.5f, 0.5f, 0, magicianImage, true);
 		}
 		else if (exM->GetBodyType(i) == 3) {
 			//JET
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
 
-			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-				256, 256, 0.65f, 0.65f, 0, jetImage, true);
+			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
+			//	256, 256, 0.65f, 0.65f, 0, jetImage, true);
 		}
 		else if (exM->GetBodyType(i) == 4) {
 			//GAMING
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
 
-			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-				256, 256, 0.5f, 0.5f, 0, gamingImage, true);
+			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
+			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 		}
 	}
 	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
 
-	ExBodyManager::GetInstance()->ResultDraw();
+	Player::GetInstance()->Draw();
+	ExBodyManager::GetInstance()->Draw();
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "clear");
 }
