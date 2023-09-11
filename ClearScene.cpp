@@ -73,6 +73,13 @@ void ClearScene::Draw()
 			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 		}
+		else if (exM->GetBodyType(i) == 5) {
+			//Shark
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
+
+			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
+			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
+		}
 	}
 	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
 

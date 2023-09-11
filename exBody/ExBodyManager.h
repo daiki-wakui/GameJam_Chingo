@@ -8,6 +8,7 @@ enum BodyType
 	MAGICIAN,
 	JET,
 	GAMING,
+	Shark,
 	END_BODY_TYPE,
 };
 
@@ -43,6 +44,10 @@ public:
 	float GetBodyAngle(int i);
 	int GetBodyType(int num) {
 		return bodyType_[num];
+	}
+
+	int GetBodySpace() {
+		return EX_BODY_SPACE;
 	}
   
 private:
