@@ -113,6 +113,9 @@ void ExBodyManager::BodyDraw(int i)
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			256, 256, 0.45f, 0.45f, angle, gamingImage, true);
 		break;
+	case Shark:
+		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 120, GetColor(0, 0, 255));
+		break;
 	default:
 		break;
 	}
@@ -177,6 +180,10 @@ void ExBodyManager::SelectDraw()
 			//GAMING
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
 		}
+		else if (choice_[i] == 4) {
+			//Shark
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
+		}
 	}
 }
 
@@ -231,6 +238,13 @@ void ExBodyManager::ResultDraw()
 				256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 			//DrawGraph(tempPos.x, tempPos.y, gamingImage, true);
 		}
+		else if (bodyType_[i] == 5) {
+			//Shark
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
+			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
+			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
+			//DrawGraph(tempPos.x, tempPos.y, gamingImage, true);
+		}
 	}
 	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
 }
@@ -252,7 +266,9 @@ void ExBodyManager::AddBody(int num)
 	case GAMING:
 		Player::GetInstance()->AddSpeedNeck(2);
 		break;
-
+	case Shark:
+		
+		break;
 	default:
 		break;
 	}

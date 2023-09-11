@@ -3,6 +3,7 @@
 #include "EnemyManager.h"
 #include "LevelManager.h"
 #include <memory>
+#include "exBody/ExBodyManager.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ void ColliderManager::Update()
 	Player* player = Player::GetInstance();
 	EnemyManager* enemyM = EnemyManager::GetInstance();
 	LevelManager* expM = LevelManager::GetInstance();
+	ExBodyManager* exBodyM = ExBodyManager::GetInstance();
 
 	for (BaseEnemy* enemy : enemyM->GetEnemyList()) {
 		for (int p = 0; p < player->GetNumNeck(); p++) {
@@ -53,6 +55,19 @@ void ColliderManager::Update()
 				}
 			}
 		}
+		for (int i = 0; i < 3;i++) {
+			if (ExBodyManager::GetInstance()->GetBodyType(i) == BodyType::Shark) {
+				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace()),120, enemy->GetPos(), enemy->GetR())) {
+					//H‚¦‚éŽž
+					if (expM->GetLevel() >= enemy->GetLv()) {
+						player->AddBodyLength(enemy->GetHang());
+						enemy->SetIsDead();
+						expM->AddExp(enemy->GetEXP());
+					}
+				}
+			}
+		}
+
 	}
 }
 
