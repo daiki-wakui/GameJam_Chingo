@@ -48,20 +48,20 @@ void ExBodyManager::Update()
 		GetMousePoint(&mouseX, &mouseY);
 
 		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) && isSet_) {
-			if (mouseY > 300 && mouseY < 700) {
-				if (mouseX > 40 && mouseX <= 440) {
+			if (mouseY > 320 && mouseY < 680) {
+				if (mouseX > 100 && mouseX <= 380) {
 					AddBody(choice_[0] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
 
 				}
-				if (mouseX > 440 && mouseX <= 840) {
+				if (mouseX > 500 && mouseX <= 780) {
 					AddBody(choice_[1] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
 
 				}
-				if (mouseX > 840 && mouseX <= 1240) {
+				if (mouseX > 900 && mouseX <= 1180) {
 					AddBody(choice_[2] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
@@ -110,9 +110,9 @@ void ExBodyManager::Draw()
 void ExBodyManager::LvUpDraw()
 {
 	if (isSelect_) {
-		DrawBox(40, 300, 440, 700, GetColor(255, 0, 0), true);
-		DrawBox(440, 300, 840, 700, GetColor(0, 255, 0), true);
-		DrawBox(840, 300, 1240, 700, GetColor(0, 0, 255), true);
+		//DrawBox(100, 320, 380, 680, GetColor(255, 0, 0), true);
+		//DrawBox(500, 320, 780, 680, GetColor(0, 255, 0), true);
+		//DrawBox(900, 320, 1180, 680, GetColor(0, 0, 255), true);
 		SelectDraw();
 	}
 }
