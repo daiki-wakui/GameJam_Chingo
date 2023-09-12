@@ -26,9 +26,6 @@ void EnemyManager::Initialize()
 	fishPopTimer_ = TIME_FISH_POP;
 	dolphinNum_ = TIME_DOLPHIN_POP;
 
-	for (int i = 0; i < MAX_PLANKTON; i++) {
-		PopPlankton();
-	}
 	PopWhale();
 }
 
@@ -41,7 +38,9 @@ void EnemyManager::Update()
 
 	//敵全員の処理
 	//数確認
-	planktonNum_ = 0;
+	for (int i = 0; i < 8;i++) {
+		planktonNum_[i] = 0;
+	}
 	fishNum_ = 0;
 	dolphinNum_ = 0;
 	whaleNum_ = 0;
@@ -51,8 +50,10 @@ void EnemyManager::Update()
 
 	//プレイヤーが戻った時にリポップ
 	if (Player::GetInstance()->GetIsExtend()) {
-		for (int i = planktonNum_; i < MAX_PLANKTON; i++) {
-			RePopPlankton();
+		for (int j = 0; j < 7; j++) {
+			for (int i = planktonNum_[j]; i < 15; i++) {
+				RePopPlankton(j);
+			}
 		}
 	}
 
@@ -87,29 +88,31 @@ void EnemyManager::PopPlankton()
 	std::mt19937_64 engine(seed_gen());
 
 	std::uniform_real_distribution<float> x(0, 1280);
-	std::uniform_real_distribution<float> y(-1080 * 7, 500);
+	std::uniform_real_distribution<float> y(0, 500);
 	std::uniform_real_distribution<float> rot(30, 300);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
 	newEnemy->Initialize({x(engine),y(engine)});
 	newEnemy->SetRotation(rot(engine));
+	newEnemy->SetType(y(engine) / 1080);
 	enemys_.push_back(move(newEnemy));
 }
 
-void EnemyManager::RePopPlankton()
+void EnemyManager::RePopPlankton(int num)
 {
 	//ランダム
 	std::random_device seed_gen;
 	std::mt19937_64 engine(seed_gen());
 
 	std::uniform_real_distribution<float> x(0, 1280);
-	std::uniform_real_distribution<float> y(-1080 * 3, 0);
+	std::uniform_real_distribution<float> y(-1080 * (num + 1) + 600, -1080 * num + 600);
 	std::uniform_real_distribution<float> rot(30, 300);
 
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
 	newEnemy->Initialize({ x(engine),y(engine) });
 	newEnemy->SetRotation(rot(engine));
+	newEnemy->SetType(num);
 	enemys_.push_back(move(newEnemy));
 }
 

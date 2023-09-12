@@ -36,7 +36,7 @@ void Enemy::Draw()
 		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 64, 64, 0.5f, 0.5f, rot_, planktonImage, true);
 
 		//DrawExtendGraph(pos_.x - 32, pos_.y - 32, 64 + (pos_.x-32), 64 + (pos_.y-32), planktonImage, true);
-		DrawCircle(pos_, r_, GetColor(255, 100, 100));
+		//DrawCircle(pos_, r_, GetColor(255, 100, 100));
 	}
 	else if(deadTimer_ > 0){
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, deadTimer_);

@@ -30,14 +30,14 @@ public:
 
 	//ìGÇÃê∂ê¨
 	void PopPlankton();
-	void RePopPlankton();
+	void RePopPlankton(int num);
 	void PopFish();
 	void PopDolphin();
 	void PopWhale();
 	void PopSakaban();
 
-	void AddPlanktonNum() {
-		planktonNum_++;
+	void AddPlanktonNum(int type) {
+		planktonNum_[type]++;
 	}
 	void AddFishNum() {
 		fishNum_++;
@@ -57,8 +57,8 @@ private:
 	std::list<std::unique_ptr<BaseEnemy>> enemys_;
 	std::list<BaseEnemy*> enemys2_;
 
-	const int MAX_PLANKTON = 150;
-	int planktonNum_;
+	const int MAX_PLANKTON = 20;
+	int planktonNum_[8];
 
 	const int MAX_FISH = 20;
 	const int TIME_FISH_POP = 2 * 60;
