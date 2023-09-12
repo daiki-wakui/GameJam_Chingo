@@ -30,6 +30,7 @@ void ExBodyManager::Update()
 	BulletManager* bulletM = BulletManager::GetInstance();
 
 	if (isSelect_) {
+		
 		int mouseX, mouseY;
 		GetMousePoint(&mouseX, &mouseY);
 
@@ -38,18 +39,26 @@ void ExBodyManager::Update()
 				if (mouseX > 40 && mouseX <= 440) {
 					AddBody(choice_[0] + 1);
 					isSelect_ = false;
+					LevelManager::GetInstance()->isSetRat(true);
+
 				}
 				if (mouseX > 440 && mouseX <= 840) {
 					AddBody(choice_[1] + 1);
 					isSelect_ = false;
+					LevelManager::GetInstance()->isSetRat(true);
+
 				}
 				if (mouseX > 840 && mouseX <= 1240) {
 					AddBody(choice_[2] + 1);
 					isSelect_ = false;
+					LevelManager::GetInstance()->isSetRat(true);
+
 				}
 			}
 		}
 	}
+
+	
 
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
 		isRelease = true;

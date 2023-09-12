@@ -31,7 +31,7 @@ void LevelManager::Update()
 	Player* player = Player::GetInstance();
 
 	hungerLength_ = player->GetMaxLength() - player->GetActiveBody();
-
+	
 	//ƒŒƒxƒ‹ŠÇ—
 	if (nowExp_ >= EXP_LV3) {
 		nowLevel_ = 4;
@@ -91,23 +91,44 @@ void LevelManager::Update()
 		haveExpGaugeYTop_[2] = 0;
 	}
 	
+	ExBodyManager* exM = ExBodyManager::GetInstance();
+
+	if (isSetRatio_) {
+		muscleNum_ = 0;
+
+
+		if (exM->GetBodyType(nowLevel_-2) == 1) {
+			muscleNum_ += 100;
+		}
+
+		hungerLength_ = player->GetMaxLength() - player->GetActiveBody();
+		hungerLength_++;
+		hungerLength_ += muscleNum_;
+
+		ratio_ = 1280.0f / (float)hungerLength_;
+		isSetRatio_ = false;
+	}
+
+	
 }
 
 void LevelManager::Draw()
 {
 	DrawGraph(2, 790, hungerGaugeBackImage, true);
-	if (ExBodyManager::GetInstance()->GetIsSelect()) {
-		DrawRectGraph(-3, 792, 0, 0, 1280, 128, hungerGaugeBarImage, true);
-	}
-	else if (nowLevel_ == 1) {
+
+	if (nowLevel_ == 1) {
 		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 13.4, 128, hungerGaugeBarImage, true);
 	}
-	else if (nowLevel_ == 2) {
-		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 5.95, 128, hungerGaugeBarImage, true);
+	else {
+		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * ratio_, 128, hungerGaugeBarImage, true);
+	}
+
+	/*else if (nowLevel_ == 2) {
+		
 	}
 	else if (nowLevel_ == 3) {
-		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 3.71, 128, hungerGaugeBarImage, true);
-	}
+		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * ratio_, 128, hungerGaugeBarImage, true);
+	}*/
 	DrawGraph(2, 790, hungerGaugeFrameImage, true);
 
 	//ƒQ[ƒW‚Ì˜g
@@ -161,7 +182,9 @@ void LevelManager::Draw()
 	DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
+	DrawFormatString(0, 220, GetColor(255, 255, 255), "plen = %d", Player::GetInstance()->GetMaxLength());
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "hungerlen = %d", hungerLength_);
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "hungerlen+mass = %d", hungerLength_+muscleNum_);
 }
 
 void LevelManager::IncludeExp()
