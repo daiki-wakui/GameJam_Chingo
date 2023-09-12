@@ -119,7 +119,7 @@ void ExBodyManager::BodyDraw(int i)
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
-			384, 256, 0.45f, 0.45f, angle, muscularImage, true);
+			384, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, muscularImage, true);
 		break;
 	case MAGICIAN:
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
@@ -127,7 +127,7 @@ void ExBodyManager::BodyDraw(int i)
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
-			256, 256, 0.45f, 0.45f, angle, magicianImage, true);
+			256, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, magicianImage, true);
 		break;
 	case JET:
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
@@ -135,7 +135,7 @@ void ExBodyManager::BodyDraw(int i)
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
-			256, 256, 0.45f, 0.45f, angle, jetImage, true);
+			256, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, jetImage, true);
 		break;
 	case GAMING:
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
@@ -143,14 +143,14 @@ void ExBodyManager::BodyDraw(int i)
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
-			256, 256, 0.45f, 0.45f, angle, gamingImage, true);
+			256, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, gamingImage, true);
 		break;
 	case Shark:
 		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 80, GetColor(0, 0, 255));
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
-			256, 256, 0.45f, 0.45f, angle, shakeImage, true);
+			256, 256, 0.5f * GetScale(), 0.5f * GetScale(), angle, shakeImage, true);
 
 		break;
 	case SAKABAN:
@@ -340,4 +340,19 @@ float ExBodyManager::GetBodyAngle(int i)
 	temp -= 3.14192f;
 
 	return temp;
+}
+
+float ExBodyManager::GetScale()
+{
+	switch (LevelManager::GetInstance()->GetLevel())
+	{
+	case 2:
+		return 1.2f;
+	case 3:
+		return 1.4f;
+	case 4:
+		return 1.6f;
+	default:
+		return 1.0f;
+	}
 }

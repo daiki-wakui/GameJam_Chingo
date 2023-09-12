@@ -217,7 +217,7 @@ void Player::ResultUpdate()
 void Player::Draw(bool scroll)
 {
 	//チンアナゴ
-	for (int i = 0; i < activeLength_; i++) {
+	for (int i = activeLength_; i >= 0; i--) {
 		if (i < NUM_NECK) {
 			if (scroll) {
 				if (!(invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
