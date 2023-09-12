@@ -92,6 +92,10 @@ public:
 		addHang_ += num;
 	}
 
+	void SetSakaban() {
+		isSakaban_ = true;
+	}
+
 private:
 	int eyeTexure_;
 
@@ -131,5 +135,7 @@ private:
 	int speedNeck_;
 
 	int addHang_;
+
+	bool isSakaban_;
 
 };

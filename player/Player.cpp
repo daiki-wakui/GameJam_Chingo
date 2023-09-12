@@ -37,6 +37,7 @@ void Player::Initialize()
 	bodySpace_ = START_BODY_SPACE;
 	speedNeck_ = START_SPEED_NECK;
 	addHang_ = 0;
+	isSakaban_ = false;
 
 	ExBodyManager::GetInstance()->Initialize();
 
