@@ -7,12 +7,14 @@
 #include <time.h>
 #include "ScrollManager.h"
 #include "Keyboard.h"
+#include "BulletManager.h"
 
 void GameScene::Initialize()
 {
 	Player::GetInstance()->Initialize();
 	LevelManager::GetInstance()->Initialize();
 	enemyM->Initialize();
+	BulletManager::GetInstance()->Initialize();
 
 	//初期値セット
 	for (int i = 0; i < effectNumber_; i++)
@@ -32,7 +34,7 @@ void GameScene::Update()
 	}
 
 	enemyM->Update();
-
+	BulletManager::GetInstance()->Update();
 
 	if (ExBodyManager::GetInstance()->GetIsSelect()) {
 		ExBodyManager::GetInstance()->Update();
@@ -82,6 +84,7 @@ void GameScene::Draw()
 	
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
+	BulletManager::GetInstance()->Draw();
 	LevelManager::GetInstance()->Draw();
 
 	for (int i = 0; i < effectNumber_; i++) {

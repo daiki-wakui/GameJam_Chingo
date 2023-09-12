@@ -35,6 +35,10 @@ public:
 
 	void Debug();
 
+	void isSetRat(int isSet) {
+		isSetRatio_ = isSet;
+	}
+
 private:
 
 	int levelUpImage = LoadGraph("GameAssets/Sprite/levelUp.png");
@@ -75,7 +79,10 @@ private:
 
 	int level3Exp_;
 	int hungerLength_;
-
+	int muscleNum_ = 0;
+	int isMuscle_ = 0;
+	float ratio_;
+	int isSetRatio_;
 
 	int addHang_;
 };
