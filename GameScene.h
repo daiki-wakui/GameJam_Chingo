@@ -17,6 +17,7 @@ private:
 	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
 	int moleImage = LoadGraph("GameAssets/Sprite/mole2.png");
 
+	int anagoImage[2];
 
 	EnemyManager* enemyM = EnemyManager::GetInstance();
 
@@ -32,6 +33,11 @@ private:
 	int effectNumber_ = 30;
 	bool isEffectSet_ = false;
 	int effectColorChange_ = 0;
+
+	Vector2 startAnago[4];
+	Vector2 endAnago[4];
+	Vector2 AnagoPos[4];
+	int frame_;
 
 public:
 	void LevelUpEffectSet();
