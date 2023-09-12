@@ -17,7 +17,7 @@ private:
 
 	int targetImage = LoadGraph("GameAssets/Sprite/target.png");
 
-	int ResultUI[20];
+	int ResultUI[30];
 	int levelImage[4];
 
 
@@ -35,6 +35,8 @@ private:
 	float UIFrame[4];
 
 	Vector2 tempPos[4];
+
+	int alpha_;
 public:
 
 	void Initialize();

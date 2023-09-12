@@ -62,8 +62,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	int gameBGM = LoadSoundMem("GameAssets/Sound/gameBGM.mp3");
 	int resultBGM = LoadSoundMem("GameAssets/Sound/resultBGM.mp3");
 	
-	ChangeVolumeSoundMem(128, titleBGM);
+	ChangeVolumeSoundMem(100, titleBGM);
 	ChangeVolumeSoundMem(70, gameBGM);
+	ChangeVolumeSoundMem(128, resultBGM);
 
 	//keyboradÉNÉâÉXÇÃê∂ê¨
 	Keyboard* keyboard_ = Keyboard::GetInstance();
