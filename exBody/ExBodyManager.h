@@ -75,6 +75,13 @@ private:
 	int gamingImage = LoadGraph("GameAssets/Sprite/Body/gamers.png");
 	int shakeImage = LoadGraph("GameAssets/Sprite/Body/body_shark.png");
 
+	int selectBack = LoadGraph("GameAssets/Sprite/UI/UI_bodySelect_background.png");
+	int muscularCard = LoadGraph("GameAssets/Sprite/UI/UI_button_muscular.png");
+	int magicianCard = LoadGraph("GameAssets/Sprite/UI/UI_button_magician.png");
+	int jetCard = LoadGraph("GameAssets/Sprite/UI/UI_button_jet.png");
+	int gamingCard = LoadGraph("GameAssets/Sprite/UI/UI_button_gaming.png");
+	int shakeCard = LoadGraph("GameAssets/Sprite/UI/UI_button_shark.png");
+
 	bool isRelease = true;
 
 	bool isSet_;

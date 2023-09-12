@@ -206,6 +206,8 @@ void ExBodyManager::SelectRand()
 
 void ExBodyManager::SelectDraw()
 {
+	DrawGraph(0, 0, selectBack, true);
+
 	for (int i = 0; i < 3; i++) {
 		Vector2 tempPos;
 		//選択肢のポジション
@@ -222,22 +224,27 @@ void ExBodyManager::SelectDraw()
 		if (choice_[i] == 0) {
 			//MUSCLE
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, muscularCard, true);
 		}
 		else if (choice_[i] == 1) {
 			//MAGICIAN
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, magicianCard, true);
 		}
 		else if (choice_[i] == 2) {
 			//JET
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, jetCard, true);
 		}
 		else if (choice_[i] == 3) {
 			//GAMING
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, gamingCard, true);
 		}
 		else if (choice_[i] == 4) {
 			//Shark
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, shakeCard, true);
 		}
 		else if (choice_[i] == 5) {
 			//Shark
