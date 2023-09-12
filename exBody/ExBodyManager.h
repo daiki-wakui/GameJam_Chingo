@@ -54,7 +54,7 @@ private:
 	const int BODY_WIDTH = 60;
 	const int BODY_HEIGHT = 100;
 	static const int MAX_BODY = 3;
-	const int EX_BODY_SPACE = 10;
+	const int EX_BODY_SPACE = 13;
 	const int RESULT_BODY_SPACE = 20;
 	const int TIME_BULLET = 3 * 60;
 	
