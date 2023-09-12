@@ -58,6 +58,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	
 	
 	// ゲームループで使う変数の宣言
+	int titleBGM = LoadSoundMem("GameAssets/Sound/titleBGM.mp3");
+	int gameBGM = LoadSoundMem("GameAssets/Sound/gameBGM.mp3");
+	int resultBGM = LoadSoundMem("GameAssets/Sound/resultBGM.mp3");
+	
+	ChangeVolumeSoundMem(128, titleBGM);
+	ChangeVolumeSoundMem(70, gameBGM);
 
 	//keyboradクラスの生成
 	Keyboard* keyboard_ = Keyboard::GetInstance();
@@ -73,7 +79,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	clearScene->Initialize();
 	debug->Initialize();
 	
-	int scene = GAME_SCENE;
+	int scene = CLEAR_SCENE;
 
 	// ゲームループ
 	while (true) {
@@ -86,6 +92,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// 更新処理
 		if (scene == TITLE_SCENE) {
+			PlaySoundMem(titleBGM, DX_PLAYTYPE_LOOP, false);
 			titleScene->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
@@ -93,25 +100,34 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 
 			if (titleScene->GetIsSceneChange()) {
+				StopSoundMem(titleBGM);
 				gameScene->Initialize();
 				scene = GAME_SCENE;
 			}
 		}
 		else if (scene == GAME_SCENE) {
+			PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, false);
 			gameScene->Update();
 			debug->Update();
 			
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				StopSoundMem(gameBGM);
 				scene = CLEAR_SCENE;
 			}
 			if (!EnemyManager::GetInstance()->GetIsWhaleAlive()) {
+				StopSoundMem(gameBGM);
 				scene = CLEAR_SCENE;
 			}
 		}
 		else if (scene == CLEAR_SCENE) {
+			if (CheckSoundMem(resultBGM) == 0) {
+				PlaySoundMem(resultBGM, DX_PLAYTYPE_LOOP, true);
+			}
+			
 			clearScene->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+				StopSoundMem(resultBGM);
 				gameScene->Initialize();
 				titleScene->Initialize();
 				scene = TITLE_SCENE;

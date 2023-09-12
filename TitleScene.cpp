@@ -35,6 +35,7 @@ void TitleScene::Initialize()
 	startUIRot_ = 0;
 	isChange = false;
 
+	ChangeVolumeSoundMem(128, startSE);
 	mouseImage[0] = LoadGraph("GameAssets/Sprite/mouseUI.png");
 	mouseImage[1] = LoadGraph("GameAssets/Sprite/mouseUI2.png");
 }
@@ -46,6 +47,7 @@ void TitleScene::Update()
 	for (int i = 0; i < 3; i++) {
 		if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{ gameStartUI.x + (100 * i), gameStartUI.y }, 48)) {
 			isChangeStart = true;
+			PlaySoundMem(startSE, DX_PLAYTYPE_BACK, true);
 		}
 	}
 

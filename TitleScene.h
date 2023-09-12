@@ -20,6 +20,8 @@ private:
 
 	int mouseImage[2];
 	
+	int startSE = LoadSoundMem("GameAssets/Sound/start.mp3");
+	
 
 	Keyboard* keyboard = Keyboard::GetInstance();
 
