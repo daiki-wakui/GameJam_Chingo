@@ -48,20 +48,20 @@ void ExBodyManager::Update()
 		GetMousePoint(&mouseX, &mouseY);
 
 		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) && isSet_) {
-			if (mouseY > 300 && mouseY < 700) {
-				if (mouseX > 40 && mouseX <= 440) {
+			if (mouseY > 320 && mouseY < 680) {
+				if (mouseX > 100 && mouseX <= 380) {
 					AddBody(choice_[0] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
 
 				}
-				if (mouseX > 440 && mouseX <= 840) {
+				if (mouseX > 500 && mouseX <= 780) {
 					AddBody(choice_[1] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
 
 				}
-				if (mouseX > 840 && mouseX <= 1240) {
+				if (mouseX > 900 && mouseX <= 1180) {
 					AddBody(choice_[2] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
@@ -110,9 +110,9 @@ void ExBodyManager::Draw()
 void ExBodyManager::LvUpDraw()
 {
 	if (isSelect_) {
-		DrawBox(40, 300, 440, 700, GetColor(255, 0, 0), true);
-		DrawBox(440, 300, 840, 700, GetColor(0, 255, 0), true);
-		DrawBox(840, 300, 1240, 700, GetColor(0, 0, 255), true);
+		//DrawBox(100, 320, 380, 680, GetColor(255, 0, 0), true);
+		//DrawBox(500, 320, 780, 680, GetColor(0, 255, 0), true);
+		//DrawBox(900, 320, 1180, 680, GetColor(0, 0, 255), true);
 		SelectDraw();
 	}
 }
@@ -206,6 +206,8 @@ void ExBodyManager::SelectRand()
 
 void ExBodyManager::SelectDraw()
 {
+	DrawGraph(0, 0, selectBack, true);
+
 	for (int i = 0; i < 3; i++) {
 		Vector2 tempPos;
 		//選択肢のポジション
@@ -222,22 +224,27 @@ void ExBodyManager::SelectDraw()
 		if (choice_[i] == 0) {
 			//MUSCLE
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, muscularCard, true);
 		}
 		else if (choice_[i] == 1) {
 			//MAGICIAN
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, magicianCard, true);
 		}
 		else if (choice_[i] == 2) {
 			//JET
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, jetCard, true);
 		}
 		else if (choice_[i] == 3) {
 			//GAMING
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, gamingCard, true);
 		}
 		else if (choice_[i] == 4) {
 			//Shark
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
+			DrawExtendGraph(tempPos.x, tempPos.y, tempPos.x + 400, tempPos.y + 400, shakeCard, true);
 		}
 		else if (choice_[i] == 5) {
 			//Shark

@@ -122,7 +122,7 @@ void Player::Update()
 	else if (activeLength_ > NUM_NECK) {
 		isReturn_ = true;
 		//高速縮み
-		for (int j = 0; j < 3; j++) {
+		for (int j = 0; j < 5; j++) {
 			activeLength_--;
 			for (int i = 0; i < activeLength_ + 1; i++) {
 				pos_[i] = pos_[i + 1];
