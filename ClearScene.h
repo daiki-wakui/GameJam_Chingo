@@ -17,6 +17,11 @@ private:
 
 	int targetImage = LoadGraph("GameAssets/Sprite/target.png");
 
+	int kansei1 = LoadSoundMem("GameAssets/Sound/kansei1.wav");
+	int kansei2 = LoadSoundMem("GameAssets/Sound/kansei2.wav");
+	bool isSE_ = false;
+
+
 	int ResultUI[30];
 	int levelImage[4];
 
