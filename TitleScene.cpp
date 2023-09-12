@@ -38,6 +38,19 @@ void TitleScene::Initialize()
 	ChangeVolumeSoundMem(128, startSE);
 	mouseImage[0] = LoadGraph("GameAssets/Sprite/mouseUI.png");
 	mouseImage[1] = LoadGraph("GameAssets/Sprite/mouseUI2.png");
+
+	anagoImage[0] = LoadGraph("GameAssets/Sprite/anago1.png");
+	anagoImage[1] = LoadGraph("GameAssets/Sprite/anago2.png");
+
+	startAnago[0] = { -110,1400 };
+	startAnago[1] = { -110 + 330,1200 };
+	startAnago[2] = { -110 + 330 * 2,1000 };
+	startAnago[3] = { -110 + 330 * 3,1500 };
+
+	endAnago[0] = { -110,-250 };
+	endAnago[1] = { -110 + 330,-250 };
+	endAnago[2] = { -110 + 330 * 2,-250 };
+	endAnago[3] = { -110 + 330 * 3,-250 };
 }
 
 void TitleScene::Update()
@@ -81,9 +94,20 @@ void TitleScene::Update()
 			size[i] = max(size[i], 0);
 		}
 
+		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseOutCubic(timer, 60));
+		AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseOutCubic(timer, 60));
+		AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseOutCubic(timer, 60));
+		AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseOutCubic(timer, 60));
+
 		titleUI.y -= 30;
 		gameStartUI.y -= 60;
 		startUIRot_++;
+	}
+	else {
+		AnagoPos[0] = { -1200,0 };
+		AnagoPos[1] = { -1200,0 };
+		AnagoPos[2] = { -1200,0 };
+		AnagoPos[3] = { -1200,0 };
 	}
 	
 	//ÉVÅ[ÉìêÿÇËë÷Ç¶
@@ -113,9 +137,9 @@ void TitleScene::Draw()
 	DrawGraph(555, 700, moleImage, true);
 
 
-	for (int i = 0; i < 3; i++) {
-		DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
-	}
+	//for (int i = 0; i < 3; i++) {
+	//	DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
+	//}
 
 	DrawRotaGraph(gameStartUI.x + 90, gameStartUI.y, 0.5, startUIRot_, gameStartImage, true);
 	
@@ -126,6 +150,11 @@ void TitleScene::Draw()
 	else {
 		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[1], true);
 	}
+
+	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
+	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
+	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
+	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
 	
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 }
