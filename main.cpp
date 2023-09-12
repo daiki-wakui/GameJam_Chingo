@@ -112,10 +112,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
 				StopSoundMem(gameBGM);
+				clearScene->Initialize();
 				scene = CLEAR_SCENE;
 			}
 			if (!EnemyManager::GetInstance()->GetIsWhaleAlive()) {
 				StopSoundMem(gameBGM);
+				clearScene->Initialize();
 				scene = CLEAR_SCENE;
 			}
 		}
