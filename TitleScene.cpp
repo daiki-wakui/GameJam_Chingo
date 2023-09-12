@@ -67,8 +67,9 @@ void TitleScene::Update()
 		frame_[1] = 0;
 	}
 
-	//startUISize_ *= (1.0f + cosf(timer / (float)scalespd_) * 0.1f);
 	startUISize_ = 0.5f * sinf(2 * 3.14f * frame_[0] / 200) + startUISize_;
+	titleUI.y = 0.25f * sinf(2 * 3.14f * frame_[0] / 200) + titleUI.y;
+	gameStartUI.y = 0.25f * sinf(2 * 3.14f * frame_[0] / 200) + gameStartUI.y;
 
 	//シーン切り替えエフェクト
 	if (isChangeStart) {
@@ -104,7 +105,7 @@ void TitleScene::Draw()
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
 
-	DrawRotaGraph(titleUI.x + 1280 / 2, titleUI.y + 900 / 2, 1, startUIRot_, titleImage, true);
+	DrawRotaGraph(titleUI.x + 1280 / 2+50, titleUI.y + 550 / 2, 0.75, startUIRot_, titleImage, true);
 
 
 	Player::GetInstance()->Draw(false);
@@ -112,11 +113,11 @@ void TitleScene::Draw()
 	DrawGraph(555, 700, moleImage, true);
 
 
-	//for (int i = 0; i < 3; i++) {
-	//	//DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
-	//}
+	for (int i = 0; i < 3; i++) {
+		DrawCircle(gameStartUI.x + (100 * i), gameStartUI.y, 48, GetColor(255, 255, 255), true);
+	}
 
-	DrawRotaGraph(gameStartUI.x + 90, gameStartUI.y, 1, startUIRot_, gameStartImage, true);
+	DrawRotaGraph(gameStartUI.x + 90, gameStartUI.y, 0.5, startUIRot_, gameStartImage, true);
 	
 	DrawRotaGraph3(mouseUI.x + 20, mouseUI.y-10, -startUISize_ ,-startUISize_ , 0.5, 0.5, 0, fukidasiImage, true);
 	if (state_) {
