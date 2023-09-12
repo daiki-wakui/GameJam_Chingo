@@ -16,7 +16,7 @@ public:
 	float GetScroll();
 
 public:
-	const int STOP = 3240;
+	const int STOP = 1080 * 8;
 
 	float originPos_ = 400;
 };

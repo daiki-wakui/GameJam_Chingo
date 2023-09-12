@@ -75,13 +75,18 @@ void GameScene::Draw()
 	//’n–Ê
 	DrawGraph(-40, -180 + shake->randY + ScrollManager::GetInstance()->GetScroll(), backBottomImage, true);
 	DrawGraph(0, -1080 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
-	DrawGraph(0, -1080*2 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
-	DrawGraph(0, -1080*3 + ScrollManager::GetInstance()->GetScroll(), backTopImage, true);
+	DrawGraph(0, -1080 * 2 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
+	DrawGraph(0, -1080 * 3 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
+	DrawGraph(0, -1080 * 4 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
+	DrawGraph(0, -1080 * 5 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
+	DrawGraph(0, -1080 * 6 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
+	DrawGraph(0, -1080 * 7 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
+	DrawGraph(0, -1080 * 8 + ScrollManager::GetInstance()->GetScroll(), backTopImage, true);
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
 	enemyM->Draw();
 	Player::GetInstance()->Draw();
-	
+
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
 	BulletManager::GetInstance()->Draw();

@@ -70,6 +70,7 @@ private:
 	int magicianImage = LoadGraph("GameAssets/Sprite/Body/magician.png");
 	int jetImage = LoadGraph("GameAssets/Sprite/Body/jet.png");
 	int gamingImage = LoadGraph("GameAssets/Sprite/Body/gamers.png");
+	int shakeImage = LoadGraph("GameAssets/Sprite/Body/body_shark.png");
 
 	bool isRelease = true;
 };
