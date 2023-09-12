@@ -20,6 +20,6 @@ private:
 
 	int texture_;
 
-	static const int MAX_COL = 1;
+	static const int MAX_COL = 2;
 	Vector2 colPos_[MAX_COL];
 };
