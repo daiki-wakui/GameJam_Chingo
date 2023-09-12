@@ -1,23 +1,30 @@
 #include "ClearScene.h"
 #include "exBody/ExBodyManager.h"
+#include "LevelManager.h"
 #include "MathManager.h"
 #include "Player.h"
 #include "Easing.h"
 
 void ClearScene::Initialize()
 {
-	
-	ResultUI[7] = LoadGraph("GameAssets/Sprite/UI/anagoLv.png");
-	ResultUI[8] = LoadGraph("GameAssets/Sprite/UI/body.png");
-	ResultUI[9] = LoadGraph("GameAssets/Sprite/level3.png");
-	ResultUI[10] = LoadGraph("GameAssets/Sprite/UI/result.png");
-
+	//‘ÌUI
 	ResultUI[1] = LoadGraph("GameAssets/Sprite/UI/masuru.png");
 	ResultUI[2] = LoadGraph("GameAssets/Sprite/UI/maji.png");
 	ResultUI[3] = LoadGraph("GameAssets/Sprite/UI/jet.png");
 	ResultUI[4] = LoadGraph("GameAssets/Sprite/UI/gameing.png");
 	ResultUI[5] = LoadGraph("GameAssets/Sprite/UI/syak.png");
 	ResultUI[6] = LoadGraph("GameAssets/Sprite/UI/sakaban.png");
+
+	ResultUI[7] = LoadGraph("GameAssets/Sprite/UI/anagoLv.png");
+	ResultUI[8] = LoadGraph("GameAssets/Sprite/UI/body.png");
+	ResultUI[9] = LoadGraph("GameAssets/Sprite/level3.png");
+	ResultUI[10] = LoadGraph("GameAssets/Sprite/UI/result.png");
+
+	levelImage[0] = LoadGraph("GameAssets/Sprite/level1.png");
+	levelImage[1] = LoadGraph("GameAssets/Sprite/level2.png");
+	levelImage[2] = LoadGraph("GameAssets/Sprite/level3.png");
+	levelImage[3] = LoadGraph("GameAssets/Sprite/levelMax.png");
+
 	frame = 0;
 	titleAnimeTimer = 0;
 	rot = 0;
@@ -98,8 +105,9 @@ void ClearScene::Draw()
 	DrawRotaGraph(150, 350, titleSize.x, 0, ResultUI[8], true);
 
 	ExBodyManager* exM =  ExBodyManager::GetInstance();
+	LevelManager* lvM = LevelManager::GetInstance();
 
-	DrawRotaGraph(tempPos[0].x, tempPos[0].y, BodyUISize.x, 0, ResultUI[9], true);
+	DrawRotaGraph(tempPos[0].x, tempPos[0].y, BodyUISize.x, 0, levelImage[lvM->GetLevel() - 1], true);
 
 	if (frame >= 92 * 1) {
 		DrawRotaGraph(tempPos[1].x, tempPos[1].y, BodyUISize.x, 0, ResultUI[exM->GetBodyType(0)], true);

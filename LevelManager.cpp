@@ -24,6 +24,7 @@ void LevelManager::Initialize()
 	levelImage[0] = LoadGraph("GameAssets/Sprite/level1.png");
 	levelImage[1] = LoadGraph("GameAssets/Sprite/level2.png");
 	levelImage[2] = LoadGraph("GameAssets/Sprite/level3.png");
+	levelImage[3] = LoadGraph("GameAssets/Sprite/levelMax.png");
 }
 
 void LevelManager::Update()
@@ -136,7 +137,7 @@ void LevelManager::Draw()
 	DrawBox(1200, 550, 1240, 750, GetColor(16, 16, 103), true);
 
 	//現在のレベル表示
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 4; i++) {
 		if (nowLevel_ == i + 1) {
 			DrawExtendGraph(1150, 710, 128 + 1150, 128 + 710, levelImage[i], true);
 		}
@@ -147,6 +148,9 @@ void LevelManager::Draw()
 	DrawBox(1200, nowExpGaugeYTop_[0], 1200 + 40, nowExpGaugeYBottom_[0], GetColor(46, 104, 214), true);
 	DrawBox(1200, nowExpGaugeYTop_[1], 1200 + 40, nowExpGaugeYBottom_[1], GetColor(46, 104, 214), true);
 	DrawBox(1200, nowExpGaugeYTop_[2], 1200 + 40, nowExpGaugeYBottom_[2], GetColor(46, 104, 214), true);
+	DrawBox(1200, 550, 1200 + 40, 750, GetColor(66, 255, 251), false);
+	DrawBox(1200+2, 550+2, 1200-2 + 40, 750-2, GetColor(66, 255, 251), false);
+
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	//透明ゲージの描画レベル1,2,3
