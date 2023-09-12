@@ -23,18 +23,31 @@ void ExBodyManager::Initialize()
 	}
 
 	bulletTimer_ = TIME_BULLET;
+	isSet_ = false;
 }
 
 void ExBodyManager::Update()
 {
 	BulletManager* bulletM = BulletManager::GetInstance();
 
-	if (isSelect_) {
-		
+	if (!isSelect_) {
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+			isRelease = true;
+		}
+		else {
+			isRelease = false;
+		}
+	}
+	else {
+		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)) {
+			isRelease = false;
+		}
+
+
 		int mouseX, mouseY;
 		GetMousePoint(&mouseX, &mouseY);
 
-		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isRelease) {
+		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) && isSet_) {
 			if (mouseY > 300 && mouseY < 700) {
 				if (mouseX > 40 && mouseX <= 440) {
 					AddBody(choice_[0] + 1);
@@ -56,15 +69,12 @@ void ExBodyManager::Update()
 				}
 			}
 		}
-	}
 
-	
+		isSet_ = false;
 
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
-		isRelease = true;
-	}
-	else {
-		isRelease = false;
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isRelease) {
+			isSet_ = true;
+		}
 	}
 
 	if (--bulletTimer_ <= 0) {

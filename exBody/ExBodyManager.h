@@ -76,4 +76,6 @@ private:
 	int shakeImage = LoadGraph("GameAssets/Sprite/Body/body_shark.png");
 
 	bool isRelease = true;
+
+	bool isSet_;
 };
