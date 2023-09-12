@@ -15,10 +15,23 @@ void ClearScene::Initialize()
 	ResultUI[5] = LoadGraph("GameAssets/Sprite/UI/syak.png");
 	ResultUI[6] = LoadGraph("GameAssets/Sprite/UI/sakaban.png");
 
+
+	ResultUI[11] = LoadGraph("GameAssets/Sprite/UI/mukimuki.png");
+	ResultUI[12] = LoadGraph("GameAssets/Sprite/UI/majisya.png");
+	ResultUI[13] = LoadGraph("GameAssets/Sprite/UI/jett.png");
+	ResultUI[14] = LoadGraph("GameAssets/Sprite/UI/gameimgg.png");
+	ResultUI[15] = LoadGraph("GameAssets/Sprite/UI/syake.png");
+	ResultUI[16] = LoadGraph("GameAssets/Sprite/UI/sukabann.png");
+
+	ResultUI[17] = LoadGraph("GameAssets/Sprite/UI/chinnanago.png");
+	ResultUI[18] = LoadGraph("GameAssets/Sprite/UI/kannsei.png");
+
+
+
 	ResultUI[7] = LoadGraph("GameAssets/Sprite/UI/anagoLv.png");
 	ResultUI[8] = LoadGraph("GameAssets/Sprite/UI/body.png");
 	ResultUI[9] = LoadGraph("GameAssets/Sprite/level3.png");
-	ResultUI[10] = LoadGraph("GameAssets/Sprite/UI/result.png");
+	ResultUI[19] = LoadGraph("GameAssets/Sprite/UI/result.png");
 
 	levelImage[0] = LoadGraph("GameAssets/Sprite/level1.png");
 	levelImage[1] = LoadGraph("GameAssets/Sprite/level2.png");
@@ -47,6 +60,7 @@ void ClearScene::Initialize()
 	UIFrame[2] = 0;
 	UIFrame[3] = 0;
 
+	alpha_ = 255;
 }
 
 
@@ -69,6 +83,11 @@ void ClearScene::Update()
 	if (frame >= 92 * 3) {
 		UIFrame[3]++;
 	}
+
+	if (frame >= 330) {
+		alpha_-=25;
+		alpha_ = max(alpha_, 0);
+	}
 	
 	if (titleAnimeTimer >= titleAnimeMaxTimer) {
 		titleAnimeTimer = 0;
@@ -85,30 +104,37 @@ void ClearScene::Update()
 
 void ClearScene::Draw()
 {
+	ExBodyManager* exM = ExBodyManager::GetInstance();
+	LevelManager* lvM = LevelManager::GetInstance();
 	
+	//”wŒi
 	DrawGraph(0, -180, backBottomImage, true);
-	
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
 
+	Player::GetInstance()->Draw();
+	ExBodyManager::GetInstance()->Draw();
+
+	//W’†ü
 	if (frame >= 370) {
 		DrawRotaGraph(1280 / 2, 900/2, 1, rot, targetImage, true);
 	}
 	DrawFormatString(0, 20, GetColor(255, 255, 255), "%d", frame);
 
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
+
 	//Œ‹‰Ê”­•\
-	DrawRotaGraph(1280/2, 80, titleSize.x, 0, ResultUI[10], true);
+	DrawRotaGraph(1280 / 2, 80, titleSize.x, 0, ResultUI[19], true);
 
 	//‚ ‚È‚²
 	DrawRotaGraph(150, 250, titleSize.x, 0, ResultUI[7], true);
 	//‚©‚ç‚¾
 	DrawRotaGraph(150, 350, titleSize.x, 0, ResultUI[8], true);
 
-	ExBodyManager* exM =  ExBodyManager::GetInstance();
-	LevelManager* lvM = LevelManager::GetInstance();
-
+	//Lv
 	DrawRotaGraph(tempPos[0].x, tempPos[0].y, BodyUISize.x, 0, levelImage[lvM->GetLevel() - 1], true);
-
+	//“·‘Ì
 	if (frame >= 92 * 1) {
 		DrawRotaGraph(tempPos[1].x, tempPos[1].y, BodyUISize.x, 0, ResultUI[exM->GetBodyType(0)], true);
 	}
@@ -118,6 +144,18 @@ void ClearScene::Draw()
 	if (frame >= 92 * 3) {
 		DrawRotaGraph(tempPos[3].x, tempPos[3].y, BodyUISize.x, 0, ResultUI[exM->GetBodyType(2)], true);
 	}
+
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+
+	if (frame >= 370) {
+		DrawRotaGraph(320, 270, 1, 0, ResultUI[exM->GetBodyType(0) + 10], true);
+		DrawRotaGraph(650, 380, 1, 0, ResultUI[exM->GetBodyType(1) + 10], true);
+		DrawRotaGraph(980, 490, 1, 0, ResultUI[exM->GetBodyType(2) + 10], true);
+		DrawRotaGraph(800, 670, 1.4, 0.1, ResultUI[17], true);
+		DrawRotaGraph(1280 / 2, 105, 0.7, 0, ResultUI[18], true);
+	}
+	
+
 
 	for (int i = 0; i < 3; i++) {
 		Vector2 tempPos;
@@ -175,9 +213,6 @@ void ClearScene::Draw()
 		}
 	}
 	DrawFormatString(840, 400, GetColor(255, 255, 255), "ƒ`ƒ“ƒAƒiƒS`I");
-
-	Player::GetInstance()->Draw();
-	ExBodyManager::GetInstance()->Draw();
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "clear");
 }
