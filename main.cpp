@@ -79,7 +79,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	clearScene->Initialize();
 	debug->Initialize();
 	
-	int scene = CLEAR_SCENE;
+	int scene = TITLE_SCENE;
 
 	// ゲームループ
 	while (true) {
@@ -92,7 +92,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// 更新処理
 		if (scene == TITLE_SCENE) {
-			PlaySoundMem(titleBGM, DX_PLAYTYPE_LOOP, false);
+			if (CheckSoundMem(titleBGM) == 0) {
+				PlaySoundMem(titleBGM, DX_PLAYTYPE_LOOP, true);
+			}
+			
 			titleScene->Update();
 
 			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
@@ -106,7 +109,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 		}
 		else if (scene == GAME_SCENE) {
-			PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, false);
+			if (CheckSoundMem(gameBGM) == 0) {
+				PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, true);
+			}
+			
 			gameScene->Update();
 			debug->Update();
 			

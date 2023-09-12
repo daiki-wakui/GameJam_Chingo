@@ -18,6 +18,8 @@ private:
 	int targetImage = LoadGraph("GameAssets/Sprite/target.png");
 
 	int ResultUI[20];
+	int levelImage[4];
+
 
 	Vector2 titleSize = { 0,0 };
 	Vector2 BodyUISize = { 0,0 };
