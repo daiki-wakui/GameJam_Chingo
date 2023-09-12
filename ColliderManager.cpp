@@ -67,7 +67,7 @@ void ColliderManager::Update()
 		}
 		for (int i = 0; i < 3;i++) {
 			if (ExBodyManager::GetInstance()->GetBodyType(i) == BodyType::Shark) {
-				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace()),120, enemy->GetPos(), enemy->GetR())) {
+				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace()),90, enemy->GetPos(), enemy->GetR())) {
 					//H‚¦‚éŽž
 					if (expM->GetLevel() >= enemy->GetLv()) {
 						player->AddBodyLength(enemy->GetHang());
