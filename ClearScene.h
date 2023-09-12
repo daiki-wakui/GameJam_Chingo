@@ -1,5 +1,6 @@
 #pragma once
 #include "DxLib.h"
+#include "Vector2.h"
 
 class ClearScene
 {
@@ -16,6 +17,22 @@ private:
 
 	int targetImage = LoadGraph("GameAssets/Sprite/target.png");
 
+	int ResultUI[20];
+
+	Vector2 titleSize = { 0,0 };
+	Vector2 BodyUISize = { 0,0 };
+	Vector2 BodyUIStartPos[4];
+	Vector2 BodyUIEndPos[4];
+
+	int titleAnimeTimer = 0;
+	int titleAnimeMaxTimer = 23;
+	int rot = 0;
+
+	int frame = 0;
+
+	float UIFrame[4];
+
+	Vector2 tempPos[4];
 public:
 
 	void Initialize();
