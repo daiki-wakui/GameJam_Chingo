@@ -61,6 +61,10 @@ void ClearScene::Initialize()
 	UIFrame[3] = 0;
 
 	alpha_ = 255;
+	isSE_ = false;
+
+	ChangeVolumeSoundMem(160, kansei1);
+	ChangeVolumeSoundMem(160, kansei2);
 }
 
 
@@ -88,6 +92,15 @@ void ClearScene::Update()
 		alpha_-=25;
 		alpha_ = max(alpha_, 0);
 	}
+
+	if (frame >= 365) {
+		if (!isSE_) {
+			PlaySoundMem(kansei1, DX_PLAYTYPE_BACK, true);
+			PlaySoundMem(kansei2, DX_PLAYTYPE_BACK, true);
+			isSE_ = true;
+		}
+	}
+	
 	
 	if (titleAnimeTimer >= titleAnimeMaxTimer) {
 		titleAnimeTimer = 0;
