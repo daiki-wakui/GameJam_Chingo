@@ -19,7 +19,13 @@ private:
 	int backBottomImage = LoadGraph("GameAssets/Sprite/background_bottom.png");
 
 	int mouseImage[2];
-	
+
+	int anagoImage[2];
+
+	Vector2 startAnago[4];
+	Vector2 endAnago[4];
+	Vector2 AnagoPos[4];
+
 	int startSE = LoadSoundMem("GameAssets/Sound/start.mp3");
 	
 
@@ -48,7 +54,7 @@ private:
 	float startUISize_ = 180;
 	float frame_[2];
 	int state_;
-
+	
 public:
 
 	bool GetIsSceneChange() { return isChange; }
