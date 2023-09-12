@@ -176,5 +176,5 @@ void EnemyManager::PopSakaban()
 		enemys_.push_back(move(newEnemy));
 	}
 
-	fishPopTimer_ = TIME_FISH_POP;
+	sakabanPopTimer_ = TIME_SAKABAN_POP;
 }

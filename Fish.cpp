@@ -21,7 +21,7 @@ void Fish::Initialize(Vector2 pos)
 	exp_ = EXP;
 	lv_ = LV;
 
-	texture_ = LoadGraph("GameAssets/Sprite/enemy_fish.png");
+	texture_ = LoadGraph("GameAssets/Sprite/fish_redBream.png");
 
 	colNum_ = MAX_COL;
 }

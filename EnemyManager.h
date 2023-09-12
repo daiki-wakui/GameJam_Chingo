@@ -72,6 +72,6 @@ private:
 
 	int whaleNum_;
 
-	const int TIME_SAKABAN = 20 * 60;
+	const int TIME_SAKABAN_POP = 20 * 60;
 	int sakabanPopTimer_;
 };
