@@ -8,6 +8,7 @@
 #include "ScrollManager.h"
 #include "Keyboard.h"
 #include "BulletManager.h"
+#include "Easing.h"
 
 void GameScene::Initialize()
 {
@@ -25,10 +26,37 @@ void GameScene::Initialize()
 		effectPosRight_[i].y = 0;
 	}
 	shake->Reset();
+
+	anagoImage[0] = LoadGraph("GameAssets/Sprite/anago1.png");
+	anagoImage[1] = LoadGraph("GameAssets/Sprite/anago2.png");
+
+	startAnago[0] = { -110,-250 };
+	startAnago[1] = { -110 + 330,-250 };
+	startAnago[2] = { -110 + 330 * 2,-250 };
+	startAnago[3] = { -110 + 330 * 3,-250 };
+
+	AnagoPos[0] = startAnago[0];
+	AnagoPos[1] = startAnago[1];
+	AnagoPos[2] = startAnago[2];
+	AnagoPos[3] = startAnago[3];
+
+	endAnago[0] = { -110,1400 };
+	endAnago[1] = { -110 + 330,1200 };
+	endAnago[2] = { -110 + 330 * 2,1000 };
+	endAnago[3] = { -110 + 330 * 3,1500 };
+	frame_ = 0;
 }
 
 void GameScene::Update()
 {
+	frame_++;
+
+	AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_, 60));
+	AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_, 60));
+	AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_, 60));
+	AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_, 60));
+
+
 	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R)) {
 		Initialize();
 	}
@@ -87,6 +115,8 @@ void GameScene::Draw()
 	enemyM->Draw();
 	Player::GetInstance()->Draw();
 
+	
+
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
 	BulletManager::GetInstance()->Draw();
@@ -110,6 +140,11 @@ void GameScene::Draw()
 		}
 		effectColorChange_++;
 	}
+
+	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
+	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
+	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
+	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "game");
 }
