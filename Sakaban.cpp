@@ -56,9 +56,9 @@ void Sakaban::Draw()
 	else {
 		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true);
 	}
-	DrawCircle(pos_, r_, GetColor(255, 100, 100));
-	DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
-	DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
+	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	//DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
+	//DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
 }
 
 Vector2 Sakaban::Col(int num)

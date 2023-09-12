@@ -23,7 +23,7 @@ void Plankton::Initialize(Vector2 pos)
 
 void Plankton::Update()
 {
-	EnemyManager::GetInstance()->AddPlanktonNum();
+	EnemyManager::GetInstance()->AddPlanktonNum(type_);
 
 	frame_++;
 	pos_.y = 0.34f * sinf(2 * 3.14f * (frame_ + addFrame_) / 200) + pos_.y;
@@ -32,5 +32,5 @@ void Plankton::Update()
 void Plankton::Draw()
 {
 	DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.13f, 0.13f, rot_, texture_, true);
-	DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
 }

@@ -45,6 +45,12 @@ public:
 		return isCook_;
 	}
 
+	void SetType(int num) {
+		type_ = num;
+	}
+	int GetType() {
+		return type_;
+	}
 protected:
 	int healHang_ = 1; //プレイヤーが食べた時に空腹度回復する量
 	int exp_ = 1;	//プレイヤーが食べた時に得られる経験値
@@ -61,5 +67,7 @@ protected:
 	int colNum_ = 0;
 
 	bool isCook_ = false;
+
+	int type_ = 0;
 
 };
