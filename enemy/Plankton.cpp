@@ -3,6 +3,7 @@
 #include <random>
 #include "DxLib.h"
 #include "EnemyManager.h"
+#include "Easing.h"
 
 void Plankton::Initialize(Vector2 pos)
 {
@@ -31,6 +32,15 @@ void Plankton::Update()
 
 void Plankton::Draw()
 {
-	DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.13f, 0.13f, rot_, texture_, true);
+	DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.13f * GetScale(), 0.13f * GetScale(), rot_, texture_, true);
 	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
+}
+
+float Plankton::GetScale()
+{
+	if (frame_ >= 30) {
+		return 1.0f;
+	}
+
+	return Easing::EaseOutBack(frame_, 30);
 }

@@ -11,6 +11,8 @@ public:
 		type_ = num;
 	}
 
+	float GetScale();
+
 private:
 	const int RADIUS = 15;
 	const int HANG = 15;

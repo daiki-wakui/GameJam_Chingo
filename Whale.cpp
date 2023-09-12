@@ -42,19 +42,23 @@ void Whale::Update()
 	}
 
 	colPos_[0] = pos_;
-	colPos_[0].x += r_ * 2;
+	colPos_[0].x += r_;
+	colPos_[1] = pos_;
+	colPos_[1].x -= r_;
 }
 
 void Whale::Draw()
 {
+	DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
+	DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
+
 	if (isWay_) {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true, true);
+		DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true, true);
 	}
 	else {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true);
+		DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true);
 	}
-	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
-	//DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
 }
 
 Vector2 Whale::Col(int num)
