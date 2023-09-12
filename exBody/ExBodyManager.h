@@ -9,6 +9,7 @@ enum BodyType
 	JET,
 	GAMING,
 	Shark,
+	SAKABAN,
 	END_BODY_TYPE,
 };
 

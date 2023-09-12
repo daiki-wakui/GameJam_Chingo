@@ -153,6 +153,14 @@ void ExBodyManager::BodyDraw(int i)
 			256, 256, 0.45f, 0.45f, angle, shakeImage, true);
 
 		break;
+	case SAKABAN:
+		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 80, GetColor(0, 0, 255));
+		/*DrawRotaGraph3(
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
+			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
+			256, 256, 0.45f, 0.45f, angle, shakeImage, true);*/
+
+		break;
 	default:
 		break;
 	}
@@ -221,6 +229,10 @@ void ExBodyManager::SelectDraw()
 			//Shark
 			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
 		}
+		else if (choice_[i] == 5) {
+			//Shark
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "サカバンバスピス");
+		}
 	}
 }
 
@@ -282,6 +294,13 @@ void ExBodyManager::ResultDraw()
 			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 			//DrawGraph(tempPos.x, tempPos.y, gamingImage, true);
 		}
+		else if (bodyType_[i] == 6) {
+			//Shark
+			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "サカバンバスピス");
+			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
+			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
+			//DrawGraph(tempPos.x, tempPos.y, gamingImage, true);
+		}
 	}
 	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
 }
@@ -294,17 +313,14 @@ void ExBodyManager::AddBody(int num)
 	case MUSCLE:
 		Player::GetInstance()->AddHang(100);
 		break;
-	case MAGICIAN:
-
-		break;
 	case JET:
 		Player::GetInstance()->AddBodySpace(2);
 		break;
 	case GAMING:
 		Player::GetInstance()->AddSpeedNeck(2);
 		break;
-	case Shark:
-
+	case SAKABAN:
+		Player::GetInstance()->SetSakaban();
 		break;
 	default:
 		break;
