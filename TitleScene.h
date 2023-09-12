@@ -48,7 +48,7 @@ private:
 	float startUISize_ = 180;
 	float frame_[2];
 	int state_;
-
+	
 public:
 
 	bool GetIsSceneChange() { return isChange; }
