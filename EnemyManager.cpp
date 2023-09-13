@@ -52,12 +52,12 @@ void EnemyManager::Update()
 	if (Player::GetInstance()->GetIsExtend()) {
 		for (int j = 0; j < 7; j++) {
 			if (j > 3) {
-				for (int i = planktonNum_[j]; i < 12; i++) {
+				for (int i = planktonNum_[j]; i < 13; i++) {
 					RePopPlankton(j);
 				}
 			}
 			else {
-				for (int i = planktonNum_[j]; i < 19; i++) {
+				for (int i = planktonNum_[j]; i < 20; i++) {
 					RePopPlankton(j);
 				}
 			}

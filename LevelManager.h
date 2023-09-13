@@ -57,9 +57,9 @@ private:
 	const int EXP_LV3 = 1200;
 
 	const int HANG_LV1 = 110;
-	const int HANG_LV2 = 120;
-	const int HANG_LV3 = 140;
-	const int HANG_LV4 = 180;
+	const int HANG_LV2 = 125;
+	const int HANG_LV3 = 150;
+	const int HANG_LV4 = 200;
 
 	const int START_BODY_THICKNESS = 30; //‘Ì‚Ì‘¾‚³
 	const int BODY_THICKNESS_LV2 = 40;
