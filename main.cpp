@@ -80,7 +80,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	clearScene->Initialize();
 	debug->Initialize();
 	
-	int scene = TITLE_SCENE;
+	int scene = CLEAR_SCENE;
 
 	// ƒQ[ƒ€ƒ‹[ƒv
 	while (true) {
@@ -138,7 +138,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			
 			clearScene->Update();
 
-			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
+			if (clearScene->GetIsChange()) {
 				StopSoundMem(resultBGM);
 				gameScene->Initialize();
 				titleScene->Initialize();
