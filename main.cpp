@@ -106,12 +106,24 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 		}
 		else if (scene == GAME_SCENE) {
-			if (CheckSoundMem(gameBGM) == 0) {
-				PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, true);
-			}
+			
 			gameScene->Update();
 			debug->Update();
 	
+			if (CheckSoundMem(gameBGM) == 0 && !gameScene->GetIstutorial()) {
+				
+				PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, true);
+			}
+			else {
+				if (CheckSoundMem(titleBGM) == 0) {
+					PlaySoundMem(titleBGM, DX_PLAYTYPE_BACK, true);
+				}
+			}
+
+			if (!gameScene->GetIstutorial()) {
+				StopSoundMem(titleBGM);
+			}
+
 			if (!EnemyManager::GetInstance()->GetIsWhaleAlive()) {
 				gameScene->SetIsSceneChange(true);
 			}

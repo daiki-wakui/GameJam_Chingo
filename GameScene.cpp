@@ -60,7 +60,13 @@ void GameScene::Initialize()
 
 	fukidasiPosY = 650;
 
-	tutorialImage[0] = LoadGraph("GameAssets/Sprite/anago1.png");
+	tutorialImage[0] = LoadGraph("GameAssets/Sprite/UI/tuto1.png");
+	tutorialImage[1] = LoadGraph("GameAssets/Sprite/UI/tuto2.png");
+	tutorialImage[2] = LoadGraph("GameAssets/Sprite/UI/tuto3.png");
+	tutorialImage[3] = LoadGraph("GameAssets/Sprite/UI/tuto4.png");
+	tutorialImage[4] = LoadGraph("GameAssets/Sprite/UI/tuto5.png");
+
+	ChangeVolumeSoundMem(140, UI_Select);
 }
 
 void GameScene::Update()
@@ -79,19 +85,43 @@ void GameScene::Update()
 	if (isTutorialPhase == 0) {
 		isTutorial = true;
 
-		if(MouseTriggerLeft()) {
+		if (MouseTriggerLeft() && frame_[0] >= 140) {
 			isTutorialPhase++;
+			PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+
 		}
 	}
 	else if (isTutorialPhase == 1) {
 		if (MouseTriggerLeft()) {
 			isTutorialPhase++;
+			PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+
 		}
 	}
 	else if (isTutorialPhase == 2) {
 		if (MouseTriggerLeft()) {
 			isTutorialPhase++;
+			PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+
 		}
+	}
+	else if (isTutorialPhase == 3) {
+		if (MouseTriggerLeft()) {
+			isTutorialPhase++;
+			PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+
+		}
+	}
+	else if (isTutorialPhase == 4) {
+		if (MouseTriggerLeft()) {
+			isTutorialPhase++;
+			PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+
+		}
+		
+	}
+	else if (isTutorialPhase == 5) {
+		isTutorial = false;
 	}
 
 	endSize = endSize.lerp(Vector2{ 15,0 }, Vector2{ 1.5,0 }, Easing::EaseOutBack(frame_[1], 10));
@@ -133,21 +163,22 @@ void GameScene::Update()
 		AnagoPos[2] = AnagoPos[2].lerp(endAnago[2], startAnago[2], Easing::EaseOutCubic(frame_[2], 30));
 		AnagoPos[3] = AnagoPos[3].lerp(endAnago[3], startAnago[3], Easing::EaseOutCubic(frame_[2], 30));
 
+
 		if (frame_[2] >= 30) {
 			frame_[3]++;
-			AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[3], 30));
-			AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[3], 30));
-			AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[3], 30));
-			AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[3], 30));
+			AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[3], 70));
+			AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[3], 70));
+			AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[3], 70));
+			AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[3], 70));
 
 		}
 
-		if (frame_[3] >= 30) {
+		if (frame_[3] >= 80) {
 			isReset = false;
 		}
 	}
 
-	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R)) {
+	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R) && !isTutorial && !isReset) {
 		Initialize();
 
 		AnagoPos[0] = endAnago[0];
@@ -177,9 +208,10 @@ void GameScene::Update()
 	isEffectSet_ = false;
 
 	if (!isTutorial) {
-		
+		Player::GetInstance()->Update();
 	}
-	Player::GetInstance()->Update();
+
+	
 	ColliderManager::GetInstance()->Update();
 	LevelManager::GetInstance()->Update();
 
@@ -257,9 +289,17 @@ void GameScene::Draw()
 		DrawRotaGraph(1280/2, 900/2, endSize.x,0, endImage, true);
 	}
 
-	/*if (isTutorial) {
+	if (isTutorial) {
 		DrawRotaGraph(1280 / 2 + 160, fukidasiPosY, 1.2, 0, fukidasiImage, true);
-	}*/
+		if (isTutorialPhase != 4) {
+			DrawRotaGraph(1280 / 2 + 165, fukidasiPosY, 0.6, 0, tutorialImage[isTutorialPhase], true);
+		}
+		else{
+			DrawRotaGraph(1280 / 2 + 180, fukidasiPosY, 1, 0, tutorialImage[isTutorialPhase], true);
+		}
+
+		DrawRotaGraph(1280 / 2 + 280, fukidasiPosY+75, 0.2, 0, mouseLeftImage, true);
+	}
 	
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);

@@ -69,8 +69,6 @@ void Dolphin::Draw()
 	else {
 		if (!isCook_) {
 			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true);
-			DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3 - 55, 0.5f, 0, lvImage_, true);
-
 		}
 		else {
 			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, -1.57, cookTex_, true);
@@ -79,6 +77,8 @@ void Dolphin::Draw()
 	}
 	if (LevelManager::GetInstance()->GetLevel() < LV) {
 		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3, 0.3f, 0, warningTex_, true);
+		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3 - 55, 0.5f, 0, lvImage_, true);
+
 	}
 
 	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
