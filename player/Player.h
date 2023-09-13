@@ -68,10 +68,13 @@ public:
 	}
 
 	void SetThickness(int num) {
-		thickness_ = num;
+		thick_ = num;
 	}
-	int GetThickness() {
-		return thickness_;
+	void SetThickness(int num,int i) {
+		thickness_[i] = num;
+	}
+	int GetThickness(int i) {
+		return thickness_[i];
 	}
 
 	bool GetInv();
@@ -142,7 +145,8 @@ private:
 
 	int oldLevel_;
 
-	int thickness_;
+	int thickness_[MAX_BODY];
+	int thick_;
 
 	int invTime_;
 

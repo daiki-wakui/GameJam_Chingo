@@ -65,11 +65,11 @@ void Whale::Draw()
 		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3, 0.3f, 0, warningTex_, true);
 		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3 - 50, 0.5f, 0, lvImage_, true);
 	}
-	DrawCircle(pos_, r_, GetColor(255, 100, 100));
-	DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
-	DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
-	DrawCircle(colPos_[2], r_, GetColor(255, 100, 100));
-	DrawCircle(colPos_[3], r_, GetColor(255, 100, 100));
+	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
+	//DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
+	//DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
+	//DrawCircle(colPos_[2], r_, GetColor(255, 100, 100));
+	//DrawCircle(colPos_[3], r_, GetColor(255, 100, 100));
 }
 
 Vector2 Whale::Col(int num)
