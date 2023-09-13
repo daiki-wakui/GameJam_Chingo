@@ -23,6 +23,7 @@ void Fish::Initialize(Vector2 pos)
 	lv_ = LV;
 
 	texture_ = LoadGraph("GameAssets/Sprite/fish_redBream.png");
+	lvImage_ = LoadGraph("GameAssets/Sprite/UI/enemyLv2.png");
 
 	colNum_ = MAX_COL;
 }
@@ -72,6 +73,8 @@ void Fish::Draw()
 	}
 	if (LevelManager::GetInstance()->GetLevel() < LV) {
 		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3,0.3f, 0, warningTex_, true);
+		DrawRotaGraph(pos_.x+80, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3, 0.3f, 0, lvImage_, true);
+
 	}
 
 	//DrawCircle(pos_, r_, GetColor(255, 100, 100));

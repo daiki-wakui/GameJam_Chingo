@@ -19,6 +19,7 @@ private:
 	bool isWay_;
 
 	int texture_;
+	int lvImage_;
 
 	static const int MAX_COL = 4;
 	Vector2 colPos_[MAX_COL];
