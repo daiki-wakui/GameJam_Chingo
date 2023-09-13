@@ -159,15 +159,15 @@ void GameScene::Draw()
 	DrawGraph(0, -1080 * 8 + ScrollManager::GetInstance()->GetScroll(), backTopImage, true);
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
-	enemyM->Draw();
-	Player::GetInstance()->Draw();
-
-	
+	enemyM->Draw();	
 
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
 	BulletManager::GetInstance()->Draw();
 	LevelManager::GetInstance()->Draw();
+
+	Player::GetInstance()->Draw();
+
 
 	for (int i = 0; i < effectNumber_; i++) {
 		//for•¶‚ª‹ô”‚Ì‚Æ‚«Ô
@@ -187,6 +187,8 @@ void GameScene::Draw()
 		}
 		effectColorChange_++;
 	}
+
+	
 
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
