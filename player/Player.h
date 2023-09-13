@@ -1,5 +1,6 @@
 #pragma once
 #include "MathManager.h"
+#include "DxLib.h"
 
 class Player {
 private:
@@ -97,7 +98,8 @@ public:
 	}
 
 private:
-	int eyeTexure_;
+	int eyeTexure_ = LoadGraph("GameAssets/Sprite/Body/mainBody_eyes.png");
+	int sakabanEyeTex = LoadGraph("GameAssets/Sprite/Body/sacabambaspis_eyes.png");
 
 	static const int MAX_BODY = 10000; //‘Ì‚ÌÅ‘å”
 	const int NUM_NECK = 5;	 //ñ‚©‚çã‚Ì”

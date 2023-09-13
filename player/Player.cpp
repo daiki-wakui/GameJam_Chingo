@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "DxLib.h"
 #include <math.h>
 #include "DebugManager.h"
 #include "LevelManager.h"
@@ -40,8 +39,6 @@ void Player::Initialize()
 	isSakaban_ = false;
 
 	ExBodyManager::GetInstance()->Initialize();
-
-	eyeTexure_ = LoadGraph("GameAssets/Sprite/Body/mainBody_eyes.png");
 }
 
 void Player::Update()
@@ -256,16 +253,27 @@ void Player::Draw(bool scroll)
 	ExBodyManager::GetInstance()->Draw();
 	if (!(--invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
 		if (scroll) {
-			DrawRotaGraph3(GetPos(0).x, GetPos(0).y + ScrollManager::GetInstance()->GetScroll(), 128, 128, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, eyeTexure_, true);
+			if (!isSakaban_) {
+				DrawRotaGraph3(GetPos(0).x, GetPos(0).y + ScrollManager::GetInstance()->GetScroll(), 128, 128, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, eyeTexure_, true);
+			}
+			else {
+				DrawRotaGraph3(GetPos(0).x, GetPos(0).y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, sakabanEyeTex, true);
+
+			}
 		}
 		else {
-			DrawRotaGraph3(GetPos(0).x, GetPos(0).y, 128, 128, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, eyeTexure_, true);
+			if (!isSakaban_) {
+				DrawRotaGraph3(GetPos(0).x, GetPos(0).y, 128, 128, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, eyeTexure_, true);
+			}
+			else {
+				DrawRotaGraph3(GetPos(0).x, GetPos(0).y, 256, 256, 0.25, 0.25, (PI / 180 * angle_[1]) + PI, sakabanEyeTex, true);
+			}
 		}
 	}
 	ExBodyManager::GetInstance()->LvUpDraw();
 
-	DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
-	DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
+	//DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
+	//DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 }
 
 bool Player::GetIsExtend()
