@@ -48,20 +48,20 @@ void ExBodyManager::Update()
 		GetMousePoint(&mouseX, &mouseY);
 
 		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) && isSet_) {
-			if (mouseY > 320 && mouseY < 680) {
-				if (mouseX > 100 && mouseX <= 380) {
+			if (mouseY > 320 && mouseY < 890) {
+				if (mouseX > 45 && mouseX <= 440) {
 					AddBody(choice_[0] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
 
 				}
-				if (mouseX > 500 && mouseX <= 780) {
+				if (mouseX > 440 && mouseX <= 840) {
 					AddBody(choice_[1] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
 
 				}
-				if (mouseX > 900 && mouseX <= 1180) {
+				if (mouseX > 840 && mouseX <= 1240) {
 					AddBody(choice_[2] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
