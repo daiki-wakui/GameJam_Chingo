@@ -93,7 +93,7 @@ void ClearScene::Update()
 		alpha_ = max(alpha_, 0);
 	}
 
-	if (frame >= 365) {
+	if (frame >= 370) {
 		if (!isSE_) {
 			PlaySoundMem(kansei1, DX_PLAYTYPE_BACK, true);
 			PlaySoundMem(kansei2, DX_PLAYTYPE_BACK, true);
