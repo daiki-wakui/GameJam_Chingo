@@ -57,19 +57,48 @@ void GameScene::Initialize()
 	endSize.x = 5;
 
 	ChangeVolumeSoundMem(100, endSE);
+
+	fukidasiPosY = 650;
 }
 
 void GameScene::Update()
 {
 	frame_[0]++;
 
+	//マウス入力情報
+	oldMouse = Mouse;
+	Mouse = GetMouseInput();
+
+	//マウスの場所取得
+	GetMousePoint(&mouseX_, &mouseY_);
+
+	fukidasiPosY = 0.15f * sinf(2 * 3.14f * frame_[0] / 200) + fukidasiPosY;
+
+	if (isTutorialPhase == 0) {
+		isTutorial = true;
+
+		if(MouseTriggerLeft()) {
+			isTutorialPhase++;
+		}
+	}
+	else if (isTutorialPhase == 1) {
+		if (MouseTriggerLeft()) {
+			isTutorialPhase++;
+		}
+	}
+	else if (isTutorialPhase == 2) {
+		if (MouseTriggerLeft()) {
+			isTutorialPhase++;
+		}
+	}
+
 	endSize = endSize.lerp(Vector2{ 15,0 }, Vector2{ 1.5,0 }, Easing::EaseOutBack(frame_[1], 10));
 
-	if (EnemyManager::GetInstance()->GetIsWhaleAlive()&&!isReset) {
-		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[0], 40));
-		AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[0], 40));
-		AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[0], 40));
-		AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[0], 40));
+	if (EnemyManager::GetInstance()->GetIsWhaleAlive() && !isReset) {
+		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[0], 110));
+		AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[0], 110));
+		AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[0], 110));
+		AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[0], 110));
 	}
 	else if (isChangeStart) {
 		frame_[1]++;
@@ -145,7 +174,12 @@ void GameScene::Update()
 	}
 	isEffectSet_ = false;
 
+	if (!isTutorial) {
+		
+	}
+
 	Player::GetInstance()->Update();
+	
 	ColliderManager::GetInstance()->Update();
 	LevelManager::GetInstance()->Update();
 
@@ -223,12 +257,22 @@ void GameScene::Draw()
 		DrawRotaGraph(1280/2, 900/2, endSize.x,0, endImage, true);
 	}
 
+	//DrawRotaGraph(1280 / 2 + 160, fukidasiPosY, 1.2, 0, fukidasiImage, true);
+
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
 	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
 
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), "game");
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "t %d , %d", isTutorialPhase);
+}
+
+bool GameScene::MouseTriggerLeft()
+{
+	if (Mouse & MOUSE_INPUT_LEFT && oldMouse != MOUSE_INPUT_LEFT) {
+		return true;
+	}
+	return false;
 }
 
 void GameScene::LevelUpEffectSet()

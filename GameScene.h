@@ -19,6 +19,10 @@ private:
 	int endImage = LoadGraph("GameAssets/Sprite/UI/end.png");
 	int RkeyImage = LoadGraph("GameAssets/Sprite/UI/RkeyReset.png");
 
+	int fukidasiImage = LoadGraph("GameAssets/Sprite/fukidasi.png");
+
+	float fukidasiPosY = 650;
+
 	int anagoImage[2];
 
 	int endSE = LoadSoundMem("GameAssets/Sound/endSE.mp3");
@@ -49,6 +53,13 @@ private:
 	bool isReset = false;
 
 	Vector2 endSize;
+
+	int mouseX_, mouseY_;
+	int isTutorialPhase;
+	bool isTutorial;
+
+	int Mouse;
+	int oldMouse;
 public:
 
 	bool GetIsSceneChange() { return isChange; }
@@ -64,5 +75,7 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+
+	bool MouseTriggerLeft();
 };
 
