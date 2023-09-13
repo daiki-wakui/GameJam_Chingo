@@ -24,6 +24,7 @@ void ExBodyManager::Initialize()
 
 	bulletTimer_ = TIME_BULLET;
 	isSet_ = false;
+	ChangeVolumeSoundMem(140, UI_Select);
 }
 
 void ExBodyManager::Update()
@@ -53,19 +54,19 @@ void ExBodyManager::Update()
 					AddBody(choice_[0] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
-
+					PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
 				}
 				if (mouseX > 440 && mouseX <= 840) {
 					AddBody(choice_[1] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
-
+					PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
 				}
 				if (mouseX > 840 && mouseX <= 1240) {
 					AddBody(choice_[2] + 1);
 					isSelect_ = false;
 					LevelManager::GetInstance()->isSetRat(true);
-
+					PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
 				}
 			}
 		}
