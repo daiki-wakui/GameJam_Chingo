@@ -9,6 +9,7 @@
 #include "Keyboard.h"
 #include "BulletManager.h"
 #include "Easing.h"
+#include "EnemyManager.h"
 
 void GameScene::Initialize()
 {
@@ -44,18 +45,35 @@ void GameScene::Initialize()
 	endAnago[1] = { -110 + 330,1200 };
 	endAnago[2] = { -110 + 330 * 2,1000 };
 	endAnago[3] = { -110 + 330 * 3,1500 };
-	frame_ = 0;
+	frame_[0] = 0;
+	frame_[1] = 0;
+	isChange = false;
+	isChangeStart = false;
 }
 
 void GameScene::Update()
 {
-	frame_++;
+	frame_[0]++;
 
-	AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_, 60));
-	AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_, 60));
-	AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_, 60));
-	AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_, 60));
+	if (EnemyManager::GetInstance()->GetIsWhaleAlive()) {
+		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[0], 60));
+		AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[0], 60));
+		AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[0], 60));
+		AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[0], 60));
+	}
+	else if (isChangeStart) {
+		frame_[1]++;
+		AnagoPos[0] = AnagoPos[0].lerp(endAnago[0], startAnago[0], Easing::EaseOutCubic(frame_[1], 60));
+		AnagoPos[1] = AnagoPos[1].lerp(endAnago[1], startAnago[1], Easing::EaseOutCubic(frame_[1], 60));
+		AnagoPos[2] = AnagoPos[2].lerp(endAnago[2], startAnago[2], Easing::EaseOutCubic(frame_[1], 60));
+		AnagoPos[3] = AnagoPos[3].lerp(endAnago[3], startAnago[3], Easing::EaseOutCubic(frame_[1], 60));
 
+	}
+
+	if (frame_[1] >= 60) {
+		isChange = true;
+	}
+	
 
 	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R)) {
 		Initialize();

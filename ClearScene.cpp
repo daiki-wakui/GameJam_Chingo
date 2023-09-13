@@ -65,11 +65,34 @@ void ClearScene::Initialize()
 
 	ChangeVolumeSoundMem(160, kansei1);
 	ChangeVolumeSoundMem(160, kansei2);
+
+	anagoImage[0] = LoadGraph("GameAssets/Sprite/anago1.png");
+	anagoImage[1] = LoadGraph("GameAssets/Sprite/anago2.png");
+
+	startAnago[0] = { -110,-250 };
+	startAnago[1] = { -110 + 330,-250 };
+	startAnago[2] = { -110 + 330 * 2,-250 };
+	startAnago[3] = { -110 + 330 * 3,-250 };
+
+	AnagoPos[0] = startAnago[0];
+	AnagoPos[1] = startAnago[1];
+	AnagoPos[2] = startAnago[2];
+	AnagoPos[3] = startAnago[3];
+
+	endAnago[0] = { -110,1400 };
+	endAnago[1] = { -110 + 330,1200 };
+	endAnago[2] = { -110 + 330 * 2,1000 };
+	endAnago[3] = { -110 + 330 * 3,1500 };
 }
 
 
 void ClearScene::Update()
 {
+	AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame, 10));
+	AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame, 10));
+	AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame, 10));
+	AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame, 10));
+
 	Player::GetInstance()->ReSetBody();
 	Player::GetInstance()->ResultUpdate();
 	titleAnimeTimer++;
@@ -225,6 +248,12 @@ void ClearScene::Draw()
 			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 		}
 	}
+
+	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
+	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
+	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
+	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
+
 	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "clear");
