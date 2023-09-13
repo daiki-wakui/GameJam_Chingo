@@ -18,6 +18,7 @@ private:
 	int moleImage = LoadGraph("GameAssets/Sprite/mole2.png");
 	int endImage = LoadGraph("GameAssets/Sprite/UI/end.png");
 	int RkeyImage = LoadGraph("GameAssets/Sprite/UI/RkeyReset.png");
+	int mouseLeftImage = LoadGraph("GameAssets/Sprite/mouseUI2.png");
 
 	int fukidasiImage = LoadGraph("GameAssets/Sprite/fukidasi.png");
 
@@ -29,6 +30,8 @@ private:
 
 	int endSE = LoadSoundMem("GameAssets/Sound/endSE.mp3");
 	bool isSE = false;
+
+	int UI_Select = LoadSoundMem("GameAssets/Sound/SFX_UI_Select.wav");
 
 	EnemyManager* enemyM = EnemyManager::GetInstance();
 
@@ -63,6 +66,7 @@ private:
 	int Mouse;
 	int oldMouse;
 public:
+	bool GetIstutorial() { return isTutorial; }
 
 	bool GetIsSceneChange() { return isChange; }
 
