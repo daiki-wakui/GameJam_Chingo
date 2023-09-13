@@ -28,6 +28,7 @@ void LevelManager::Initialize()
 
 	ChangeVolumeSoundMem(180, canLevelUp);
 
+	isSetRatio_ = true;
 }
 
 void LevelManager::Update()
@@ -147,18 +148,11 @@ void LevelManager::Draw()
 	DrawGraph(2, 790, hungerGaugeBackImage, true);
 
 	if (nowLevel_ == 1) {
-		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 13.4, 128, hungerGaugeBarImage, true);
+		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * 12.1, 128, hungerGaugeBarImage, true);
 	}
 	else {
 		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * ratio_, 128, hungerGaugeBarImage, true);
 	}
-
-	/*else if (nowLevel_ == 2) {
-		
-	}
-	else if (nowLevel_ == 3) {
-		DrawRectGraph(-3, 792, 0, 0, hungerLength_ * ratio_, 128, hungerGaugeBarImage, true);
-	}*/
 	DrawGraph(2, 790, hungerGaugeFrameImage, true);
 
 	//ÉQÅ[ÉWÇÃòg
