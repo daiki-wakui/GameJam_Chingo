@@ -10,6 +10,7 @@
 #include "BulletManager.h"
 #include "Easing.h"
 #include "EnemyManager.h"
+#include "EffectManager.h"
 
 void GameScene::Initialize()
 {
@@ -17,6 +18,7 @@ void GameScene::Initialize()
 	LevelManager::GetInstance()->Initialize();
 	enemyM->Initialize();
 	BulletManager::GetInstance()->Initialize();
+	EffectManager::GetInstance()->Initialize();
 
 	//初期値セット
 	for (int i = 0; i < effectNumber_; i++)
@@ -127,6 +129,7 @@ void GameScene::Update()
 
 	enemyM->Update();
 	BulletManager::GetInstance()->Update();
+	EffectManager::GetInstance()->Update();
 
 	if (ExBodyManager::GetInstance()->GetIsSelect()) {
 		ExBodyManager::GetInstance()->Update();
@@ -183,17 +186,17 @@ void GameScene::Draw()
 	
 	BulletManager::GetInstance()->Draw();
 
+
 	Player::GetInstance()->Draw();
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
-	
+	EffectManager::GetInstance()->Draw();
 	
 	ExBodyManager::GetInstance()->Draw();
 	ExBodyManager::GetInstance()->LvUpDraw();
 
 	if (!ExBodyManager::GetInstance()->GetIsSelect()) {
 		LevelManager::GetInstance()->Draw();
-
 	}
 
 	for (int i = 0; i < effectNumber_; i++) {
@@ -224,7 +227,7 @@ void GameScene::Draw()
 	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
 
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "game");
+	//DrawFormatString(0, 0, GetColor(255, 255, 255), "game");
 }
 
 void GameScene::LevelUpEffectSet()
