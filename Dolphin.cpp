@@ -25,6 +25,7 @@ void Dolphin::Initialize(Vector2 pos)
 	originY_ = pos.y;
 
 	texture_ = LoadGraph("GameAssets/Sprite/Enemy_Dolphin.png");
+	lvImage_ = LoadGraph("GameAssets/Sprite/UI/enemyLv3.png");
 
 	colNum_ = MAX_COL;
 }
@@ -68,6 +69,8 @@ void Dolphin::Draw()
 	else {
 		if (!isCook_) {
 			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true);
+			DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3 - 55, 0.5f, 0, lvImage_, true);
+
 		}
 		else {
 			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, -1.57, cookTex_, true);
