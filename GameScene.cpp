@@ -62,10 +62,10 @@ void GameScene::Update()
 	endSize = endSize.lerp(Vector2{ 15,0 }, Vector2{ 1.5,0 }, Easing::EaseOutBack(frame_[1], 10));
 
 	if (EnemyManager::GetInstance()->GetIsWhaleAlive()&&!isReset) {
-		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[0], 60));
-		AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[0], 60));
-		AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[0], 60));
-		AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[0], 60));
+		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[0], 40));
+		AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[0], 40));
+		AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[0], 40));
+		AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[0], 40));
 	}
 	else if (isChangeStart) {
 		frame_[1]++;

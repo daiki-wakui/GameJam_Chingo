@@ -42,7 +42,7 @@ private:
 	Vector2 end[BUBBLE_SUM];
 
 	float timer;
-	float maxTimer = 100;
+	float maxTimer = 60;
 
 	bool isChangeStart = false;
 	bool isChange = false;
