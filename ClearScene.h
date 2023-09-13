@@ -22,10 +22,13 @@ private:
 	bool isSE_ = false;
 
 
+	int mouseLeftImage = LoadGraph("GameAssets/Sprite/UI/mouseLeftUI.png");
+
+
 	int ResultUI[30];
 	int levelImage[4];
 
-
+	Vector2 mouseLeftSize = { 0,0 };
 	Vector2 titleSize = { 0,0 };
 	Vector2 BodyUISize = { 0,0 };
 	Vector2 BodyUIStartPos[4];
@@ -42,7 +45,13 @@ private:
 	Vector2 tempPos[4];
 
 	int alpha_;
+
+	int mouseX_, mouseY_;
+	bool isChange;
+
 public:
+
+	bool GetIsChange() { return isChange; }
 
 	void Initialize();
 	void Update();
