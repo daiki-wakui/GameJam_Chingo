@@ -156,7 +156,7 @@ void ExBodyManager::BodyDraw(int i)
 			256, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, gamingImage, true);
 		break;
 	case Shark:
-		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 80, GetColor(0, 0, 255));
+		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10 + 8), 150, GetColor(0, 0, 255));
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),

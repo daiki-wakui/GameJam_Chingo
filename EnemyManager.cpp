@@ -130,7 +130,7 @@ void EnemyManager::PopFish()
 	std::mt19937_64 engine(seed_gen());
 
 	std::uniform_real_distribution<float> x(0, 1280);
-	std::uniform_real_distribution<float> y(-1080 * 7, -1080 * 1);
+	std::uniform_real_distribution<float> y(-1080 * 8, -1080 * 1);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Fish>();
 	newEnemy->Initialize({ x(engine),y(engine) });
@@ -146,7 +146,7 @@ void EnemyManager::PopDolphin()
 	std::mt19937_64 engine(seed_gen());
 
 	std::uniform_real_distribution<float> x(0, 1280);
-	std::uniform_real_distribution<float> y(-1080 * 7, -1080 * 3);
+	std::uniform_real_distribution<float> y(-1080 * 8, -1080 * 3);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Dolphin>();
 	newEnemy->Initialize({ x(engine),y(engine) });
