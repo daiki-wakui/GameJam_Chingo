@@ -21,6 +21,8 @@ private:
 
 	int fukidasiImage = LoadGraph("GameAssets/Sprite/fukidasi.png");
 
+	int tutorialImage[5];
+
 	float fukidasiPosY = 650;
 
 	int anagoImage[2];
