@@ -23,6 +23,7 @@ void Whale::Initialize(Vector2 pos)
 	lv_ = LV;
 
 	texture_ = LoadGraph("GameAssets/Sprite/Enemy_Whale.png");
+	lvImage_ = LoadGraph("GameAssets/Sprite/UI/enemyLvMax.png");
 
 	colNum_ = MAX_COL;
 }
@@ -62,6 +63,7 @@ void Whale::Draw()
 	}
 	if (LevelManager::GetInstance()->GetLevel() < LV) {
 		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3, 0.3f, 0, warningTex_, true);
+		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3 - 50, 0.5f, 0, lvImage_, true);
 	}
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 	DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));

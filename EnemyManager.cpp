@@ -54,6 +54,7 @@ void EnemyManager::Update()
 			if (j > 3) {
 				for (int i = planktonNum_[j]; i < 13; i++) {
 					RePopPlankton(j);
+					break;
 				}
 			}
 			else {
