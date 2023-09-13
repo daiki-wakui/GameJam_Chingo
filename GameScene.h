@@ -16,6 +16,7 @@ private:
 	int blueImage = LoadGraph("GameAssets/Sprite/blue.png");
 	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
 	int moleImage = LoadGraph("GameAssets/Sprite/mole2.png");
+	int endImage = LoadGraph("GameAssets/Sprite/UI/end.png");
 
 	int anagoImage[2];
 
@@ -37,9 +38,13 @@ private:
 	Vector2 startAnago[4];
 	Vector2 endAnago[4];
 	Vector2 AnagoPos[4];
-	int frame_[4];
+	int frame_[5];
 	bool isChangeStart = false;
 	bool isChange = false;
+
+	bool isReset = false;
+
+	Vector2 endSize;
 
 	bool isReset = false;
 public:
@@ -49,6 +54,7 @@ public:
 	bool GetIsChangeStart() { return isChangeStart; }
 	void SetIsSceneChange(bool change) { isChangeStart = change; }
 	void SetIsReset(bool reset) { isReset = reset; }
+
 
 	void LevelUpEffectSet();
 	void LevelUpEffect();

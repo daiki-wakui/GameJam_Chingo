@@ -49,13 +49,17 @@ void GameScene::Initialize()
 	frame_[1] = 0;
 	frame_[2] = 0;
 	frame_[3] = 0;
+	frame_[4] = 0;
 	isChange = false;
 	isChangeStart = false;
+	endSize.x = 5;
 }
 
 void GameScene::Update()
 {
 	frame_[0]++;
+
+	endSize = endSize.lerp(Vector2{ 15,0 }, Vector2{ 1.5,0 }, Easing::EaseOutBack(frame_[1], 10));
 
 	if (EnemyManager::GetInstance()->GetIsWhaleAlive()&&!isReset) {
 		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[0], 60));
@@ -65,14 +69,18 @@ void GameScene::Update()
 	}
 	else if (isChangeStart) {
 		frame_[1]++;
-		AnagoPos[0] = AnagoPos[0].lerp(endAnago[0], startAnago[0], Easing::EaseOutCubic(frame_[1], 60));
-		AnagoPos[1] = AnagoPos[1].lerp(endAnago[1], startAnago[1], Easing::EaseOutCubic(frame_[1], 60));
-		AnagoPos[2] = AnagoPos[2].lerp(endAnago[2], startAnago[2], Easing::EaseOutCubic(frame_[1], 60));
-		AnagoPos[3] = AnagoPos[3].lerp(endAnago[3], startAnago[3], Easing::EaseOutCubic(frame_[1], 60));
-
 	}
 
 	if (frame_[1] >= 60) {
+		frame_[4]++;
+
+		AnagoPos[0] = AnagoPos[0].lerp(endAnago[0], startAnago[0], Easing::EaseOutCubic(frame_[4], 60));
+		AnagoPos[1] = AnagoPos[1].lerp(endAnago[1], startAnago[1], Easing::EaseOutCubic(frame_[4], 60));
+		AnagoPos[2] = AnagoPos[2].lerp(endAnago[2], startAnago[2], Easing::EaseOutCubic(frame_[4], 60));
+		AnagoPos[3] = AnagoPos[3].lerp(endAnago[3], startAnago[3], Easing::EaseOutCubic(frame_[4], 60));
+	}
+
+	if (frame_[1] >= 150) {
 		isChange = true;
 	}
 	
@@ -190,7 +198,9 @@ void GameScene::Draw()
 		effectColorChange_++;
 	}
 
-	
+	if (isChangeStart) {
+		DrawRotaGraph(1280/2, 900/2, endSize.x,0, endImage, true);
+	}
 
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
