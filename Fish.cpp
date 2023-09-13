@@ -28,13 +28,16 @@ void Fish::Initialize(Vector2 pos)
 
 void Fish::Update()
 {
-	EnemyManager::GetInstance()->AddFishNum();
+	if (!isCook_) {
+		EnemyManager::GetInstance()->AddFishNum();
 
-	if (isWay_) {
-		pos_.x += SPEED_MOVE;
-	}
-	else {
-		pos_.x += -SPEED_MOVE;
+		if (isWay_) {
+			pos_.x += SPEED_MOVE;
+		}
+		else {
+			pos_.x += -SPEED_MOVE;
+		}
+
 	}
 
 	if (pos_.x > 1300 || pos_.x < -20) {
@@ -51,10 +54,20 @@ void Fish::Update()
 void Fish::Draw()
 {
 	if (isWay_) {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true,true);
+		if (!isCook_) {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true, true);
+		}
+		else {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 1.57, cookTex_, true, true);
+		}
 	}
 	else {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true);
+		if (!isCook_) {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true);
+		}
+		else {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 1.57, cookTex_, true);
+		}
 	}
 	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
 	//DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));

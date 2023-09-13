@@ -30,21 +30,23 @@ void Dolphin::Initialize(Vector2 pos)
 
 void Dolphin::Update()
 {
-	EnemyManager::GetInstance()->AddDolphinNum();
+	if (!isCook_) {
+		EnemyManager::GetInstance()->AddDolphinNum();
 
-	if (isWay_) {
-		pos_.x += SPEED_MOVE;
-	}
-	else {
-		pos_.x += -SPEED_MOVE;
+		if (isWay_) {
+			pos_.x += SPEED_MOVE;
+		}
+		else {
+			pos_.x += -SPEED_MOVE;
+		}
+
+		frame_ += 0.05f;
+		pos_.y = originY_ + sinf(frame_) * 100;
 	}
 
 	if (pos_.x > 1580 || pos_.x < -300) {
 		isDead_ = true;
 	}
-
-	frame_ += 0.05f;
-	pos_.y = originY_ + sinf(frame_) * 100;
 
 	colPos_[0] = pos_;
 	colPos_[0].x += r_ * 2;
@@ -55,10 +57,21 @@ void Dolphin::Update()
 void Dolphin::Draw()
 {
 	if (isWay_) {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true, true);
+		if (!isCook_) {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true, true);
+		}
+		else {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 1.57, cookTex_, true, true);
+		}
 	}
 	else {
-		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true);
+		if (!isCook_) {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 0, texture_, true);
+		}
+		else {
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 320, 256, 0.6f, 0.6f, 1.57, cookTex_, true);
+
+		}
 	}
 
 	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
