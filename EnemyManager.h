@@ -57,9 +57,7 @@ private:
 	std::list<BaseEnemy*> enemys2_;
 
 	const int MAX_PLANKTON = 20;
-	const int TIME_PLANK_POP = 5;
 	int planktonNum_[8];
-	int plankTime_;
 
 	const int MAX_FISH = 18;
 	const int TIME_FISH_POP = 90; //1.5s

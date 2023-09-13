@@ -30,9 +30,6 @@ private:
 	int endSE = LoadSoundMem("GameAssets/Sound/endSE.mp3");
 	bool isSE = false;
 
-	EnemyManager* enemyM = EnemyManager::GetInstance();
-
-
 	std::unique_ptr<Shake> shake = std::make_unique<Shake>();
 
 	Keyboard* keyboard_ = Keyboard::GetInstance();
