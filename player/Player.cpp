@@ -32,7 +32,10 @@ void Player::Initialize()
 
 	shrinkDistance_ = 0;
 	isBackShakeing_ = false;
-	thickness_ = START_BODY_THICKNESS;
+	for (int i = 0; i < MAX_BODY; i++) {
+		thickness_[i] = START_BODY_THICKNESS;
+	}
+	thick_ = START_BODY_THICKNESS;
 	invTime_ = 0; 
 	bodySpace_ = START_BODY_SPACE;
 	speedNeck_ = START_SPEED_NECK;
@@ -210,6 +213,15 @@ void Player::Update()
 	}
 
 	exM->Update();
+
+	
+	for (int i = activeLength_; i > 0; i--) {
+		thickness_[i] = thickness_[i - 1];
+	}
+	for (int i = activeLength_; i > 0; i--) {
+		thickness_[i] = thickness_[i - 1];
+	}
+	thickness_[0] = thick_;
 }
 
 void Player::ResultUpdate()
@@ -250,35 +262,35 @@ void Player::Draw(bool scroll)
 		if (i < NUM_NECK) {
 			if (scroll) {
 				if (!(invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
-					DrawCircle(pos_[i], thickness_, GetBodyColor(i));
+					DrawCircle(pos_[i], thickness_[i], GetBodyColor(i));
 				}
-				if (pos_[i].x < thickness_) {
+				if (pos_[i].x < thickness_[i]) {
 					if (!(invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
-						DrawCircle({ pos_[i].x + 1280,pos_[i].y }, thickness_, GetBodyColor(i));
+						DrawCircle({ pos_[i].x + 1280,pos_[i].y }, thickness_[i], GetBodyColor(i));
 					}
 				}
-				if (pos_[i].x > 1280 - thickness_) {
+				if (pos_[i].x > 1280 - thickness_[i]) {
 					if (!(invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
-						DrawCircle({ pos_[i].x - 1280,pos_[i].y }, thickness_, GetBodyColor(i));
+						DrawCircle({ pos_[i].x - 1280,pos_[i].y }, thickness_[i], GetBodyColor(i));
 					}
 				}
 			}
 			else {
-				DrawCircleNotScroll(pos_[i], thickness_, GetBodyColor(i));
+				DrawCircleNotScroll(pos_[i], thickness_[i], GetBodyColor(i));
 			}
 		}
 		else {
 			if (scroll) {
-				DrawCircle(pos_[i], thickness_, GetBodyColor(i));
-				if (pos_[i].x < thickness_) {
-					DrawCircle({ pos_[i].x + 1280,pos_[i].y }, thickness_, GetBodyColor(i));
+				DrawCircle(pos_[i], thickness_[i], GetBodyColor(i));
+				if (pos_[i].x < thickness_[i]) {
+					DrawCircle({ pos_[i].x + 1280,pos_[i].y }, thickness_[i], GetBodyColor(i));
 				}
-				if (pos_[i].x > 1280 - thickness_) {
-					DrawCircle({ pos_[i].x - 1280,pos_[i].y }, thickness_, GetBodyColor(i));
+				if (pos_[i].x > 1280 - thickness_[i]) {
+					DrawCircle({ pos_[i].x - 1280,pos_[i].y }, thickness_[i], GetBodyColor(i));
 				}
 			}
 			else {
-				DrawCircleNotScroll(pos_[i], thickness_, GetBodyColor(i));
+				DrawCircleNotScroll(pos_[i], thickness_[i], GetBodyColor(i));
 			}
 		}
 	}

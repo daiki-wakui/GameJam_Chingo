@@ -34,7 +34,7 @@ void ColliderManager::Update()
 	for (BaseEnemy* enemy : enemyM->GetEnemyList()) {
 		for (int p = 0; p < player->GetNumNeck(); p++) {
 			Vector2 P = player->GetPos(p);
-			if (CircleCol(enemy->GetPos(), enemy->GetR(), P, player->GetThickness())) {
+			if (CircleCol(enemy->GetPos(), enemy->GetR(), P, player->GetThickness(p))) {
 				//食える時
 				if (expM->GetLevel() >= enemy->GetLv()) {
 					player->AddBodyLength(enemy->GetHang());
@@ -46,6 +46,7 @@ void ColliderManager::Update()
 
 					PlaySoundMem(playerEat, DX_PLAYTYPE_BACK, true);
 					enemy->SetIsDead();
+					player->SetThickness(max(player->GetThickness(1) + 10,enemy->GetR() * 2), 0);
 				}
 				//食えない時
 				else {
@@ -60,7 +61,7 @@ void ColliderManager::Update()
 			}
 			else {
 				for (int i = 0; i < enemy->GetColNum(); i++) {
-					if (CircleCol(enemy->Col(i), enemy->GetR(), P, player->GetThickness())) {
+					if (CircleCol(enemy->Col(i), enemy->GetR(), P, player->GetThickness(p))) {
 						//食える時
 						if (expM->GetLevel() >= enemy->GetLv()) {
 							player->AddBodyLength(enemy->GetHang());
@@ -71,6 +72,7 @@ void ColliderManager::Update()
 							}
 							enemy->SetIsDead();
 							PlaySoundMem(playerEat, DX_PLAYTYPE_BACK, true);
+							player->SetThickness(max(player->GetThickness(1) + 10, enemy->GetR() * 2), 0);
 						}
 						//食えない時
 						else {
@@ -98,6 +100,7 @@ void ColliderManager::Update()
 						enemy->SetIsDead();
 
 						PlaySoundMem(playerEat, DX_PLAYTYPE_BACK, true);
+						player->SetThickness(max(player->GetThickness(1) + 10, enemy->GetR() * 2), (i + 1) * exBodyM->GetBodySpace() + 8);
 					}
 				}
 			}
