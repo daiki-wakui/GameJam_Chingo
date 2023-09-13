@@ -37,9 +37,11 @@ private:
 	Vector2 startAnago[4];
 	Vector2 endAnago[4];
 	Vector2 AnagoPos[4];
-	int frame_[2];
+	int frame_[4];
 	bool isChangeStart = false;
 	bool isChange = false;
+
+	bool isReset = false;
 
 public:
 
@@ -47,6 +49,7 @@ public:
 
 	bool GetIsChangeStart() { return isChangeStart; }
 	void SetIsSceneChange(bool change) { isChangeStart = change; }
+	void SetIsReset(bool reset) { isReset = reset; }
 
 
 	void LevelUpEffectSet();

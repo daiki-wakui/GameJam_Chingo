@@ -47,6 +47,8 @@ void GameScene::Initialize()
 	endAnago[3] = { -110 + 330 * 3,1500 };
 	frame_[0] = 0;
 	frame_[1] = 0;
+	frame_[2] = 0;
+	frame_[3] = 0;
 	isChange = false;
 	isChangeStart = false;
 }
@@ -55,7 +57,7 @@ void GameScene::Update()
 {
 	frame_[0]++;
 
-	if (EnemyManager::GetInstance()->GetIsWhaleAlive()) {
+	if (EnemyManager::GetInstance()->GetIsWhaleAlive()&&!isReset) {
 		AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[0], 60));
 		AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[0], 60));
 		AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[0], 60));
@@ -74,9 +76,36 @@ void GameScene::Update()
 		isChange = true;
 	}
 	
+	if (isReset) {
+		frame_[2]++;
+		AnagoPos[0] = AnagoPos[0].lerp(endAnago[0], startAnago[0], Easing::EaseOutCubic(frame_[2], 30));
+		AnagoPos[1] = AnagoPos[1].lerp(endAnago[1], startAnago[1], Easing::EaseOutCubic(frame_[2], 30));
+		AnagoPos[2] = AnagoPos[2].lerp(endAnago[2], startAnago[2], Easing::EaseOutCubic(frame_[2], 30));
+		AnagoPos[3] = AnagoPos[3].lerp(endAnago[3], startAnago[3], Easing::EaseOutCubic(frame_[2], 30));
+
+		if (frame_[2] >= 30) {
+			frame_[3]++;
+			AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame_[3], 30));
+			AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame_[3], 30));
+			AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame_[3], 30));
+			AnagoPos[3] = AnagoPos[3].lerp(startAnago[3], endAnago[3], Easing::EaseInCubic(frame_[3], 30));
+
+		}
+
+		if (frame_[3] >= 30) {
+			isReset = false;
+		}
+	}
 
 	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R)) {
 		Initialize();
+
+		AnagoPos[0] = endAnago[0];
+		AnagoPos[1] = endAnago[1];
+		AnagoPos[2] = endAnago[2];
+		AnagoPos[3] = endAnago[3];
+		isReset = true;
+
 	}
 
 	enemyM->Update();
