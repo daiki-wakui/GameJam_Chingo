@@ -59,6 +59,8 @@ void GameScene::Initialize()
 	ChangeVolumeSoundMem(100, endSE);
 
 	fukidasiPosY = 650;
+
+	tutorialImage[0] = LoadGraph("GameAssets/Sprite/anago1.png");
 }
 
 void GameScene::Update()
@@ -177,9 +179,7 @@ void GameScene::Update()
 	if (!isTutorial) {
 		
 	}
-
 	Player::GetInstance()->Update();
-	
 	ColliderManager::GetInstance()->Update();
 	LevelManager::GetInstance()->Update();
 
@@ -257,8 +257,10 @@ void GameScene::Draw()
 		DrawRotaGraph(1280/2, 900/2, endSize.x,0, endImage, true);
 	}
 
-	//DrawRotaGraph(1280 / 2 + 160, fukidasiPosY, 1.2, 0, fukidasiImage, true);
-
+	/*if (isTutorial) {
+		DrawRotaGraph(1280 / 2 + 160, fukidasiPosY, 1.2, 0, fukidasiImage, true);
+	}*/
+	
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
 	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
