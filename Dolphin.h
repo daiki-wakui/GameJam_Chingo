@@ -12,7 +12,7 @@ private:
 	const int RADIUS = 50;
 	const int HANG = 50;
 	const int EXP = 75;
-	const float SPEED_MOVE = 8.5f;
+	const float SPEED_MOVE = 7.5f;
 	const int LV = 3;
 
 	bool isWay_;

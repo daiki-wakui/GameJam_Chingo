@@ -118,7 +118,7 @@ private:
 	const int NUM_NECK = 5;	 //首から上の数
 	const int TIME_INVISIBLE = 3 * 60;//無敵時間
 
-	const int START_BODY_LENGTH = 100; //スタート時の体の最大長さ
+	const int START_BODY_LENGTH = 120; //スタート時の体の最大長さ
 	const int START_BODY_THICKNESS = 30;
 	const int START_BODY_SPACE = 10;		//体の間隔
 	const int START_SPEED_NECK = 5; //首の最大回転スピード
