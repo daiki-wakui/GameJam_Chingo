@@ -7,6 +7,7 @@
 void TitleScene::Initialize()
 {
 	Player::GetInstance()->Initialize();
+	ColliderManager::GetInstance()->Initialize();
 
 	std::random_device seed_gen;
 	std::mt19937_64 engine(seed_gen());
@@ -56,6 +57,8 @@ void TitleScene::Initialize()
 void TitleScene::Update()
 {
 	Player::GetInstance()->Update();
+	Player::GetInstance()->SetIsGamescene(false);
+
 
 	for (int i = 0; i < 3; i++) {
 		if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{ gameStartUI.x + (100 * i), gameStartUI.y }, 48)) {

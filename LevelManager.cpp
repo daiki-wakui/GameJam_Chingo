@@ -25,6 +25,9 @@ void LevelManager::Initialize()
 	levelImage[1] = LoadGraph("GameAssets/Sprite/level2.png");
 	levelImage[2] = LoadGraph("GameAssets/Sprite/level3.png");
 	levelImage[3] = LoadGraph("GameAssets/Sprite/levelMax.png");
+
+	ChangeVolumeSoundMem(180, canLevelUp);
+
 }
 
 void LevelManager::Update()
@@ -64,10 +67,28 @@ void LevelManager::Update()
 	//伸び続けてる間に次のレベルになった時の例外処理
 	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100) {
 		haveExpGaugeYTop_[1] = (GetNowAndHaveExp() - 100) * 0.5;
+
+		if (!isCanLvUp) {
+			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
+			isCanLvUp = true;
+		}
 	}
 	if (nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
 		haveExpGaugeYTop_[2] = (GetNowAndHaveExp() - 500) * 0.28;
+
+		if (!isCanLvUp) {
+			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
+			isCanLvUp = true;
+		}
 	}
+	if (nowLevel_ == 3 && GetNowAndHaveExp() >= 1200) {
+
+		if (!isCanLvUp) {
+			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
+			isCanLvUp = true;
+		}
+	}
+	
 	
 	for (int i = 0; i < 3; i++) {
 		//レベルアップまでの残りゲージ
@@ -179,7 +200,7 @@ void LevelManager::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	//レベルアップ可能表示
-	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100 || nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
+	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100 || nowLevel_ == 2 && GetNowAndHaveExp() >= 500||nowLevel_==3&& GetNowAndHaveExp() >= 1200) {
 		DrawExtendGraph(1050, 690, 128 + 1050, 128 + 690, levelUpImage, true);
 	}
 	
@@ -193,6 +214,7 @@ void LevelManager::Draw()
 
 void LevelManager::IncludeExp()
 {
+	isCanLvUp = false;
 	nowExp_ += haveExp_;
 
 	//レベル1のゲージ増加

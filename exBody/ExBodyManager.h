@@ -84,6 +84,9 @@ private:
 	int shakeCard = LoadGraph("GameAssets/Sprite/UI/UI_button_shark.png");
 	int sakabanCard = LoadGraph("GameAssets/Sprite/UI/UI_button_sakabam.png");
 
+	int UI_Select = LoadSoundMem("GameAssets/Sound/SFX_UI_Select.wav");
+
+
 	bool isRelease = true;
 
 	bool isSet_;

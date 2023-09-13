@@ -20,6 +20,9 @@ private:
 
 	int anagoImage[2];
 
+	int endSE = LoadSoundMem("GameAssets/Sound/endSE.mp3");
+	bool isSE = false;
+
 	EnemyManager* enemyM = EnemyManager::GetInstance();
 
 
