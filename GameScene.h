@@ -45,8 +45,6 @@ private:
 	bool isReset = false;
 
 	Vector2 endSize;
-
-	bool isReset = false;
 public:
 
 	bool GetIsSceneChange() { return isChange; }
