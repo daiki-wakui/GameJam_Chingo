@@ -163,8 +163,8 @@ void Player::Update()
 	if (GetIsExtend()) {
 		//デバッグ用強制レベルアップ
 		if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_L)) {
-			levelM->Debug();
-			isReturn_ = true;
+			//levelM->Debug();
+			//isReturn_ = true;
 		}
 
 		levelM->IncludeExp();

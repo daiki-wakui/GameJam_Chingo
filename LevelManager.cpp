@@ -212,12 +212,12 @@ void LevelManager::Draw()
 		DrawExtendGraph(1050, 690, 128 + 1050, 128 + 690, levelUpImage, true);
 	}
 	
-	DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
-	DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
-	DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
-	DrawFormatString(0, 220, GetColor(255, 255, 255), "plen = %d", Player::GetInstance()->GetMaxLength());
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "hungerlen = %d", hungerLength_);
-	DrawFormatString(0, 240, GetColor(255, 255, 255), "hungerlen+mass = %d", hungerLength_+muscleNum_);
+	//DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
+	//DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
+	//DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
+	//DrawFormatString(0, 220, GetColor(255, 255, 255), "plen = %d", Player::GetInstance()->GetMaxLength());
+	//DrawFormatString(0, 200, GetColor(255, 255, 255), "hungerlen = %d", hungerLength_);
+	//DrawFormatString(0, 240, GetColor(255, 255, 255), "hungerlen+mass = %d", hungerLength_+muscleNum_);
 }
 
 void LevelManager::IncludeExp()
