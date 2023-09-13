@@ -257,6 +257,8 @@ void Player::ResultUpdate()
 
 void Player::Draw(bool scroll)
 {
+	//DrawLine(mouseX_, mouseY_, pos_[0].x, pos_[0].y + ScrollManager::GetInstance()->GetScroll(), GetColor(200, 200, 200),3);
+
 	//チンアナゴ
 	for (int i = activeLength_; i >= 0; i--) {
 		if (i < NUM_NECK) {
@@ -317,6 +319,7 @@ void Player::Draw(bool scroll)
 	
 	//DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
 	//DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
+
 }
 
 bool Player::GetIsExtend()

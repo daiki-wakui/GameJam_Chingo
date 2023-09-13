@@ -1,6 +1,7 @@
 #include "LevelManager.h"
 #include "exBody/ExBodyManager.h"
 #include "Player.h"
+#include "Easing.h"
 
 LevelManager* LevelManager::GetInstance()
 {
@@ -29,6 +30,8 @@ void LevelManager::Initialize()
 	ChangeVolumeSoundMem(180, canLevelUp);
 
 	isSetRatio_ = true;
+	frame_ = 0;
+	isWay_ = true;
 }
 
 void LevelManager::Update()
@@ -204,6 +207,24 @@ void LevelManager::Draw()
 	//レベルアップ可能表示
 	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100 || nowLevel_ == 2 && GetNowAndHaveExp() >= 500||nowLevel_==3&& GetNowAndHaveExp() >= 1200) {
 		DrawExtendGraph(1050, 690, 128 + 1050, 128 + 690, levelUpImage, true);
+
+		if (isWay_) {
+			if (++frame_ > 150) {
+				isWay_ = false;
+			}
+		}
+		else {
+			if (--frame_ < 50) {
+				isWay_ = true;
+			}
+		}
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, frame_);
+		DrawGraph(0,0, vignetteTex_,true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	}
+	else {
+		frame_ = 0;
 	}
 	
 	//DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);

@@ -88,4 +88,8 @@ private:
 	int isSetRatio_;
 
 	int addHang_;
+
+	int frame_;
+	bool isWay_;
+	int vignetteTex_ = LoadGraph("GameAssets/Sprite/vignetteLvUp.png");
 };

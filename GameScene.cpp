@@ -16,7 +16,7 @@ void GameScene::Initialize()
 {
 	Player::GetInstance()->Initialize();
 	LevelManager::GetInstance()->Initialize();
-	enemyM->Initialize();
+	EnemyManager::GetInstance()->Initialize();
 	BulletManager::GetInstance()->Initialize();
 	EffectManager::GetInstance()->Initialize();
 
@@ -158,7 +158,7 @@ void GameScene::Update()
 
 	}
 
-	enemyM->Update();
+	EnemyManager::GetInstance()->Update();
 	BulletManager::GetInstance()->Update();
 	EffectManager::GetInstance()->Update();
 
@@ -215,7 +215,7 @@ void GameScene::Draw()
 	DrawGraph(0, -1080 * 8 + ScrollManager::GetInstance()->GetScroll(), backTopImage, true);
 	DrawGraph(0, 0, blueImage, true);
 	DrawGraph(0, 0, vignetImage, true);
-	enemyM->Draw();	
+	EnemyManager::GetInstance()->Draw();
 
 	
 	BulletManager::GetInstance()->Draw();
