@@ -17,15 +17,15 @@ void DebugManager::Initialize()
 void DebugManager::Update()
 {
 	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_P)) {
-		isDebugMode_ = (isDebugMode_ + 1) % 2;
+		//isDebugMode_ = (isDebugMode_ + 1) % 2;
 	}
 }
 
 void DebugManager::Draw()
 {
-	DrawFormatString(1000, 0, GetColor(255, 255, 255), "P kay = debug start");
+	//DrawFormatString(1000, 0, GetColor(255, 255, 255), "P kay = debug start");
 	if (isDebugMode_) {
-		DrawFormatString(1000, 20, GetColor(255, 255, 255), "debugMode Active!");
-		DrawFormatString(1000, 40, GetColor(255, 255, 255), "BodyLength 1000");
+		//DrawFormatString(1000, 20, GetColor(255, 255, 255), "debugMode Active!");
+		//DrawFormatString(1000, 40, GetColor(255, 255, 255), "BodyLength 1000");
 	}
 }

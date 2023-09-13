@@ -293,13 +293,13 @@ void ExBodyManager::ResultDraw()
 
 		if (bodyType_[i] == 1) {
 			//MUSCLE
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
+			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
 			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 				384, 256, 0.5f, 0.5f, 0, muscularImage, true);
 		}
 		else if (bodyType_[i] == 2) {
 			//MAGICIAN
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
+			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
 
 			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 				256, 256, 0.5f, 0.5f, 0, magicianImage, true);
@@ -307,34 +307,34 @@ void ExBodyManager::ResultDraw()
 		}
 		else if (bodyType_[i] == 3) {
 			//JET
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
+			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
 			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 				256, 256, 0.65f, 0.65f, 0, jetImage, true);
 			//DrawGraph(tempPos.x, tempPos.y, jetImage, true);
 		}
 		else if (bodyType_[i] == 4) {
 			//GAMING
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
+			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
 			DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 				256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 			//DrawGraph(tempPos.x, tempPos.y, gamingImage, true);
 		}
 		else if (bodyType_[i] == 5) {
 			//Shark
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
+			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
 			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 			//DrawGraph(tempPos.x, tempPos.y, gamingImage, true);
 		}
 		else if (bodyType_[i] == 6) {
 			//Shark
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "サカバンバスピス");
+			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "サカバンバスピス");
 			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
 			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
 			//DrawGraph(tempPos.x, tempPos.y, gamingImage, true);
 		}
 	}
-	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
+	//DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
 }
 
 void ExBodyManager::AddBody(int num)

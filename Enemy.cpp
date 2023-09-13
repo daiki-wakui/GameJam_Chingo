@@ -40,7 +40,7 @@ void Enemy::Draw()
 	}
 	else if(deadTimer_ > 0){
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, deadTimer_);
-		DrawFormatString(pos_.x,pos_.y,GetColor(255,100,100),"+10");
+		//DrawFormatString(pos_.x,pos_.y,GetColor(255,100,100),"+10");
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
