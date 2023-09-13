@@ -63,6 +63,7 @@ protected:
 
 	int texture_;
 	int cookTex_ = LoadGraph("GameAssets/Sprite/cookedFish.png");
+	int warningTex_ = LoadGraph("GameAssets/Sprite/UI/UI_DangerIcon.png");
 
 	bool isDead_;
 

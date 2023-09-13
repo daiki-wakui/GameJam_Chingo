@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "EnemyManager.h"
 #include "ScrollManager.h"
+#include "LevelManager.h"
 
 void Fish::Initialize(Vector2 pos)
 {
@@ -66,9 +67,13 @@ void Fish::Draw()
 			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 0, texture_, true);
 		}
 		else {
-			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, 1.57, cookTex_, true);
+			DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.3f, 0.3f, -1.57, cookTex_, true);
 		}
 	}
+	if (LevelManager::GetInstance()->GetLevel() < LV) {
+		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3,0.3f, 0, warningTex_, true);
+	}
+
 	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
 	//DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
 	//DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
