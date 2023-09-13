@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "EnemyManager.h"
 #include "ScrollManager.h"
+#include "LevelManager.h"
 
 void Whale::Initialize(Vector2 pos)
 {
@@ -42,27 +43,31 @@ void Whale::Update()
 	}
 
 	colPos_[0] = pos_;
-	colPos_[0].x += r_;
+	colPos_[0].x += r_ * 2;
 	colPos_[1] = pos_;
-	colPos_[1].x -= r_;
+	colPos_[1].x -= r_ * 2;
+	colPos_[2] = pos_;
+	colPos_[2].x += r_ * 4;
+	colPos_[3] = pos_;
+	colPos_[3].x -= r_ * 4;
 }
 
 void Whale::Draw()
 {
+	if (isWay_) {
+		DrawRotaGraph3(pos_.x - 300, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 1, 1, 0, texture_, true, true);
+	}
+	else {
+		DrawRotaGraph3(pos_.x - 300, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 1, 1, 0, texture_, true);
+	}
+	if (LevelManager::GetInstance()->GetLevel() < LV) {
+		DrawRotaGraph(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll() + r_ * 3, 0.3f, 0, warningTex_, true);
+	}
 	DrawCircle(pos_, r_, GetColor(255, 100, 100));
 	DrawCircle(colPos_[0], r_, GetColor(255, 100, 100));
 	DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
-
-	if (isWay_) {
-		if (!isCook_) {
-			DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true, true);
-		}
-	}
-	else {
-		if (!isCook_) {
-			DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true);
-		}
-	}
+	DrawCircle(colPos_[2], r_, GetColor(255, 100, 100));
+	DrawCircle(colPos_[3], r_, GetColor(255, 100, 100));
 }
 
 Vector2 Whale::Col(int num)
