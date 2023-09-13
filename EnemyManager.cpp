@@ -50,17 +50,17 @@ void EnemyManager::Update()
 	}
 
 	//プレイヤーが戻った時にリポップ
-	if (Player::GetInstance()->GetPos(0).y >= 0 && --plankTime_) {
+	if (Player::GetInstance()->GetIsExtend() && --plankTime_ <= 0) {
 		for (int j = 0; j < 8; j++) {
 			if (j > 3) {
 				for (int i = planktonNum_[j]; i < 13; i++) {
-					//RePopPlankton(j);
+					RePopPlankton(j);
 					break;
 				}
 			}
 			else {
 				for (int i = planktonNum_[j]; i < 20; i++) {
-					//RePopPlankton(j);
+					RePopPlankton(j);
 					break;
 				}
 			}
