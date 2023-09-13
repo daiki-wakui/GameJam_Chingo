@@ -16,7 +16,7 @@ public:
 private:
 	const int RADIUS = 15;
 	const int HANG = 15;
-	const int EXP = 15;
+	const int EXP = 10;
 	const int LV = 1;
 
 	float frame_;

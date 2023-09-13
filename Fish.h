@@ -10,11 +10,11 @@ public:
 
 private:
 	const int RADIUS = 25;
-	const int HANG = 30;
-	const int EXP = 30;
+	const int HANG = 25;
+	const int EXP = 25;
 	const int LV = 2;
 
-	const float SPEED_MOVE = 1.5f;
+	const float SPEED_MOVE = 2.0f;
 
 	bool isWay_;
 

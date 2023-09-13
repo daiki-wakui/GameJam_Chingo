@@ -12,7 +12,15 @@ ColliderManager* ColliderManager::GetInstance()
 {
 	static ColliderManager instance;
 
+	
+
 	return &instance;
+}
+
+void ColliderManager::Initialize()
+{
+	ChangeVolumeSoundMem(150, playerDamaged);
+	ChangeVolumeSoundMem(150, playerEat);
 }
 
 void ColliderManager::Update()
@@ -32,15 +40,22 @@ void ColliderManager::Update()
 					player->AddBodyLength(enemy->GetHang());
 					expM->AddExp(enemy->GetEXP());
 					if (enemy->GetIsCook()) {
-						player->AddBodyLength(enemy->GetHang());
-						expM->AddExp(enemy->GetEXP());
+						player->AddBodyLength(enemy->GetHang() / 1.25f);
+						expM->AddExp(enemy->GetEXP() / 2.5f);
 					}
+
+					PlaySoundMem(playerEat, DX_PLAYTYPE_BACK, true);
 					enemy->SetIsDead();
 				}
 				//H‚¦‚È‚¢Žž
 				else {
 					player->SubBodyLength();
 					player->SetInv();
+
+					if (CheckSoundMem(playerDamaged) == 0) {
+						PlaySoundMem(playerDamaged, DX_PLAYTYPE_BACK, true);
+					}
+					
 				}
 			}
 			else {
@@ -55,19 +70,23 @@ void ColliderManager::Update()
 								expM->AddExp(enemy->GetEXP());
 							}
 							enemy->SetIsDead();
+							PlaySoundMem(playerEat, DX_PLAYTYPE_BACK, true);
 						}
 						//H‚¦‚È‚¢Žž
 						else {
 							player->SubBodyLength();
 							player->SetInv();
+							if (CheckSoundMem(playerDamaged) == 0) {
+								PlaySoundMem(playerDamaged, DX_PLAYTYPE_BACK, true);
+							}
 						}
 					}
 				}
 			}
 		}
-		for (int i = 0; i < 3;i++) {
+		for (int i = 0; i < 3; i++) {
 			if (ExBodyManager::GetInstance()->GetBodyType(i) == BodyType::Shark) {
-				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace() + 8),150, enemy->GetPos(), enemy->GetR())) {
+				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace() + 8), 150, enemy->GetPos(), enemy->GetR())) {
 					//H‚¦‚éŽž
 					if (expM->GetLevel() >= enemy->GetLv()) {
 						player->AddBodyLength(enemy->GetHang());
@@ -77,6 +96,8 @@ void ColliderManager::Update()
 							expM->AddExp(enemy->GetEXP());
 						}
 						enemy->SetIsDead();
+
+						PlaySoundMem(playerEat, DX_PLAYTYPE_BACK, true);
 					}
 				}
 			}

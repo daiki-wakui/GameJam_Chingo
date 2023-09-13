@@ -1,11 +1,16 @@
 #pragma once
 #include "Player.h"
 #include "EnemyManager.h"
+#include "DxLib.h"
 
 class ColliderManager {
 private:
 	ColliderManager() = default;
 	~ColliderManager() = default;
+
+	int playerDamaged = LoadSoundMem("GameAssets/Sound/SFX_PlayerDamaged.wav");
+	int playerEat = LoadSoundMem("GameAssets/Sound/SFX_eat.wav");
+
 public:
 	//コピーコンストラクタ無効
 	ColliderManager(const ColliderManager& obj) = delete;
@@ -14,6 +19,7 @@ public:
 
 	static ColliderManager* GetInstance();
 
+	void Initialize();
 	void Update();
 
 	bool CircleCol(Vector2 Ap,int Ar,Vector2 Bp,int Br);
