@@ -164,11 +164,11 @@ void ExBodyManager::BodyDraw(int i)
 
 		break;
 	case SAKABAN:
-		DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 80, GetColor(0, 0, 255));
-		/*DrawRotaGraph3(
+		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 80, GetColor(0, 0, 255));
+		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
-			256, 256, 0.45f, 0.45f, angle, shakeImage, true);*/
+			256, 256, 0.45f, 0.45f, angle, sakabanImage, true);
 
 		break;
 	default:
