@@ -110,10 +110,10 @@ void ExBodyManager::Draw()
 void ExBodyManager::LvUpDraw()
 {
 	if (isSelect_) {
-		//DrawBox(100, 320, 380, 680, GetColor(255, 0, 0), true);
-		//DrawBox(500, 320, 780, 680, GetColor(0, 255, 0), true);
-		//DrawBox(900, 320, 1180, 680, GetColor(0, 0, 255), true);
 		SelectDraw();
+		//DrawBox(45, 320, 440, 890, GetColor(255, 0, 0), true);
+		//DrawBox(440, 320, 840, 890, GetColor(0, 255, 0), true);
+		//DrawBox(840, 320, 1240, 890, GetColor(0, 0, 255), true);
 	}
 }
 
@@ -212,44 +212,44 @@ void ExBodyManager::SelectDraw()
 		Vector2 tempPos;
 		//選択肢のポジション
 		if (i == 0) {
-			tempPos = { 240,550 };
+			tempPos = { 240,600 };
 		}
 		else if (i == 1) {
-			tempPos = { 640,550 };
+			tempPos = { 640,600 };
 		}
 		else {
-			tempPos = { 1040,550 };
+			tempPos = { 1040,600 };
 		}
 
 		if (choice_[i] == 0) {
 			//MUSCLE
 			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
-			DrawRotaGraph(tempPos.x, tempPos.y, 0.5f, 0, muscularCard, true);
+			DrawRotaGraph(tempPos.x, tempPos.y, 0.6f, 0, muscularCard, true);
 		}
 		else if (choice_[i] == 1) {
 			//MAGICIAN
 			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
-			DrawRotaGraph(tempPos.x, tempPos.y, 0.5f, 0, magicianCard, true);
+			DrawRotaGraph(tempPos.x, tempPos.y, 0.6f, 0, magicianCard, true);
 		}
 		else if (choice_[i] == 2) {
 			//JET
 			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
-			DrawRotaGraph(tempPos.x, tempPos.y, 0.5f, 0, jetCard, true);
+			DrawRotaGraph(tempPos.x, tempPos.y, 0.6f, 0, jetCard, true);
 		}
 		else if (choice_[i] == 3) {
 			//GAMING
 			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
-			DrawRotaGraph(tempPos.x, tempPos.y, 0.5f, 0, gamingCard, true);
+			DrawRotaGraph(tempPos.x, tempPos.y, 0.6f, 0, gamingCard, true);
 		}
 		else if (choice_[i] == 4) {
 			//Shark
 			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
-			DrawRotaGraph(tempPos.x, tempPos.y, 0.5f, 0, shakeCard, true);
+			DrawRotaGraph(tempPos.x, tempPos.y, 0.6f, 0, shakeCard, true);
 		}
 		else if (choice_[i] == 5) {
 			//Shark
 			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "サカバンバスピス");
-			DrawRotaGraph(tempPos.x, tempPos.y, 0.5f, 0, sakabanCard, true);
+			DrawRotaGraph(tempPos.x, tempPos.y, 0.6f, 0, sakabanCard, true);
 		}
 	}
 }
