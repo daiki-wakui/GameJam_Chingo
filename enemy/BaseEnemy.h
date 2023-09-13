@@ -1,5 +1,6 @@
 #pragma once
 #include "MathManager.h"
+#include "DxLib.h"
 
 class BaseEnemy {
 public:
@@ -61,6 +62,7 @@ protected:
 	float rot_;
 
 	int texture_;
+	int cookTex_ = LoadGraph("GameAssets/Sprite/cookedFish.png");
 
 	bool isDead_;
 

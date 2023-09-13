@@ -54,10 +54,14 @@ void Whale::Draw()
 	DrawCircle(colPos_[1], r_, GetColor(255, 100, 100));
 
 	if (isWay_) {
-		DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true, true);
+		if (!isCook_) {
+			DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true, true);
+		}
 	}
 	else {
-		DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true);
+		if (!isCook_) {
+			DrawRotaGraph3(pos_.x - 100, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.5f, 0.5f, 0, texture_, true);
+		}
 	}
 }
 

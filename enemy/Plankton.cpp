@@ -32,7 +32,12 @@ void Plankton::Update()
 
 void Plankton::Draw()
 {
-	DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.13f * GetScale(), 0.13f * GetScale(), rot_, texture_, true);
+	if (!isCook_) {
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.13f * GetScale(), 0.13f * GetScale(), rot_, texture_, true);
+	}
+	else {
+		DrawRotaGraph3(pos_.x, pos_.y + ScrollManager::GetInstance()->GetScroll(), 256, 256, 0.13f * GetScale(), 0.13f * GetScale(), rot_, cookTex_, true);
+	}
 	//DrawCircle(pos_, r_, GetColor(255, 100, 100));
 }
 

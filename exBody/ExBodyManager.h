@@ -74,6 +74,7 @@ private:
 	int jetImage = LoadGraph("GameAssets/Sprite/Body/jet.png");
 	int gamingImage = LoadGraph("GameAssets/Sprite/Body/gamers.png");
 	int shakeImage = LoadGraph("GameAssets/Sprite/Body/body_shark.png");
+	int sakabanImage = LoadGraph("GameAssets/Sprite/Body/body_shark.png");
 
 	int selectBack = LoadGraph("GameAssets/Sprite/UI/UI_bodySelect_background.png");
 	int muscularCard = LoadGraph("GameAssets/Sprite/UI/UI_button_muscular.png");
