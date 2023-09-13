@@ -20,7 +20,7 @@ void GameScene::Initialize()
 	BulletManager::GetInstance()->Initialize();
 	EffectManager::GetInstance()->Initialize();
 
-	//‰Šú’lƒZƒbƒg
+	//åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 	for (int i = 0; i < effectNumber_; i++)
 	{
 		effectPosLeft_[i].x = -60;
@@ -149,19 +149,19 @@ void GameScene::Update()
 	ColliderManager::GetInstance()->Update();
 	LevelManager::GetInstance()->Update();
 
-	//player‚ª’n–Ê‚É—ˆ‚½
+	//playerãŒåœ°é¢ã«æ¥ãŸæ™‚
 	if (Player::GetInstance()->GetIsShakeing()) {
 		srand(time(NULL));
 		shake->max = 21;
 		shake->min = 10;
 		shake->isShakeing = 1;
 		Player::GetInstance()->SetIsShakeing(false);
-		//ƒVƒFƒCƒNŠJn
+		//ã‚·ã‚§ã‚¤ã‚¯é–‹å§‹
 	}
 
 	Player::GetInstance()->SetIsGamescene(true);
 
-	//ƒVƒFƒCƒN‚Ìˆ—
+	//ã‚·ã‚§ã‚¤ã‚¯ã®å‡¦ç†
 	shake->Effect();
 
 	LevelUpEffect();
@@ -169,7 +169,7 @@ void GameScene::Update()
 
 void GameScene::Draw()
 {
-	//’n–Ê
+	//åœ°é¢
 	DrawGraph(-40, -180 + shake->randY + ScrollManager::GetInstance()->GetScroll(), backBottomImage, true);
 	DrawGraph(0, -1080 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
 	DrawGraph(0, -1080 * 2 + ScrollManager::GetInstance()->GetScroll(), backMiddleImage, true);
@@ -191,6 +191,7 @@ void GameScene::Draw()
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
 	EffectManager::GetInstance()->Draw();
+	DrawRotaGraph(90, 770, 0.3, 0, RkeyImage, true);
 	
 	ExBodyManager::GetInstance()->Draw();
 	ExBodyManager::GetInstance()->LvUpDraw();
@@ -200,17 +201,17 @@ void GameScene::Draw()
 	}
 
 	for (int i = 0; i < effectNumber_; i++) {
-		//for•¶‚ª‹ô”‚Ì‚Æ‚«Ô
+		//foræ–‡ãŒå¶æ•°ã®ã¨ãèµ¤
 		if (effectColorChange_ % 2 == 0) {
 			DrawBox((effectPosLeft_[i].x - 7), (effectPosLeft_[i].y - 7), (effectPosLeft_[i].x + 7), (effectPosLeft_[i].y + 7), GetColor(255, 50, 50), true);
 			DrawBox((effectPosRight_[i].x - 7), (effectPosRight_[i].y - 7), (effectPosRight_[i].x + 7), (effectPosRight_[i].y + 7), GetColor(255, 50, 50), true);
 		}
-		//for•¶‚ª3‚Ì”{”‚Ì‚Æ‚«—Î
+		//foræ–‡ãŒ3ã®å€æ•°ã®ã¨ãç·‘
 		else if (effectColorChange_ % 3 == 0) {
 			DrawBox((effectPosLeft_[i].x - 7), (effectPosLeft_[i].y - 7), (effectPosLeft_[i].x + 7), (effectPosLeft_[i].y + 7), GetColor(50, 255, 50), true);
 			DrawBox((effectPosRight_[i].x - 7), (effectPosRight_[i].y - 7), (effectPosRight_[i].x + 7), (effectPosRight_[i].y + 7), GetColor(50, 255, 50), true);
 		}
-		//‚»‚êˆÈŠOÂ
+		//ãã‚Œä»¥å¤–é’
 		else {
 			DrawBox((effectPosLeft_[i].x - 7), (effectPosLeft_[i].y - 5), (effectPosLeft_[i].x + 7), (effectPosLeft_[i].y + 7), GetColor(50, 50, 255), true);
 			DrawBox((effectPosRight_[i].x - 7), (effectPosRight_[i].y - 5), (effectPosRight_[i].x + 7), (effectPosRight_[i].y + 7), GetColor(50, 50, 255), true);
@@ -232,7 +233,7 @@ void GameScene::Draw()
 
 void GameScene::LevelUpEffectSet()
 {
-	//‰Šú’lƒZƒbƒg
+	//åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 	for (int i = 0; i < effectNumber_; i++)
 	{
 		effectPosLeft_[i].x = 0;
@@ -247,7 +248,7 @@ void GameScene::LevelUpEffectSet()
 
 void GameScene::LevelUpEffect()
 {
-	//‰Ô‚Ñ‚ç‚ÌXVˆ—
+	//èŠ±ã³ã‚‰ã®æ›´æ–°å‡¦ç†
 	for (int i = 0; i < effectNumber_; i++) {
 		effectPower_[i].y -= 0.75f;
 		effectPosLeft_[i].x += effectPower_[i].x;

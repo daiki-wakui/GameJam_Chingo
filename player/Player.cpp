@@ -144,9 +144,6 @@ void Player::Update()
 		if (CheckSoundMem(playerShrinking) == 0 && EnemyManager::GetInstance()->GetIsWhaleAlive()) {
 			PlaySoundMem(playerShrinking, DX_PLAYTYPE_LOOP, true);
 		}
-		else {
-			StopSoundMem(playerShrinking);
-		}
 		
 		isReturn_ = true;
 		//高速縮み
