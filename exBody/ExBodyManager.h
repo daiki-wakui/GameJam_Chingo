@@ -81,6 +81,7 @@ private:
 	int jetCard = LoadGraph("GameAssets/Sprite/UI/UI_button_jet.png");
 	int gamingCard = LoadGraph("GameAssets/Sprite/UI/UI_button_gaming.png");
 	int shakeCard = LoadGraph("GameAssets/Sprite/UI/UI_button_shark.png");
+	int sakabanCard = LoadGraph("GameAssets/Sprite/UI/UI_button_sakabam.png");
 
 	bool isRelease = true;
 
