@@ -62,6 +62,7 @@ void ClearScene::Initialize()
 
 	alpha_ = 255;
 	isSE_ = false;
+	isChange = false;
 
 	ChangeVolumeSoundMem(180, kansei1);
 	ChangeVolumeSoundMem(180, kansei2);
@@ -88,6 +89,14 @@ void ClearScene::Initialize()
 
 void ClearScene::Update()
 {
+	//マウスの場所取得
+	GetMousePoint(&mouseX_, &mouseY_);
+
+
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && frame >= 440) {
+		isChange = true;
+	}
+
 	Player::GetInstance()->SetIsGamescene(false);
 
 	AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame, 10));
@@ -131,6 +140,7 @@ void ClearScene::Update()
 		titleAnimeTimer = 0;
 	}
 
+	mouseLeftSize = mouseLeftSize.lerp(Vector2{ 0.4,0 }, Vector2{ 0.35,0 }, Easing::EaseOutCubic(titleAnimeTimer, titleAnimeMaxTimer));
 	titleSize = titleSize.lerp(Vector2{ 1.0,0 }, Vector2{ 0.7,0 }, Easing::EaseOutCubic(titleAnimeTimer, titleAnimeMaxTimer));
 	BodyUISize = BodyUISize.lerp(Vector2{ 1.3,0 }, Vector2{ 1.0,0 }, Easing::EaseOutCubic(titleAnimeTimer, titleAnimeMaxTimer));
 
@@ -157,8 +167,6 @@ void ClearScene::Draw()
 	if (frame >= 370) {
 		DrawRotaGraph(1280 / 2, 900/2, 1, rot, targetImage, true);
 	}
-	DrawFormatString(0, 20, GetColor(255, 255, 255), "%d", frame);
-
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
 
@@ -192,71 +200,13 @@ void ClearScene::Draw()
 		DrawRotaGraph(800, 670, 1.4, 0.1, ResultUI[17], true);
 		DrawRotaGraph(1280 / 2, 105, 0.7, 0, ResultUI[18], true);
 	}
-	
 
-
-	for (int i = 0; i < 3; i++) {
-		Vector2 tempPos;
-		Vector2 temptexturePos;
-
-		//選択肢のポジション
-		if (i == 0) {
-			tempPos = { 240,165 };
-		}
-		else if (i == 1) {
-			tempPos = { 240,265 };
-		}
-		else {
-			tempPos = { 240,365 };
-		}
-		
-		if (exM->GetBodyType(i) == 1) {
-			//MUSCLE
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マッスル");
-
-			//DrawGraph(tempPos.x, tempPos.y, ResultUI[3], true);
-		}
-		else if (exM->GetBodyType(i) == 2) {
-			//MAGICIAN
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "マジシャン");
-
-			//DrawGraph(tempPos.x, tempPos.y, ResultUI[4], true);
-			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-			//	256, 256, 0.5f, 0.5f, 0, magicianImage, true);
-		}
-		else if (exM->GetBodyType(i) == 3) {
-			//JET
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ジェット");
-
-
-			//DrawGraph(tempPos.x, tempPos.y, ResultUI[5], true);
-			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-			//	256, 256, 0.65f, 0.65f, 0, jetImage, true);
-		}
-		else if (exM->GetBodyType(i) == 4) {
-			//GAMING
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "ゲーミング");
-
-
-			//DrawGraph(tempPos.x, tempPos.y, ResultUI[6], true);
-			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
-		}
-		else if (exM->GetBodyType(i) == 5) {
-			//Shark
-			DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "シャーク");
-			//DrawGraph(tempPos.x, tempPos.y, ResultUI[7], true);
-			//DrawRotaGraph3(temptexturePos.x, temptexturePos.y,
-			//	256, 256, 0.5f, 0.5f, 0, gamingImage, true);
-		}
+	if (frame >= 440) {
+		DrawRotaGraph(1180, 800, mouseLeftSize.x, 0, mouseLeftImage, true);
 	}
 
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
 	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
-
-	DrawFormatString(840, 400, GetColor(255, 255, 255), "チンアナゴ～！");
-
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "clear");
 }

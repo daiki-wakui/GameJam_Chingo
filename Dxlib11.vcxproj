@@ -133,6 +133,7 @@
     <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="Dolphin.cpp" />
     <ClCompile Include="Easing.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="enemy\BaseEnemy.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="DebugManager.h" />
     <ClInclude Include="Dolphin.h" />
     <ClInclude Include="Easing.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="enemy\BaseEnemy.h" />

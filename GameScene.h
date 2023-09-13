@@ -17,6 +17,7 @@ private:
 	int vignetImage = LoadGraph("GameAssets/Sprite/vignette.png");
 	int moleImage = LoadGraph("GameAssets/Sprite/mole2.png");
 	int endImage = LoadGraph("GameAssets/Sprite/UI/end.png");
+	int RkeyImage = LoadGraph("GameAssets/Sprite/UI/RkeyReset.png");
 
 	int anagoImage[2];
 
