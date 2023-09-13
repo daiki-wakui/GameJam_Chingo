@@ -123,6 +123,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				scene = CLEAR_SCENE;
 			}
 			if (!EnemyManager::GetInstance()->GetIsWhaleAlive()) {
+				gameScene->SetIsSceneChange(true);
+			}
+
+			if (gameScene->GetIsSceneChange()) {
 				StopSoundMem(gameBGM);
 				clearScene->Initialize();
 				scene = CLEAR_SCENE;

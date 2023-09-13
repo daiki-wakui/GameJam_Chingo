@@ -42,6 +42,13 @@ private:
 	Vector2 tempPos[4];
 
 	int alpha_;
+
+	Vector2 startAnago[4];
+	Vector2 endAnago[4];
+	Vector2 AnagoPos[4];
+
+	int anagoImage[2];
+
 public:
 
 	void Initialize();
