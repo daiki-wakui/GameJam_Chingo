@@ -161,13 +161,15 @@ void GameScene::Draw()
 	DrawGraph(0, 0, vignetImage, true);
 	enemyM->Draw();	
 
-	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
-
+	
 	BulletManager::GetInstance()->Draw();
-	LevelManager::GetInstance()->Draw();
 
 	Player::GetInstance()->Draw();
-
+	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
+	LevelManager::GetInstance()->Draw();
+	
+	ExBodyManager::GetInstance()->Draw();
+	ExBodyManager::GetInstance()->LvUpDraw();
 
 	for (int i = 0; i < effectNumber_; i++) {
 		//for•¶‚ª‹ô”‚Ì‚Æ‚«Ô

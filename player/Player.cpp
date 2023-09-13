@@ -250,7 +250,7 @@ void Player::Draw(bool scroll)
 			}
 		}
 	}
-	ExBodyManager::GetInstance()->Draw();
+	
 	if (!(--invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
 		if (scroll) {
 			if (!isSakaban_) {
@@ -270,8 +270,7 @@ void Player::Draw(bool scroll)
 			}
 		}
 	}
-	ExBodyManager::GetInstance()->LvUpDraw();
-
+	
 	//DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
 	//DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 }
