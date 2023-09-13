@@ -99,10 +99,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			
 			titleScene->Update();
 
-			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
-				titleScene->SetIsSceneChange(true);
-			}
-
 			if (titleScene->GetIsSceneChange()) {
 				StopSoundMem(titleBGM);
 				gameScene->Initialize();
@@ -115,12 +111,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 			gameScene->Update();
 			debug->Update();
-			
-			if (keyboard_->KeyTriggerPush(KEY_INPUT_SPACE)) {
-				StopSoundMem(gameBGM);
-				clearScene->Initialize();
-				scene = CLEAR_SCENE;
-			}
+	
 			if (!EnemyManager::GetInstance()->GetIsWhaleAlive()) {
 				gameScene->SetIsSceneChange(true);
 			}
@@ -149,23 +140,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// •`‰æˆ—
 		if (scene == TITLE_SCENE) {
 			DrawGraph(-40, -180, backImage, true);
-			//DrawGraph(0, 0, groundImage, true);
-		//	DrawGraph(0, 0, titleImage, true);
 			
 			titleScene->Draw();
-
-			//DrawGraph(0, 0, blueImage, true);
-		//	DrawGraph(0, 0, vignetImage, true);
-
 		}
 
 		if (scene == GAME_SCENE) {
 			
 			gameScene->Draw();
-			
-			
-		//	DrawGraph(0, 0, blueImage, true);
-		//	DrawGraph(0, 0, vignetImage, true);
 			debug->Draw();
 		}
 

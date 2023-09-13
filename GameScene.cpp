@@ -186,7 +186,7 @@ void GameScene::Draw()
 	Player::GetInstance()->Draw();
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
-	
+	DrawRotaGraph(90, 770, 0.3, 0, RkeyImage, true);
 	
 	ExBodyManager::GetInstance()->Draw();
 	ExBodyManager::GetInstance()->LvUpDraw();
