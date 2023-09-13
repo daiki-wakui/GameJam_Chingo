@@ -42,7 +42,6 @@ private:
 	bool isChange = false;
 
 	bool isReset = false;
-
 public:
 
 	bool GetIsSceneChange() { return isChange; }
@@ -50,7 +49,6 @@ public:
 	bool GetIsChangeStart() { return isChangeStart; }
 	void SetIsSceneChange(bool change) { isChangeStart = change; }
 	void SetIsReset(bool reset) { isReset = reset; }
-
 
 	void LevelUpEffectSet();
 	void LevelUpEffect();
