@@ -24,7 +24,7 @@ public:
 
 
 private:
-	const int SPEED = 10;
+	const int SPEED = 15;
 	const int TIME = 5 * 60;
 	const int R = 30;
 

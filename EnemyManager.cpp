@@ -57,7 +57,7 @@ void EnemyManager::Update()
 				}
 			}
 			else {
-				for (int i = planktonNum_[j]; i < 30; i++) {
+				for (int i = planktonNum_[j]; i < 20; i++) {
 					RePopPlankton(j);
 				}
 			}
