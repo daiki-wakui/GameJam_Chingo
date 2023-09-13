@@ -97,7 +97,20 @@ public:
 		isSakaban_ = true;
 	}
 
+	void SetIsGamescene(bool nowscene) { nowGameScene = nowscene; }
+	void StopSE();
+
 private:
+	int playerLand = LoadSoundMem("GameAssets/Sound/SFX_PlayerLand.wav");
+	int startExtending = LoadSoundMem("GameAssets/Sound/SFX_StartExtending.wav");
+	int playerExpanding = LoadSoundMem("GameAssets/Sound/SFX_PlayerExpanding.wav");
+	bool isExtend;
+	int playerShrinking = LoadSoundMem("GameAssets/Sound/SFX_PlayerShrinking.wav");
+	int hungerGaugeEmpty = LoadSoundMem("GameAssets/Sound/SFX_HungerGaugeEmpty.wav");
+	int levelUp = LoadSoundMem("GameAssets/Sound/SFX_LevelUp.wav");
+
+	bool nowGameScene = false;
+	
 	int eyeTexure_ = LoadGraph("GameAssets/Sprite/Body/mainBody_eyes.png");
 	int sakabanEyeTex = LoadGraph("GameAssets/Sprite/Body/sacabambaspis_eyes.png");
 

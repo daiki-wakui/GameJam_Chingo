@@ -53,6 +53,8 @@ void GameScene::Initialize()
 	isChange = false;
 	isChangeStart = false;
 	endSize.x = 5;
+
+	ChangeVolumeSoundMem(100, endSE);
 }
 
 void GameScene::Update()
@@ -69,6 +71,11 @@ void GameScene::Update()
 	}
 	else if (isChangeStart) {
 		frame_[1]++;
+		if (!isSE) {
+			PlaySoundMem(endSE, DX_PLAYTYPE_BACK, true);
+			isSE = true;
+		}
+		
 	}
 
 	if (frame_[1] >= 60) {
@@ -81,7 +88,9 @@ void GameScene::Update()
 	}
 
 	if (frame_[1] >= 150) {
+		//Player::GetInstance()->StopSE();
 		isChange = true;
+		isSE = false;
 	}
 	
 	if (isReset) {
@@ -146,6 +155,8 @@ void GameScene::Update()
 		Player::GetInstance()->SetIsShakeing(false);
 		//シェイク開始
 	}
+
+	Player::GetInstance()->SetIsGamescene(true);
 
 	//シェイクの処理
 	shake->Effect();

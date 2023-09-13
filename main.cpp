@@ -62,9 +62,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	int gameBGM = LoadSoundMem("GameAssets/Sound/gameBGM.mp3");
 	int resultBGM = LoadSoundMem("GameAssets/Sound/resultBGM.mp3");
 	
-	ChangeVolumeSoundMem(100, titleBGM);
-	ChangeVolumeSoundMem(70, gameBGM);
-	ChangeVolumeSoundMem(128, resultBGM);
+	ChangeVolumeSoundMem(140, titleBGM);
+	ChangeVolumeSoundMem(110, gameBGM);
+	ChangeVolumeSoundMem(170, resultBGM);
 
 	//keyboradƒNƒ‰ƒX‚Ì¶¬
 	Keyboard* keyboard_ = Keyboard::GetInstance();
@@ -113,7 +113,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			if (CheckSoundMem(gameBGM) == 0) {
 				PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, true);
 			}
-			
 			gameScene->Update();
 			debug->Update();
 			

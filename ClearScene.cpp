@@ -63,8 +63,8 @@ void ClearScene::Initialize()
 	alpha_ = 255;
 	isSE_ = false;
 
-	ChangeVolumeSoundMem(160, kansei1);
-	ChangeVolumeSoundMem(160, kansei2);
+	ChangeVolumeSoundMem(180, kansei1);
+	ChangeVolumeSoundMem(180, kansei2);
 
 	anagoImage[0] = LoadGraph("GameAssets/Sprite/anago1.png");
 	anagoImage[1] = LoadGraph("GameAssets/Sprite/anago2.png");
@@ -88,6 +88,8 @@ void ClearScene::Initialize()
 
 void ClearScene::Update()
 {
+	Player::GetInstance()->SetIsGamescene(false);
+
 	AnagoPos[0] = AnagoPos[0].lerp(startAnago[0], endAnago[0], Easing::EaseInCubic(frame, 10));
 	AnagoPos[1] = AnagoPos[1].lerp(startAnago[1], endAnago[1], Easing::EaseInCubic(frame, 10));
 	AnagoPos[2] = AnagoPos[2].lerp(startAnago[2], endAnago[2], Easing::EaseInCubic(frame, 10));

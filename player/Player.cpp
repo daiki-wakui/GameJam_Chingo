@@ -5,6 +5,7 @@
 #include "exBody/ExBodyManager.h"
 #include "ScrollManager.h"
 #include "Keyboard.h"
+#include "EnemyManager.h"
 
 const float PI = 3.1415f;
 
@@ -39,6 +40,12 @@ void Player::Initialize()
 	isSakaban_ = false;
 
 	ExBodyManager::GetInstance()->Initialize();
+
+	ChangeVolumeSoundMem(128, startExtending);
+	ChangeVolumeSoundMem(200, playerExpanding);
+	ChangeVolumeSoundMem(200, playerShrinking);
+	ChangeVolumeSoundMem(180, hungerGaugeEmpty);
+	ChangeVolumeSoundMem(140, levelUp);
 }
 
 void Player::Update()
@@ -104,6 +111,15 @@ void Player::Update()
 
 	//伸ばし縮み
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isReturn_) {
+		if (CheckSoundMem(playerExpanding) == 0) {
+			PlaySoundMem(playerExpanding, DX_PLAYTYPE_LOOP, true);
+		}
+
+		if (!isExtend) {
+			PlaySoundMem(startExtending, DX_PLAYTYPE_BACK, true);
+			isExtend = true;
+		}
+
 		if (maxHunger_ > activeLength_) {
 			shrinkDistance_++;
 			activeLength_++;
@@ -114,9 +130,24 @@ void Player::Update()
 		}
 		else {
 			isReturn_ = true;
+
+			//ゲームシーンのときだけ鳴らす
+			if (nowGameScene) {
+				if (CheckSoundMem(hungerGaugeEmpty) == 0) {
+					PlaySoundMem(hungerGaugeEmpty, DX_PLAYTYPE_BACK, true);
+				}
+			}
 		}
 	}
 	else if (activeLength_ > NUM_NECK) {
+		StopSoundMem(playerExpanding);
+		if (CheckSoundMem(playerShrinking) == 0 && EnemyManager::GetInstance()->GetIsWhaleAlive()) {
+			PlaySoundMem(playerShrinking, DX_PLAYTYPE_LOOP, true);
+		}
+		else {
+			StopSoundMem(playerShrinking);
+		}
+		
 		isReturn_ = true;
 		//高速縮み
 		for (int j = 0; j < 5; j++) {
@@ -142,9 +173,12 @@ void Player::Update()
 		levelM->IncludeExp();
 		//縮みきったタイミング
 		if (isReturn_) {
+			StopSoundMem(playerShrinking);
+			PlaySoundMem(playerLand, DX_PLAYTYPE_BACK, true);
 			if (oldLevel_ != levelM->GetLevel()) {
 				oldLevel_ = levelM->GetLevel();
 				exM->SetIsSelect();
+				PlaySoundMem(levelUp, DX_PLAYTYPE_BACK, true);
 			}
 
 			if (shrinkDistance_ >= 30) {
@@ -155,6 +189,7 @@ void Player::Update()
 
 		shrinkDistance_ = 0;
 		isReturn_ = false;
+		isExtend = false;
 		levelM->GetMax();
 	}
 
@@ -307,4 +342,13 @@ void Player::ReSetBody()
 	for (int i = 0; i < MAX_BODY; i++) {
 		pos_[i] = originPos_;
 	}
+}
+
+void Player::StopSE()
+{
+	StopSoundMem(startExtending);
+	StopSoundMem(playerExpanding);
+	StopSoundMem(playerShrinking);
+	StopSoundMem(hungerGaugeEmpty);
+	StopSoundMem(levelUp);
 }
