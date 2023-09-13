@@ -60,7 +60,7 @@ private:
 	const int MAX_PLANKTON = 20;
 	int planktonNum_[8];
 
-	const int MAX_FISH = 20;
+	const int MAX_FISH = 16;
 	const int TIME_FISH_POP = 2 * 60;
 	int fishNum_;
 	int fishPopTimer_;

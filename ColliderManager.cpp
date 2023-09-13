@@ -32,8 +32,8 @@ void ColliderManager::Update()
 					player->AddBodyLength(enemy->GetHang());
 					expM->AddExp(enemy->GetEXP());
 					if (enemy->GetIsCook()) {
-						player->AddBodyLength(enemy->GetHang());
-						expM->AddExp(enemy->GetEXP());
+						player->AddBodyLength(enemy->GetHang() / 1.25f);
+						expM->AddExp(enemy->GetEXP() / 2.5f);
 					}
 					enemy->SetIsDead();
 				}
@@ -65,9 +65,9 @@ void ColliderManager::Update()
 				}
 			}
 		}
-		for (int i = 0; i < 3;i++) {
+		for (int i = 0; i < 3; i++) {
 			if (ExBodyManager::GetInstance()->GetBodyType(i) == BodyType::Shark) {
-				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace() + 8),150, enemy->GetPos(), enemy->GetR())) {
+				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace() + 8), 150, enemy->GetPos(), enemy->GetR())) {
 					//H‚¦‚éŽž
 					if (expM->GetLevel() >= enemy->GetLv()) {
 						player->AddBodyLength(enemy->GetHang());

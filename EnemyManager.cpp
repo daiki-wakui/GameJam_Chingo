@@ -34,11 +34,11 @@ void EnemyManager::Update()
 	//€‚ñ‚¾“G‚Ìíœ
 	enemys_.remove_if([](unique_ptr<BaseEnemy>& enemy) {
 		return enemy->GetIsDead();
-	});
+		});
 
 	//“G‘Sˆõ‚Ìˆ—
 	//”Šm”F
-	for (int i = 0; i < 8;i++) {
+	for (int i = 0; i < 8; i++) {
 		planktonNum_[i] = 0;
 	}
 	fishNum_ = 0;
@@ -52,12 +52,12 @@ void EnemyManager::Update()
 	if (Player::GetInstance()->GetIsExtend()) {
 		for (int j = 0; j < 7; j++) {
 			if (j > 3) {
-				for (int i = planktonNum_[j]; i < 15; i++) {
+				for (int i = planktonNum_[j]; i < 12; i++) {
 					RePopPlankton(j);
 				}
 			}
 			else {
-				for (int i = planktonNum_[j]; i < 20; i++) {
+				for (int i = planktonNum_[j]; i < 19; i++) {
 					RePopPlankton(j);
 				}
 			}
@@ -99,7 +99,7 @@ void EnemyManager::PopPlankton()
 	std::uniform_real_distribution<float> rot(30, 300);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
-	newEnemy->Initialize({x(engine),y(engine)});
+	newEnemy->Initialize({ x(engine),y(engine) });
 	newEnemy->SetRotation(rot(engine));
 	newEnemy->SetType(y(engine) / 1080);
 	enemys_.push_back(move(newEnemy));
