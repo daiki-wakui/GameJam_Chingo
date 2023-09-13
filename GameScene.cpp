@@ -305,8 +305,6 @@ void GameScene::Draw()
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
 	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
-
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "t %d , %d", isTutorialPhase);
 }
 
 bool GameScene::MouseTriggerLeft()

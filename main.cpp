@@ -17,7 +17,7 @@ enum MyEnum
 };
 
 // ウィンドウのタイトルに表示する文字列
-const char TITLE[] = "Chingo";
+const char TITLE[] = "チンアナGo!";
 
 // ウィンドウ横幅
 const int WIN_WIDTH = 1280;
