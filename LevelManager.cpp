@@ -51,6 +51,14 @@ void LevelManager::Update()
 		nowLevel_ = 2;
 		nextExp_ = EXP_LV2;
 		player->SetThickness(BODY_THICKNESS_LV2);
+		if (haveExp_ > EXP_LV3 - EXP_LV2) {
+			haveExp_ = EXP_LV3 - EXP_LV2;
+		}
+	}
+	else {
+		if (haveExp_ > EXP_LV2) {
+			haveExp_ = EXP_LV2;
+		}
 	}
 
 	//‚Á‚Ä‚é‰a‚ÌƒQ[ƒW‘‰Á(“§–¾)

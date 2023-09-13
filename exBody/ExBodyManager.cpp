@@ -4,6 +4,7 @@
 #include "ScrollManager.h"
 #include <random>
 #include "BulletManager.h"
+#include "EffectManager.h"
 
 ExBodyManager* ExBodyManager::GetInstance()
 {
@@ -91,9 +92,21 @@ void ExBodyManager::Update()
 					bulletM->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE), { 0,1 });
 					bulletM->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE), { 1,1 });
 				}
+				else if (bodyType_[i] == GAMING) {
+					EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE));
+				}
 			}
 		}
 		bulletTimer_ = TIME_BULLET;
+	}
+	for (int i = 0; i < 3; i++) {
+		if (Player::GetInstance()->GetActiveBody() > (i + 1) * EX_BODY_SPACE) {
+			if (bodyType_[i] == GAMING) {
+				EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE));
+				EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE) + Vector2(80,0));
+				EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE) + Vector2(-80, 0));
+			}
+		}
 	}
 }
 
