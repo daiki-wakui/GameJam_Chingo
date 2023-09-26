@@ -60,9 +60,13 @@ void ClearScene::Initialize()
 	UIFrame[2] = 0;
 	UIFrame[3] = 0;
 
+	feadAlpha = 0;
 	alpha_ = 255;
 	isSE_ = false;
+	isChangeStart = false;
 	isChange = false;
+	ChangeVolumeSoundMem(170, resultBGM);
+
 
 	ChangeVolumeSoundMem(180, kansei1);
 	ChangeVolumeSoundMem(180, kansei2);
@@ -89,13 +93,25 @@ void ClearScene::Initialize()
 
 void ClearScene::Update()
 {
+
 	//ƒ}ƒEƒX‚ÌêŠŽæ“¾
 	GetMousePoint(&mouseX_, &mouseY_);
 
 
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && frame >= 440) {
+		//isChange = true;
+		//StopSoundMem(resultBGM);
+		isChangeStart = true;
+	}
+	if (isChangeStart) {
+		feadAlpha += 3;
+		feadAlpha = min(feadAlpha, 255);
+	}
+
+	if (feadAlpha >= 255) {
 		isChange = true;
 	}
+
 
 	Player::GetInstance()->SetIsGamescene(false);
 
@@ -152,6 +168,7 @@ void ClearScene::Update()
 
 void ClearScene::Draw()
 {
+
 	ExBodyManager* exM = ExBodyManager::GetInstance();
 	LevelManager* lvM = LevelManager::GetInstance();
 	
@@ -209,4 +226,10 @@ void ClearScene::Draw()
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);
 	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
+
+	if (isChangeStart) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, feadAlpha);
+		DrawBox(0, 0, 1280, 900, GetColor(255, 250, 220), true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	}
 }

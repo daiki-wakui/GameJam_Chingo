@@ -54,11 +54,16 @@ private:
 
 
 	int mouseX_, mouseY_;
+	bool isChangeStart;
 	bool isChange;
+	int feadAlpha;
+	
+	int resultBGM = LoadSoundMem("GameAssets/Sound/resultBGM.mp3");
+
 
 public:
-
 	bool GetIsChange() { return isChange; }
+	bool GetIsChangeStart() { return isChangeStart; }
 
 	void Initialize();
 	void Update();

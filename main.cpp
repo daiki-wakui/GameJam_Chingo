@@ -61,11 +61,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	int titleBGM = LoadSoundMem("GameAssets/Sound/titleBGM.mp3");
 	int gameBGM = LoadSoundMem("GameAssets/Sound/gameBGM.mp3");
 	int resultBGM = LoadSoundMem("GameAssets/Sound/resultBGM.mp3");
-	
-	ChangeVolumeSoundMem(140, titleBGM);
-	ChangeVolumeSoundMem(110, gameBGM);
-	ChangeVolumeSoundMem(170, resultBGM);
 
+	int feadSound = 170;
+
+	ChangeVolumeSoundMem(140, titleBGM);
+	ChangeVolumeSoundMem(170, resultBGM);
+	ChangeVolumeSoundMem(110, gameBGM);
+	
 	//keyboradクラスの生成
 	Keyboard* keyboard_ = Keyboard::GetInstance();
 
@@ -93,6 +95,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// 更新処理
 		if (scene == TITLE_SCENE) {
+			StopSoundMem(resultBGM);
 			if (CheckSoundMem(titleBGM) == 0) {
 				PlaySoundMem(titleBGM, DX_PLAYTYPE_LOOP, true);
 			}
@@ -131,20 +134,32 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			if (gameScene->GetIsSceneChange()) {
 				StopSoundMem(gameBGM);
 				clearScene->Initialize();
+				titleScene->SetIsbackResult(false);
+				feadSound = 170;
 				scene = CLEAR_SCENE;
 			}
 		}
 		else if (scene == CLEAR_SCENE) {
+			
 			if (CheckSoundMem(resultBGM) == 0) {
 				PlaySoundMem(resultBGM, DX_PLAYTYPE_LOOP, true);
 			}
-			
+
+			if (clearScene->GetIsChangeStart()) {
+				feadSound -= 2;
+				ChangeVolumeSoundMem(feadSound, resultBGM);
+			}
+			else {
+				ChangeVolumeSoundMem(170, resultBGM);
+			}
+
 			clearScene->Update();
 
 			if (clearScene->GetIsChange()) {
-				StopSoundMem(resultBGM);
+				
 				gameScene->Initialize();
 				titleScene->Initialize();
+				titleScene->SetIsbackResult(true);
 				scene = TITLE_SCENE;
 			}
 		}

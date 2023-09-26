@@ -55,12 +55,19 @@ private:
 	float frame_[2];
 	int state_;
 	
+	bool backResult;
+	int feadAlpha = 255;
+
 public:
 
 	bool GetIsSceneChange() { return isChange; }
 
 	bool GetIsChangeStart(){ return isChangeStart; }
 	void SetIsSceneChange(bool change) { isChangeStart = change; }
+
+	bool GetIsbackResult() { return backResult; }
+	void SetIsbackResult(bool backresult) { backResult = backresult; }
+
 
 	void Initialize();
 	void Update();

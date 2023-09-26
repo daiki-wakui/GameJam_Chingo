@@ -52,6 +52,8 @@ void TitleScene::Initialize()
 	endAnago[1] = { -110 + 330,-250 };
 	endAnago[2] = { -110 + 330 * 2,-250 };
 	endAnago[3] = { -110 + 330 * 3,-250 };
+
+	feadAlpha = 255;
 }
 
 void TitleScene::Update()
@@ -60,6 +62,12 @@ void TitleScene::Update()
 	Player::GetInstance()->SetIsGamescene(false);
 
 
+	if (backResult) {
+		feadAlpha -= 5;
+		feadAlpha = max(feadAlpha, 0);
+
+	}
+	
 	for (int i = 0; i < 3; i++) {
 		if (ColliderManager::GetInstance()->CircleCol(Player::GetInstance()->GetPos(0), 30, Vector2{ gameStartUI.x + (100 * i), gameStartUI.y }, 48)) {
 			isChangeStart = true;
@@ -159,5 +167,11 @@ void TitleScene::Draw()
 	DrawGraph(AnagoPos[2].x, AnagoPos[2].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[3].x, AnagoPos[3].y, anagoImage[1], true);
 	
+	if (backResult) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, feadAlpha);
+		DrawBox(0, 0, 1280, 900, GetColor(255, 250, 220), true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	}
+
 	//DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 }
