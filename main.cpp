@@ -28,7 +28,7 @@ const int WIN_HEIGHT = 900;
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
                    _In_ int nCmdShow) {
 	// ウィンドウモードに設定
-	ChangeWindowMode(TRUE);
+	ChangeWindowMode(FALSE);
 
 	// ウィンドウサイズを手動では変更させず、
 	// かつウィンドウサイズに合わせて拡大できないようにする
@@ -56,6 +56,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	int backImage = LoadGraph("GameAssets/Sprite/back.png");
 	int groundImage = LoadGraph("GameAssets/Sprite/floor.png");
 	
+	int mauseImage = LoadGraph("GameAssets/Sprite/UI/mouse.png");
+
 	
 	// ゲームループで使う変数の宣言
 	int titleBGM = LoadSoundMem("GameAssets/Sound/titleBGM.mp3");
@@ -83,6 +85,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	debug->Initialize();
 	
 	int scene = TITLE_SCENE;
+	int mousePosX, mousePosY;
 
 	// ゲームループ
 	while (true) {
@@ -92,6 +95,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// 画面クリア
 		ClearDrawScreen();
 		//---------  ここからプログラムを記述  ----------//
+
+		GetMousePoint(&mousePosX, &mousePosY);
 
 		// 更新処理
 		if (scene == TITLE_SCENE) {
@@ -180,6 +185,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		if (scene == CLEAR_SCENE) {
 			clearScene->Draw();
 		}
+
+		DrawRotaGraph(mousePosX, mousePosY, 0.25f ,0.0f, mauseImage, true);
 
 		//---------  ここまでにプログラムを記述  ---------//
 		// (ダブルバッファ)裏面
