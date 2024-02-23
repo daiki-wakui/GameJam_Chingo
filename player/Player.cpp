@@ -68,7 +68,6 @@ void Player::Update()
 	//パッド
 	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
-
 	//マウスクリックしたらisUsePadをfalseに
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT)) {
 		isUsePad_ = false;
@@ -260,11 +259,20 @@ void Player::ResultUpdate()
 
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
+	//パッド
+	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
 	//マウスの方向計算
 	Vector2 mouseWay;
-	mouseWay.x = mouseX_ - originPos_.x;
-	mouseWay.y = mouseY_ - originPos_.y;
+	if (!isUsePad_) {
+		mouseWay.x = mouseX_ - originPos_.x;
+		mouseWay.y = mouseY_ - originPos_.y;
+	}
+	else {
+		mouseWay.x = ((padInput.ThumbLX / 50) + originPos_.x) - originPos_.x;
+		mouseWay.y = 400 - originPos_.y;
+	}
+
 	//単位化
 	mouseWay.normalize();
 
