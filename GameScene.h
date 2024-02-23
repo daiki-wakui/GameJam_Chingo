@@ -65,6 +65,9 @@ private:
 
 	int Mouse;
 	int oldMouse;
+	XINPUT_STATE padInput;
+	XINPUT_STATE oldPadInput;
+
 public:
 	bool GetIstutorial() { return isTutorial; }
 

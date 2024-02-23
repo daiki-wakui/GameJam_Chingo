@@ -76,6 +76,8 @@ void GameScene::Update()
 	//マウス入力情報
 	oldMouse = Mouse;
 	Mouse = GetMouseInput();
+	oldPadInput = padInput;
+	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
@@ -310,6 +312,9 @@ void GameScene::Draw()
 bool GameScene::MouseTriggerLeft()
 {
 	if (Mouse & MOUSE_INPUT_LEFT && oldMouse != MOUSE_INPUT_LEFT) {
+		return true;
+	}
+	if (padInput.Buttons[XINPUT_BUTTON_A] && !oldPadInput.Buttons[XINPUT_BUTTON_A]) {
 		return true;
 	}
 	return false;

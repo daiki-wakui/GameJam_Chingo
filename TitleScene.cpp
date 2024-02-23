@@ -61,7 +61,6 @@ void TitleScene::Update()
 	Player::GetInstance()->Update();
 	Player::GetInstance()->SetIsGamescene(false);
 
-
 	if (backResult) {
 		feadAlpha -= 5;
 		feadAlpha = max(feadAlpha, 0);
