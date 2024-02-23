@@ -96,9 +96,10 @@ void ClearScene::Update()
 
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
+	//パッド
+	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
-
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && frame >= 440) {
+	if (((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 || padInput.Buttons[XINPUT_BUTTON_A]) && frame >= 440) {
 		//isChange = true;
 		//StopSoundMem(resultBGM);
 		isChangeStart = true;

@@ -60,6 +60,7 @@ private:
 	
 	int resultBGM = LoadSoundMem("GameAssets/Sound/resultBGM.mp3");
 
+	XINPUT_STATE padInput;
 
 public:
 	bool GetIsChange() { return isChange; }

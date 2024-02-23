@@ -36,7 +36,7 @@ void Player::Initialize()
 		thickness_[i] = START_BODY_THICKNESS;
 	}
 	thick_ = START_BODY_THICKNESS;
-	invTime_ = 0; 
+	invTime_ = 0;
 	bodySpace_ = START_BODY_SPACE;
 	speedNeck_ = START_SPEED_NECK;
 	addHang_ = 0;
@@ -65,16 +65,45 @@ void Player::Update()
 
 	//マウスの場所取得
 	GetMousePoint(&mouseX_, &mouseY_);
+	//パッド
+	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
-	//マウスの方向計算
+
+	//マウスクリックしたらisUsePadをfalseに
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT)) {
+		isUsePad_ = false;
+	}
+	//パッドのAボタン押したらisUsePadをtrueに
+	if (padInput.Buttons[XINPUT_BUTTON_A]) {
+		isUsePad_ = true;
+	}
+
+
 	Vector2 mouseWay;
-	mouseWay.x = mouseX_ - pos_[NUM_NECK].x;
-	mouseWay.y = mouseY_ - ScrollManager::GetInstance()->GetScroll() - pos_[NUM_NECK].y;
-	//単位化
-	mouseWay.normalize();
+	//マウスかコントローラかで変える
+	if (!isUsePad_) {
+		//マウスの方向計算
+		mouseWay.x = mouseX_ - pos_[NUM_NECK].x;
+		mouseWay.y = mouseY_ - ScrollManager::GetInstance()->GetScroll() - pos_[NUM_NECK].y;
+		//単位化
+		mouseWay.normalize();
+	}
+	else {
+		//padの方向計算
+		mouseWay.x = padInput.ThumbLX;
+		mouseWay.y = padInput.ThumbLY * -1;
+		//単位化
+		mouseWay.normalize();
+	}
 
 	//角度を計算
+	oldMouseAngle_ = mouseAngle_;
 	mouseAngle_ = atan2(mouseWay.cross({ 0,-1 }), -mouseWay.dot({ 0,-1 })) / PI * 180;
+
+	if (isUsePad_ && (padInput.ThumbLX <= 10000 && padInput.ThumbLX >= -10000) && (padInput.ThumbLY <= 10000 && padInput.ThumbLY >= -10000)) {
+		mouseAngle_ = oldMouseAngle_;
+	}
+
 	//0~360調整
 	if (mouseAngle_ <= 0) {
 		mouseAngle_ += 360;
@@ -113,7 +142,7 @@ void Player::Update()
 	}
 
 	//伸ばし縮み
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isReturn_) {
+	if (((GetMouseInput() & MOUSE_INPUT_LEFT) || padInput.Buttons[XINPUT_BUTTON_A]) && !isReturn_) {
 		if (CheckSoundMem(playerExpanding) == 0) {
 			PlaySoundMem(playerExpanding, DX_PLAYTYPE_LOOP, true);
 		}
@@ -147,7 +176,7 @@ void Player::Update()
 		if (CheckSoundMem(playerShrinking) == 0 && EnemyManager::GetInstance()->GetIsWhaleAlive()) {
 			PlaySoundMem(playerShrinking, DX_PLAYTYPE_LOOP, true);
 		}
-		
+
 		isReturn_ = true;
 		//高速縮み
 		for (int j = 0; j < 5; j++) {
@@ -214,7 +243,7 @@ void Player::Update()
 
 	exM->Update();
 
-	
+
 	for (int i = activeLength_; i > 0; i--) {
 		thickness_[i] = thickness_[i - 1];
 	}
@@ -296,7 +325,7 @@ void Player::Draw(bool scroll)
 			}
 		}
 	}
-	
+
 	if (!(--invTime_ % 10 >= 1 && invTime_ % 10 <= 3)) {
 		if (scroll) {
 			if (!isSakaban_) {
@@ -316,7 +345,7 @@ void Player::Draw(bool scroll)
 			}
 		}
 	}
-	
+
 	//DrawFormatString(0, 160, GetColor(255, 255, 255), "bodyMaxLength = %d", maxHunger_);
 	//DrawFormatString(0, 180, GetColor(255, 255, 255), "nowLength = %d", activeLength_);
 

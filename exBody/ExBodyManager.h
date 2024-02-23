@@ -90,4 +90,8 @@ private:
 	bool isRelease = true;
 
 	bool isSet_;
+
+	XINPUT_STATE padInput;
+	int padSelect_;
+	bool isPadSelect_;
 };

@@ -25,15 +25,20 @@ void ExBodyManager::Initialize()
 
 	bulletTimer_ = TIME_BULLET;
 	isSet_ = false;
+	isPadSelect_ = false;
 	ChangeVolumeSoundMem(140, UI_Select);
 }
 
 void ExBodyManager::Update()
 {
 	BulletManager* bulletM = BulletManager::GetInstance();
+	Player* player = Player::GetInstance();
+
+	//ƒpƒbƒh
+	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
 	if (!isSelect_) {
-		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
+		if (((GetMouseInput() & MOUSE_INPUT_LEFT) || padInput.Buttons[XINPUT_BUTTON_A])) {
 			isRelease = true;
 		}
 		else {
@@ -41,40 +46,65 @@ void ExBodyManager::Update()
 		}
 	}
 	else {
-		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)) {
+		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) && padInput.Buttons[XINPUT_BUTTON_A])) {
 			isRelease = false;
 		}
 
+		if (player->GetIsUsePad()) {
+			if ((padInput.Buttons[XINPUT_BUTTON_DPAD_RIGHT] || padInput.ThumbLX > 10000) && !isPadSelect_) {
+				if (padSelect_ < 2) {
+					padSelect_++;
+				}
+				isPadSelect_ = true;
+			}
+			else if ((padInput.Buttons[XINPUT_BUTTON_DPAD_LEFT] || padInput.ThumbLX < -10000) && !isPadSelect_) {
+				if (padSelect_ > 0) {
+					padSelect_--;
+				}
+				isPadSelect_ = true;
+			}
+			else {
+				isPadSelect_ = false;
+			}
+		}
 
 		int mouseX, mouseY;
 		GetMousePoint(&mouseX, &mouseY);
 
-		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) && isSet_) {
-			if (mouseY > 320 && mouseY < 890) {
-				if (mouseX > 45 && mouseX <= 440) {
-					AddBody(choice_[0] + 1);
-					isSelect_ = false;
-					LevelManager::GetInstance()->isSetRat(true);
-					PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) || padInput.Buttons[XINPUT_BUTTON_A]) && isSet_) {
+			if (!player->GetIsUsePad()) {
+				if (mouseY > 320 && mouseY < 890) {
+					if (mouseX > 45 && mouseX <= 440) {
+						AddBody(choice_[0] + 1);
+						isSelect_ = false;
+						LevelManager::GetInstance()->isSetRat(true);
+						PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+					}
+					if (mouseX > 440 && mouseX <= 840) {
+						AddBody(choice_[1] + 1);
+						isSelect_ = false;
+						LevelManager::GetInstance()->isSetRat(true);
+						PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+					}
+					if (mouseX > 840 && mouseX <= 1240) {
+						AddBody(choice_[2] + 1);
+						isSelect_ = false;
+						LevelManager::GetInstance()->isSetRat(true);
+						PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
+					}
 				}
-				if (mouseX > 440 && mouseX <= 840) {
-					AddBody(choice_[1] + 1);
-					isSelect_ = false;
-					LevelManager::GetInstance()->isSetRat(true);
-					PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
-				}
-				if (mouseX > 840 && mouseX <= 1240) {
-					AddBody(choice_[2] + 1);
-					isSelect_ = false;
-					LevelManager::GetInstance()->isSetRat(true);
-					PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
-				}
+			}
+			else {
+				AddBody(choice_[padSelect_] + 1);
+				isSelect_ = false;
+				LevelManager::GetInstance()->isSetRat(true);
+				PlaySoundMem(UI_Select, DX_PLAYTYPE_BACK, true);
 			}
 		}
 
 		isSet_ = false;
 
-		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !isRelease) {
+		if (((GetMouseInput() & MOUSE_INPUT_LEFT) || padInput.Buttons[XINPUT_BUTTON_A]) && !isRelease) {
 			isSet_ = true;
 		}
 	}
@@ -103,7 +133,7 @@ void ExBodyManager::Update()
 		if (Player::GetInstance()->GetActiveBody() > (i + 1) * EX_BODY_SPACE) {
 			if (bodyType_[i] == GAMING) {
 				EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE));
-				EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE) + Vector2(80,0));
+				EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE) + Vector2(80, 0));
 				EffectManager::GetInstance()->Pop(Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE) + Vector2(-80, 0));
 			}
 		}

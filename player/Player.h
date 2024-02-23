@@ -100,6 +100,10 @@ public:
 		isSakaban_ = true;
 	}
 
+	bool GetIsUsePad() {
+		return isUsePad_;
+	}
+
 	void SetIsGamescene(bool nowscene) { nowGameScene = nowscene; }
 	void StopSE();
 
@@ -137,6 +141,7 @@ private:
 	int activeLength_;
 
 	int mouseAngle_;//マウスの角度
+	int oldMouseAngle_;
 
 	bool isReturn_;
 
@@ -156,5 +161,8 @@ private:
 	int addHang_;
 
 	bool isSakaban_;
+
+	XINPUT_STATE padInput;
+	bool isUsePad_;
 
 };

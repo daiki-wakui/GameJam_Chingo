@@ -6,6 +6,7 @@
 #include "TitleScene.h"
 #include "GameScene.h"
 #include "ClearScene.h"
+#include "Player.h"
 
 #include <memory>
 
@@ -26,7 +27,7 @@ const int WIN_WIDTH = 1280;
 const int WIN_HEIGHT = 900;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
-                   _In_ int nCmdShow) {
+	_In_ int nCmdShow) {
 	// ウィンドウモードに設定
 	ChangeWindowMode(FALSE);
 
@@ -47,7 +48,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetBackgroundColor(0x00, 0x00, 0x00);
 
 	// DXlibの初期化
-	if (DxLib_Init() == -1) { return -1; }
+	if (DxLib_Init() == -1) {
+		return -1;
+	}
 
 	// (ダブルバッファ)描画先グラフィック領域は裏面を指定
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -55,10 +58,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// 画像などのリソースデータの変数宣言と読み込み
 	int backImage = LoadGraph("GameAssets/Sprite/back.png");
 	int groundImage = LoadGraph("GameAssets/Sprite/floor.png");
-	
+
 	int mauseImage = LoadGraph("GameAssets/Sprite/UI/mouse.png");
 
-	
+
 	// ゲームループで使う変数の宣言
 	int titleBGM = LoadSoundMem("GameAssets/Sound/titleBGM.mp3");
 	int gameBGM = LoadSoundMem("GameAssets/Sound/gameBGM.mp3");
@@ -69,7 +72,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	ChangeVolumeSoundMem(140, titleBGM);
 	ChangeVolumeSoundMem(170, resultBGM);
 	ChangeVolumeSoundMem(110, gameBGM);
-	
+
 	//keyboradクラスの生成
 	Keyboard* keyboard_ = Keyboard::GetInstance();
 
@@ -78,12 +81,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	std::unique_ptr<GameScene> gameScene = std::make_unique<GameScene>();
 	std::unique_ptr<ClearScene> clearScene = std::make_unique<ClearScene>();
 	DebugManager* debug = DebugManager::GetInstance();
-	
+
 	titleScene->Initialize();
 	gameScene->Initialize();
 	clearScene->Initialize();
 	debug->Initialize();
-	
+
 	int scene = TITLE_SCENE;
 	int mousePosX, mousePosY;
 
@@ -104,7 +107,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			if (CheckSoundMem(titleBGM) == 0) {
 				PlaySoundMem(titleBGM, DX_PLAYTYPE_LOOP, true);
 			}
-			
+
 			titleScene->Update();
 
 			if (titleScene->GetIsSceneChange()) {
@@ -114,12 +117,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 		}
 		else if (scene == GAME_SCENE) {
-			
+
 			gameScene->Update();
 			debug->Update();
-	
+
 			if (CheckSoundMem(gameBGM) == 0 && !gameScene->GetIstutorial()) {
-				
+
 				PlaySoundMem(gameBGM, DX_PLAYTYPE_LOOP, true);
 			}
 			else {
@@ -145,7 +148,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 		}
 		else if (scene == CLEAR_SCENE) {
-			
+
 			if (CheckSoundMem(resultBGM) == 0) {
 				PlaySoundMem(resultBGM, DX_PLAYTYPE_LOOP, true);
 			}
@@ -161,7 +164,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			clearScene->Update();
 
 			if (clearScene->GetIsChange()) {
-				
+
 				gameScene->Initialize();
 				titleScene->Initialize();
 				titleScene->SetIsbackResult(true);
@@ -172,12 +175,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// 描画処理
 		if (scene == TITLE_SCENE) {
 			DrawGraph(-40, -180, backImage, true);
-			
+
 			titleScene->Draw();
 		}
 
 		if (scene == GAME_SCENE) {
-			
+
 			gameScene->Draw();
 			debug->Draw();
 		}
@@ -185,8 +188,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		if (scene == CLEAR_SCENE) {
 			clearScene->Draw();
 		}
-
-		DrawRotaGraph(mousePosX, mousePosY, 0.25f ,0.0f, mauseImage, true);
+		if (!Player::GetInstance()->GetIsUsePad()) {
+			DrawRotaGraph(mousePosX, mousePosY, 0.25f, 0.0f, mauseImage, true);
+		}
 
 		//---------  ここまでにプログラムを記述  ---------//
 		// (ダブルバッファ)裏面
