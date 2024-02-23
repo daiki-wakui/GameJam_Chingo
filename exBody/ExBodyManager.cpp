@@ -38,7 +38,7 @@ void ExBodyManager::Update()
 	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
 	if (!isSelect_) {
-		if (((GetMouseInput() & MOUSE_INPUT_LEFT) || padInput.Buttons[XINPUT_BUTTON_A])) {
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) || padInput.Buttons[XINPUT_BUTTON_A]) {
 			isRelease = true;
 		}
 		else {
@@ -46,7 +46,7 @@ void ExBodyManager::Update()
 		}
 	}
 	else {
-		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) && padInput.Buttons[XINPUT_BUTTON_A])) {
+		if (!((GetMouseInput() & MOUSE_INPUT_LEFT) || padInput.Buttons[XINPUT_BUTTON_A])) {
 			isRelease = false;
 		}
 
@@ -392,6 +392,7 @@ void ExBodyManager::AddBody(int num)
 void ExBodyManager::SetIsSelect()
 {
 	isSelect_ = true;
+	padSelect_ = 1;
 	SelectRand();
 }
 
