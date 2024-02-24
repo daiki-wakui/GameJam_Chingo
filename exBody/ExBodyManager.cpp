@@ -155,9 +155,6 @@ void ExBodyManager::LvUpDraw()
 {
 	if (isSelect_) {
 		SelectDraw();
-		//DrawBox(45, 320, 440, 890, GetColor(255, 0, 0), true);
-		//DrawBox(440, 320, 840, 890, GetColor(0, 255, 0), true);
-		//DrawBox(840, 320, 1240, 890, GetColor(0, 0, 255), true);
 	}
 }
 
@@ -168,39 +165,30 @@ void ExBodyManager::BodyDraw(int i)
 	switch (bodyType_[i])
 	{
 	case MUSCLE:
-		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(255, 0, 0));
-
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			384, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, muscularImage, true);
 		break;
 	case MAGICIAN:
-		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 255, 0));
-
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			256, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, magicianImage, true);
 		break;
 	case JET:
-		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
-
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			256, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, jetImage, true);
 		break;
 	case GAMING:
-		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 55, GetColor(0, 0, 255));
-
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
 			256, 256, 0.45f * GetScale(), 0.45f * GetScale(), angle, gamingImage, true);
 		break;
 	case Shark:
-		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10 + 8), 150, GetColor(0, 0, 255));
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),
@@ -208,7 +196,6 @@ void ExBodyManager::BodyDraw(int i)
 
 		break;
 	case SAKABAN:
-		//DrawCircle(Player::GetInstance()->GetPos((i + 1) * 10), 80, GetColor(0, 0, 255));
 		DrawRotaGraph3(
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).x,
 			Player::GetInstance()->GetPos((i + 1) * EX_BODY_SPACE).y + ScrollManager::GetInstance()->GetScroll(),

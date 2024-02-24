@@ -6,6 +6,7 @@
 #include "Dolphin.h"
 #include "Whale.h"
 #include "Sakaban.h"
+#include "ScrollManager.h"
 
 using namespace std;
 
@@ -65,19 +66,36 @@ void EnemyManager::Update()
 	}
 
 	//プレイヤーが戻った時にリポップ
-	if (Player::GetInstance()->GetIsExtend()) {
-		for (int j = 0; j < 8; j++) {
-			if (j > 3) {
-				for (int i = planktonNum_[j]; i < 13; i++) {
-					RePopPlankton(j);
-					break;
+	if (ScrollManager::GetInstance()->GetScroll() < 1000) {
+		int maxPop = 0;
+		if (--popTimer_ < 0) {
+			for (int j = 0; j < 8; j++) {
+				if (j > 3) {
+					for (int i = planktonNum_[j]; i < 13; i++) {
+						RePopPlankton(j);
+						maxPop++;
+						if (maxPop >= oneFramePop_) {
+							break;
+						}
+					}
+					if (maxPop > oneFramePop_) {
+						break;
+					}
+				}
+				else {
+					for (int i = planktonNum_[j]; i < 20; i++) {
+						RePopPlankton(j);
+						maxPop++;
+						if (maxPop >= oneFramePop_) {
+							break;
+						}
+					}
+					if (maxPop > oneFramePop_) {
+						break;
+					}
 				}
 			}
-			else {
-				for (int i = planktonNum_[j]; i < 20; i++) {
-					RePopPlankton(j);
-				}
-			}
+			popTimer_ = 10;
 		}
 	}
 

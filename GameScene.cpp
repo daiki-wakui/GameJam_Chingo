@@ -180,8 +180,9 @@ void GameScene::Update()
 		}
 	}
 
-	if (Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R) && !isTutorial && !isReset) {
+	if ((Keyboard::GetInstance()->KeyTriggerPush(KEY_INPUT_R) || padInput.Buttons[XINPUT_BUTTON_START]) && !isTutorial && !isReset) {
 		Initialize();
+
 
 		AnagoPos[0] = endAnago[0];
 		AnagoPos[1] = endAnago[1];

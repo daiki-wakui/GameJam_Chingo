@@ -73,4 +73,7 @@ private:
 
 	const int TIME_SAKABAN_POP = 10 * 60;
 	int sakabanPopTimer_;
+
+	const int oneFramePop_ = 1;
+	int popTimer_;
 };
