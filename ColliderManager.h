@@ -11,6 +11,8 @@ private:
 	int playerDamaged = LoadSoundMem("GameAssets/Sound/SFX_PlayerDamaged.wav");
 	int playerEat = LoadSoundMem("GameAssets/Sound/SFX_eat.wav");
 
+	float sharkPar = 0.33f;
+
 public:
 	//コピーコンストラクタ無効
 	ColliderManager(const ColliderManager& obj) = delete;
