@@ -88,14 +88,20 @@ void ColliderManager::Update()
 		}
 		for (int i = 0; i < 3; i++) {
 			if (ExBodyManager::GetInstance()->GetBodyType(i) == BodyType::Shark) {
+				int sharkNum = 0;
+				for (int j = 0; j < 3;j++) {
+					if (ExBodyManager::GetInstance()->GetBodyType(j) == BodyType::Shark) {
+						sharkNum++;
+					}
+				}
 				if (CircleCol(player->GetPos((i + 1) * exBodyM->GetBodySpace() + 8), 150, enemy->GetPos(), enemy->GetR())) {
 					//H‚¦‚éŽž
 					if (expM->GetLevel() >= enemy->GetLv()) {
-						player->AddBodyLength(enemy->GetHang());
-						expM->AddExp(enemy->GetEXP());
+						player->AddBodyLength(enemy->GetHang() / 3 * sharkNum);
+						expM->AddExp(enemy->GetEXP() / 3 * sharkNum);
 						if (enemy->GetIsCook()) {
-							player->AddBodyLength(enemy->GetHang());
-							expM->AddExp(enemy->GetEXP());
+							player->AddBodyLength(enemy->GetHang() / 3 * sharkNum);
+							expM->AddExp(enemy->GetEXP() / 3 * sharkNum);
 						}
 						enemy->SetIsDead();
 

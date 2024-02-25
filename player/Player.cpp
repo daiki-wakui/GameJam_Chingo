@@ -294,8 +294,6 @@ void Player::ResultUpdate()
 
 void Player::Draw(bool scroll)
 {
-	//DrawLine(mouseX_, mouseY_, pos_[0].x, pos_[0].y + ScrollManager::GetInstance()->GetScroll(), GetColor(200, 200, 200),3);
-
 	//チンアナゴ
 	for (int i = activeLength_; i >= 0; i--) {
 		if (i < NUM_NECK) {
