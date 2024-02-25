@@ -77,23 +77,23 @@ void LevelManager::Update()
 	}
 
 	//伸び続けてる間に次のレベルになった時の例外処理
-	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100) {
-		haveExpGaugeYTop_[1] = (GetNowAndHaveExp() - 100) * 0.5;
+	if (nowLevel_ == 1 && GetNowAndHaveExp() >= EXP_LV1) {
+		haveExpGaugeYTop_[1] = (GetNowAndHaveExp() - EXP_LV1) * 0.5;
 
 		if (!isCanLvUp) {
 			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
 			isCanLvUp = true;
 		}
 	}
-	if (nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
-		haveExpGaugeYTop_[2] = (GetNowAndHaveExp() - 500) * 0.28;
+	if (nowLevel_ == 2 && GetNowAndHaveExp() >= EXP_LV2) {
+		haveExpGaugeYTop_[2] = (GetNowAndHaveExp() - EXP_LV2) * 0.28;
 
 		if (!isCanLvUp) {
 			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
 			isCanLvUp = true;
 		}
 	}
-	if (nowLevel_ == 3 && GetNowAndHaveExp() >= 1200) {
+	if (nowLevel_ == 3 && GetNowAndHaveExp() >= EXP_LV3) {
 
 		if (!isCanLvUp) {
 			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
@@ -181,21 +181,21 @@ void LevelManager::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	//透明ゲージの描画レベル1,2,3
 	
-	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100) {
+	if (nowLevel_ == 1 && GetNowAndHaveExp() >= EXP_LV1) {
 		DrawBox(1200, 550, 1240, nowExpGaugeYTop_[0], GetColor(46, 104, 214), true);
 	}
 	else {
 		DrawBox(1200, (nowExpGaugeYTop_[0] - haveExpGaugeYTop_[0]), 1240, nowExpGaugeYTop_[0], GetColor(46, 104, 214), true);
 	}
 
-	if (nowLevel_ == 2 && GetNowAndHaveExp() >= 500) {
+	if (nowLevel_ == 2 && GetNowAndHaveExp() >= EXP_LV2) {
 		DrawBox(1200, 550, 1240, nowExpGaugeYTop_[1], GetColor(46, 104, 214), true);
 	}
 	else {
 		DrawBox(1200, (nowExpGaugeYTop_[1] - haveExpGaugeYTop_[1]), 1240, nowExpGaugeYTop_[1], GetColor(46, 104, 214), true);
 	}
 
-	if (GetNowAndHaveExp() >= 1200) {
+	if (GetNowAndHaveExp() >= EXP_LV3) {
 		DrawBox(1200, 550, 1240, nowExpGaugeYTop_[1], GetColor(46, 104, 214), true);
 	}
 	else {
@@ -205,7 +205,7 @@ void LevelManager::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	//レベルアップ可能表示
-	if (nowLevel_ == 1 && GetNowAndHaveExp() >= 100 || nowLevel_ == 2 && GetNowAndHaveExp() >= 500||nowLevel_==3&& GetNowAndHaveExp() >= 1200) {
+	if (nowLevel_ == 1 && GetNowAndHaveExp() >= EXP_LV1 || nowLevel_ == 2 && GetNowAndHaveExp() >= EXP_LV2 ||nowLevel_==3&& GetNowAndHaveExp() >= EXP_LV3) {
 		DrawExtendGraph(1050, 690, 128 + 1050, 128 + 690, levelUpImage, true);
 
 		if (isWay_) {
@@ -249,16 +249,16 @@ void LevelManager::IncludeExp()
 	if (nowLevel_ == 2) {
 		nowExpGaugeYTop_[1] -= haveExp_ * 0.5;
 	}
-	else if (nowLevel_ == 1 && nowExp_ >= 100) {
-		nowExpGaugeYTop_[1] -= (nowExp_ - 100) * 0.5;
+	else if (nowLevel_ == 1 && nowExp_ >= EXP_LV1) {
+		nowExpGaugeYTop_[1] -= (nowExp_ - EXP_LV1) * 0.5;
 	}
 
 	//レベル3のゲージ増加
 	if (nowLevel_ == 3) {
 		nowExpGaugeYTop_[2] -= haveExp_ * 0.28;
 	}
-	else if (nowLevel_ == 2 && nowExp_ >= 500) {
-		nowExpGaugeYTop_[2] -= (nowExp_ - 500) * 0.28;
+	else if (nowLevel_ == 2 && nowExp_ >= EXP_LV2) {
+		nowExpGaugeYTop_[2] -= (nowExp_ - EXP_LV2) * 0.28;
 	}
 
 	if (nowLevel_ == 4) {

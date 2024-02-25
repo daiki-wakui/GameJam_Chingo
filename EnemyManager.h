@@ -56,16 +56,16 @@ private:
 	std::list<std::unique_ptr<BaseEnemy>> enemys_;
 	std::list<BaseEnemy*> enemys2_;
 
-	const int MAX_PLANKTON = 20;
+	const int MAX_PLANKTON = 30;
 	int planktonNum_[8];
 
-	const int MAX_FISH = 18;
-	const int TIME_FISH_POP = 90; //1.5s
+	const int MAX_FISH = 50;
+	const int TIME_FISH_POP = 30; //0.5s
 	int fishNum_;
 	int fishPopTimer_;
 
-	const int MAX_DOLPHIN = 10;
-	const int TIME_DOLPHIN_POP = 150; //2.5s
+	const int MAX_DOLPHIN = 30;
+	const int TIME_DOLPHIN_POP = 60; //1.0s
 	int dolphinNum_;
 	int dolphinPopTimer_;
 

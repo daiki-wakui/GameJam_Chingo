@@ -53,8 +53,8 @@ private:
 	int levelImage[4];
 
 	const int EXP_LV1 = 100;
-	const int EXP_LV2 = 500;
-	const int EXP_LV3 = 1200;
+	const int EXP_LV2 = 800;
+	const int EXP_LV3 = 1500;
 
 	const int HANG_LV1 = 110;
 	const int HANG_LV2 = 125;

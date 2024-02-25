@@ -10,8 +10,8 @@ public:
 
 private:
 	const int RADIUS = 50;
-	const int HANG = 50;
-	const int EXP = 75;
+	const int HANG = 30;
+	const int EXP = 50;
 	const float SPEED_MOVE = 7.5f;
 	const int LV = 3;
 

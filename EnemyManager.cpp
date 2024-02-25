@@ -65,38 +65,35 @@ void EnemyManager::Update()
 		enemy->Update();
 	}
 
-	//プレイヤーが戻った時にリポップ
-	if (ScrollManager::GetInstance()->GetScroll() < 1000) {
-		int maxPop = 0;
-		if (--popTimer_ < 0) {
-			for (int j = 0; j < 8; j++) {
-				if (j > 3) {
-					for (int i = planktonNum_[j]; i < 13; i++) {
-						RePopPlankton(j);
-						maxPop++;
-						if (maxPop >= oneFramePop_) {
-							break;
-						}
-					}
-					if (maxPop > oneFramePop_) {
+	int maxPop = 0;
+	if (--popTimer_ < 0) {
+		for (int j = 0; j < 7; j++) {
+			if (j > 3) {
+				for (int i = planktonNum_[j]; i < 13; i++) {
+					RePopPlankton(j);
+					maxPop++;
+					if (maxPop >= oneFramePop_) {
 						break;
 					}
 				}
-				else {
-					for (int i = planktonNum_[j]; i < 20; i++) {
-						RePopPlankton(j);
-						maxPop++;
-						if (maxPop >= oneFramePop_) {
-							break;
-						}
-					}
-					if (maxPop > oneFramePop_) {
-						break;
-					}
+				if (maxPop > oneFramePop_) {
+					break;
 				}
 			}
-			popTimer_ = 10;
+			else {
+				for (int i = planktonNum_[j]; i < 20; i++) {
+					RePopPlankton(j);
+					maxPop++;
+					if (maxPop >= oneFramePop_) {
+						break;
+					}
+				}
+				if (maxPop > oneFramePop_) {
+					break;
+				}
+			}
 		}
+		popTimer_ = 10;
 	}
 
 	if (MAX_FISH > fishNum_) {
@@ -132,7 +129,7 @@ void EnemyManager::RePopPlankton(int num)
 	std::mt19937_64 engine(seed_gen());
 
 	std::uniform_real_distribution<float> x(0, 1280);
-	std::uniform_real_distribution<float> y(-1080 * (num + 1) + 600, -1080 * num + 600);
+	std::uniform_real_distribution<float> y(-1080 * (num + 1) + 750, -1080 * num + 750);
 	std::uniform_real_distribution<float> rot(30, 300);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Plankton>();
@@ -149,7 +146,7 @@ void EnemyManager::PopFish()
 	std::mt19937_64 engine(seed_gen());
 
 	std::uniform_real_distribution<float> x(0, 1280);
-	std::uniform_real_distribution<float> y(-1080 * 8, -1080 * 1);
+	std::uniform_real_distribution<float> y(-1080 * 7, -1080 * 0);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Fish>();
 	newEnemy->Initialize({ x(engine),y(engine) });
@@ -165,7 +162,7 @@ void EnemyManager::PopDolphin()
 	std::mt19937_64 engine(seed_gen());
 
 	std::uniform_real_distribution<float> x(0, 1280);
-	std::uniform_real_distribution<float> y(-1080 * 8, -1080 * 3);
+	std::uniform_real_distribution<float> y(-1080 * 7, -1080 * 3);
 
 	unique_ptr<BaseEnemy> newEnemy = make_unique<Dolphin>();
 	newEnemy->Initialize({ x(engine),y(engine) });
