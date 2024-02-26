@@ -220,7 +220,14 @@ void ClearScene::Draw()
 	}
 
 	if (frame >= 440) {
-		DrawRotaGraph(1180, 800, mouseLeftSize.x, 0, mouseLeftImage, true);
+
+		if (Player::GetInstance()->GetIsUsePad()) {
+			DrawRotaGraph(1180, 800, mouseLeftSize.x, 0, ABotanImage, true);
+		}
+		else {
+			DrawRotaGraph(1180, 800, mouseLeftSize.x, 0, mouseLeftImage, true);
+		}
+		
 	}
 
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);

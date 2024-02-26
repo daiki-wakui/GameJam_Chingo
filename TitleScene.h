@@ -19,6 +19,7 @@ private:
 	int backBottomImage = LoadGraph("GameAssets/Sprite/background_bottom.png");
 
 	int mouseImage[2];
+	int ABotanImage;
 
 	int anagoImage[2];
 

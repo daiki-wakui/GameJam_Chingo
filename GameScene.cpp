@@ -260,7 +260,13 @@ void GameScene::Draw()
 	DrawGraph(555, 700 + shake->randY + ScrollManager::GetInstance()->GetScroll(), moleImage, true);
 
 	EffectManager::GetInstance()->Draw();
-	DrawRotaGraph(90, 770, 0.3, 0, RkeyImage, true);
+
+	if (Player::GetInstance()->GetIsUsePad()) {
+		DrawRotaGraph(90, 770, 0.3, 0, resetBotanImage, true);
+	}
+	else {
+		DrawRotaGraph(90, 770, 0.3, 0, RkeyImage, true);
+	}
 	
 	ExBodyManager::GetInstance()->Draw();
 	ExBodyManager::GetInstance()->LvUpDraw();
@@ -301,7 +307,13 @@ void GameScene::Draw()
 			DrawRotaGraph(1280 / 2 + 180, fukidasiPosY, 1, 0, tutorialImage[isTutorialPhase], true);
 		}
 
-		DrawRotaGraph(1280 / 2 + 280, fukidasiPosY+75, 0.2, 0, mouseLeftImage, true);
+		if (Player::GetInstance()->GetIsUsePad()) {
+			DrawRotaGraph(1280 / 2 + 280, fukidasiPosY + 75, 0.2, 0, ABotanImage, true);
+		}
+		else {
+			DrawRotaGraph(1280 / 2 + 280, fukidasiPosY + 75, 0.2, 0, mouseLeftImage, true);
+		}
+		
 	}
 	
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);

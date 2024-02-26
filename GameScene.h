@@ -20,6 +20,10 @@ private:
 	int RkeyImage = LoadGraph("GameAssets/Sprite/UI/RkeyReset.png");
 	int mouseLeftImage = LoadGraph("GameAssets/Sprite/mouseUI2.png");
 
+	int ABotanImage = LoadGraph("GameAssets/Sprite/A.png");
+	int resetBotanImage = LoadGraph("GameAssets/Sprite/UI/startReset.png");
+
+
 	int fukidasiImage = LoadGraph("GameAssets/Sprite/fukidasi.png");
 
 	int tutorialImage[5];

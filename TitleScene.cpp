@@ -39,6 +39,7 @@ void TitleScene::Initialize()
 	ChangeVolumeSoundMem(128, startSE);
 	mouseImage[0] = LoadGraph("GameAssets/Sprite/mouseUI.png");
 	mouseImage[1] = LoadGraph("GameAssets/Sprite/mouseUI2.png");
+	ABotanImage = LoadGraph("GameAssets/Sprite/A.png");
 
 	anagoImage[0] = LoadGraph("GameAssets/Sprite/anago1.png");
 	anagoImage[1] = LoadGraph("GameAssets/Sprite/anago2.png");
@@ -154,12 +155,20 @@ void TitleScene::Draw()
 	DrawRotaGraph(gameStartUI.x + 90, gameStartUI.y, 0.5, startUIRot_, gameStartImage, true);
 	
 	DrawRotaGraph3(mouseUI.x + 20, mouseUI.y-10, -startUISize_ ,-startUISize_ , 0.5, 0.5, 0, fukidasiImage, true);
-	if (state_) {
-		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[0], true);
+
+	if (Player::GetInstance()->GetIsUsePad()) {
+		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, ABotanImage, true);
 	}
 	else {
-		DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[1], true);
+		if (state_) {
+			DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[0], true);
+		}
+		else {
+			DrawRotaGraph3(mouseUI.x + 120, mouseUI.y + 80, -startUISize_, -startUISize_, 0.25, 0.25, 0, mouseImage[1], true);
+		}
 	}
+
+	
 
 	DrawGraph(AnagoPos[0].x, AnagoPos[0].y, anagoImage[0], true);
 	DrawGraph(AnagoPos[1].x, AnagoPos[1].y, anagoImage[1], true);

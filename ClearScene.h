@@ -23,10 +23,12 @@ private:
 
 
 	int mouseLeftImage = LoadGraph("GameAssets/Sprite/UI/mouseLeftUI.png");
-
+	int ABotanImage = LoadGraph("GameAssets/Sprite/UI/Atitle.png");
 
 	int ResultUI[30];
 	int levelImage[4];
+
+	
 
 	Vector2 mouseLeftSize = { 0,0 };
 	Vector2 titleSize = { 0,0 };
