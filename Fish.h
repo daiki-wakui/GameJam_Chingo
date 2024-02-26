@@ -11,7 +11,7 @@ public:
 private:
 	const int RADIUS = 25;
 	const int HANG = 15;
-	const int EXP = 15;
+	const int EXP = 30;
 	const int LV = 2;
 
 	const float SPEED_MOVE = 2.0f;
