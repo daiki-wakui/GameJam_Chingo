@@ -83,15 +83,16 @@ private:
 	int gamingCard = LoadGraph("GameAssets/Sprite/UI/UI_button_gaming.png");
 	int shakeCard = LoadGraph("GameAssets/Sprite/UI/UI_button_shark.png");
 	int sakabanCard = LoadGraph("GameAssets/Sprite/UI/UI_button_sakabam.png");
+	int UI_Cursor = LoadGraph("GameAssets/Sprite/pad_cursor.png");
 
 	int UI_Select = LoadSoundMem("GameAssets/Sound/SFX_UI_Select.wav");
-
 
 	bool isRelease = true;
 
 	bool isSet_;
 
 	XINPUT_STATE padInput;
+	XINPUT_STATE oldPadInput;
 	int padSelect_;
 	bool isPadSelect_;
 };

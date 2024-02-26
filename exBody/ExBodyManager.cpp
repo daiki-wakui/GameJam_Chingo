@@ -35,6 +35,7 @@ void ExBodyManager::Update()
 	Player* player = Player::GetInstance();
 
 	//パッド
+	oldPadInput = padInput;
 	GetJoypadXInputState(DX_INPUT_PAD1, &padInput);
 
 	if (!isSelect_) {
@@ -51,13 +52,13 @@ void ExBodyManager::Update()
 		}
 
 		if (player->GetIsUsePad()) {
-			if ((padInput.Buttons[XINPUT_BUTTON_DPAD_RIGHT] || padInput.ThumbLX > 10000) && !isPadSelect_) {
+			if (((padInput.Buttons[XINPUT_BUTTON_DPAD_RIGHT] && !oldPadInput.Buttons[XINPUT_BUTTON_DPAD_RIGHT])|| (padInput.ThumbLX > 10000 && oldPadInput.ThumbLX <= 10000)) && !isPadSelect_) {
 				if (padSelect_ < 2) {
 					padSelect_++;
 				}
 				isPadSelect_ = true;
 			}
-			else if ((padInput.Buttons[XINPUT_BUTTON_DPAD_LEFT] || padInput.ThumbLX < -10000) && !isPadSelect_) {
+			else if (((padInput.Buttons[XINPUT_BUTTON_DPAD_LEFT] && !oldPadInput.Buttons[XINPUT_BUTTON_DPAD_LEFT]) || (padInput.ThumbLX < -10000 && oldPadInput.ThumbLX >= -10000)) && !isPadSelect_) {
 				if (padSelect_ > 0) {
 					padSelect_--;
 				}
@@ -281,6 +282,12 @@ void ExBodyManager::SelectDraw()
 			//Shark
 			//DrawFormatString(tempPos.x, tempPos.y, GetColor(255, 255, 255), "サカバンバスピス");
 			DrawRotaGraph(tempPos.x, tempPos.y, 0.6f, 0, sakabanCard, true);
+		}
+
+		if (Player::GetInstance()->GetIsUsePad()) {
+			if (padSelect_ == i) {
+				DrawRotaGraph(tempPos.x, tempPos.y - 50, 1, 0, UI_Cursor, true);
+			}
 		}
 	}
 }
