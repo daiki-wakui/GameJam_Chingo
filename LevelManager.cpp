@@ -70,15 +70,15 @@ void LevelManager::Update()
 		haveExpGaugeYTop_[0] = haveExp_ * 2;
 	}
 	if (nowLevel_ == 2) {
-		haveExpGaugeYTop_[1] = haveExp_ * 0.5;
+		haveExpGaugeYTop_[1] = haveExp_ * 0.33;
 	}
 	if (nowLevel_ == 3) {
-		haveExpGaugeYTop_[2] = haveExp_ * 0.28;
+		haveExpGaugeYTop_[2] = haveExp_ * 0.25;
 	}
 
 	//伸び続けてる間に次のレベルになった時の例外処理
 	if (nowLevel_ == 1 && GetNowAndHaveExp() >= EXP_LV1) {
-		haveExpGaugeYTop_[1] = (GetNowAndHaveExp() - EXP_LV1) * 0.5;
+		haveExpGaugeYTop_[1] = (GetNowAndHaveExp() - EXP_LV1) * 0.33;
 
 		if (!isCanLvUp) {
 			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
@@ -86,7 +86,7 @@ void LevelManager::Update()
 		}
 	}
 	if (nowLevel_ == 2 && GetNowAndHaveExp() >= EXP_LV2) {
-		haveExpGaugeYTop_[2] = (GetNowAndHaveExp() - EXP_LV2) * 0.28;
+		haveExpGaugeYTop_[2] = (GetNowAndHaveExp() - EXP_LV2) * 0.25;
 
 		if (!isCanLvUp) {
 			PlaySoundMem(canLevelUp, DX_PLAYTYPE_BACK, true);
@@ -228,8 +228,8 @@ void LevelManager::Draw()
 	}
 	
 	//DrawFormatString(0,80,GetColor(255,255,255),"nowLevel = %d",nowLevel_);
-	//DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
-	//DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
+	DrawFormatString(0, 100, GetColor(255, 255, 255), "haveExp_ = %d",haveExp_);
+	DrawFormatString(0, 120, GetColor(255, 255, 255), "nowExp_ = %d / %d", nowExp_,nextExp_);
 	//DrawFormatString(0, 220, GetColor(255, 255, 255), "plen = %d", Player::GetInstance()->GetMaxLength());
 	//DrawFormatString(0, 200, GetColor(255, 255, 255), "hungerlen = %d", hungerLength_);
 	//DrawFormatString(0, 240, GetColor(255, 255, 255), "hungerlen+mass = %d", hungerLength_+muscleNum_);
@@ -247,18 +247,18 @@ void LevelManager::IncludeExp()
 
 	//レベル2のゲージ増加
 	if (nowLevel_ == 2) {
-		nowExpGaugeYTop_[1] -= haveExp_ * 0.5;
+		nowExpGaugeYTop_[1] -= haveExp_ * 0.33;
 	}
 	else if (nowLevel_ == 1 && nowExp_ >= EXP_LV1) {
-		nowExpGaugeYTop_[1] -= (nowExp_ - EXP_LV1) * 0.5;
+		nowExpGaugeYTop_[1] -= (nowExp_ - EXP_LV1) * 0.33;
 	}
 
 	//レベル3のゲージ増加
 	if (nowLevel_ == 3) {
-		nowExpGaugeYTop_[2] -= haveExp_ * 0.28;
+		nowExpGaugeYTop_[2] -= haveExp_ * 0.25;
 	}
 	else if (nowLevel_ == 2 && nowExp_ >= EXP_LV2) {
-		nowExpGaugeYTop_[2] -= (nowExp_ - EXP_LV2) * 0.28;
+		nowExpGaugeYTop_[2] -= (nowExp_ - EXP_LV2) * 0.25;
 	}
 
 	if (nowLevel_ == 4) {
