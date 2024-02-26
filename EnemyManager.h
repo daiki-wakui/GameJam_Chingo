@@ -65,7 +65,7 @@ private:
 	int fishPopTimer_;
 
 	const int MAX_DOLPHIN = 30;
-	const int TIME_DOLPHIN_POP = 60; //1.0s
+	const int TIME_DOLPHIN_POP = 30; //0.5s
 	int dolphinNum_;
 	int dolphinPopTimer_;
 
